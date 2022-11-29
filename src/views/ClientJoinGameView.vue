@@ -13,7 +13,7 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.enterNick">
+        <input type="text" v-bind:placeholder="uiLabels.gameID">
       </p>
     </form>
   <div>
@@ -22,7 +22,8 @@
     <form>
       <p>
         <label for="nickname"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.gameID">
+        <input type="text" v-bind:placeholder="uiLabels.enterNick">
+
       </p>
     </form>
 

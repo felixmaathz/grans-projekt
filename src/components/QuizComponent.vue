@@ -8,7 +8,8 @@
       <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.oneQuestion}}</p>
     </div>
     <div class="gameDetails">
-      <button class="playEditButtons">{{uiLabels.playAGame}}</button><button class="playEditButtons">{{uiLabels.editTheGame}}</button>
+      <router-link v-bind:to = "'/hostpregame/'+lang"> <button class="playEditButtons">{{uiLabels.playAGame}}</button></router-link>
+      <router-link v-bind:to = "'/create/'+lang"> <button class="playEditButtons">{{uiLabels.editTheGame}}</button></router-link>
     </div>
   </div>
 
