@@ -1,8 +1,72 @@
 {
+
+	"STARTVIEW": "",
+	"playTheGame": "SPELA",
+	"createTheGame": "SKAPA",
+	"gameTitle": "Stämmer det?",
 	"sales-pitch": "Svar. Helt. Enkelt.",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa röstning",
 	"participatePoll": "Delta i röstning",
 	"question": "Fråga",
-	"changeLanguage": "Change to English"
+	"changeLanguage": "Change to English",
+
+
+
+	"CREATEVIEW": "",
+	"createYourQuestions": "Skapa dina frågor",
+	"question": "Fråga",
+	"questionList": "Frågelista",
+	"answer": "Svar",
+	"yes": "Ja",
+	"no": "Nej",
+	"addYourQuestion": "Lägg till fråga",
+	"playGame": "Spela",
+	"saveGame": "Spara",
+	"goBack": "Tillbaka",
+
+	"HOSTORJOINVIEW": "",
+	"hostAGame": "Skapa en lobby",
+	"joinAGame": "Gå med i en lobby",
+	"goBack": "Tillbaka",
+
+	"CHOOSEGAMEMODEVIEW": "",
+	"playSavedQuiz": "Spela sparat quiz",
+	"createCoQuiz": "Skapa gemensamt quiz",
+
+	"SELECTSAVEDGAME": "",
+	"chooseOrEdit": "Välj sparat spel eller redigera",
+	"theGamesName": "Spelets namn...",
+	"startTheGame": "Start",
+	"editTheGame": "Redigera",
+	"playAGame": "Spela",
+	"goBack": "Tillbaka",
+	"questions": "frågor",
+
+	"CLIENTJOINGAMEVIEW": "",
+	"enterID": "Fyll i spel-ID",
+	"gameID": "#spel-ID",
+	"userName": "Vem är du?",
+	"enterNick": "fyll i användarnamn..",
+	"joinGame": "Gå med i spel",
+	"goBack": "Tillbaka",
+
+	"LOBBYVIEW": "",
+	"nickName": "#användarnamn",
+	"goBack": "Tillbaka",
+
+	"HOSTPREGAMEVIEW": "",
+	"hostPreGame": "Värdens lobby",
+	"goBack": "Tillbaka",
+
+	"JOINVIEW": "",
+	"goBack": "Tillbaka",
+
+	"POLLVIEW": "",
+	"goBack": "Tillbaka",
+
+	"RESULTVIEW": "",
+	"goBack": "Tillbaka"
+
+
 }

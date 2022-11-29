@@ -1,8 +1,74 @@
 {
+
+	"STARTVIEW": "",
+	"playTheGame": "PLAY",
+	"createTheGame": "CREATE",
+	"gameTitle": "True or false?",
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create poll",
 	"participatePoll": "Participate in poll",
 	"question": "Question",
-	"changeLanguage": "Byt till svenska"
+	"changeLanguage": "Byt till svenska",
+
+
+
+
+	"CREATEVIEW": "",
+	"createYourQuestions": "Create Your Questions",
+	"question": "Question",
+	"questionList": "Question List",
+	"answer": "Answer",
+	"yes": "Yes",
+	"no": "No",
+	"addYourQuestion": "Add question",
+	"playGame": "Play",
+	"saveGame": "Save",
+	"goBack": "Back",
+
+	"HOSTORJOINVIEW": "",
+	"hostAGame": "Host a lobby",
+	"joinAGame": "Join a lobby",
+	"goBack": "Back",
+
+	"CHOOSEGAMEMODEVIEW": "",
+	"playSavedQuiz": "Play saved Quiz",
+	"createCoQuiz": "Create collaborative quiz",
+
+	"SELECTSAVEDGAME": "",
+	"chooseOrEdit": "Choose a saved game or edit one",
+	"theGamesName": "Game name...",
+	"startTheGame": "Start",
+	"editTheGame": "Edit",
+	"playAGame": "Play",
+	"goBack": "Back",
+	"questions": "questions",
+
+	"CLIENTJOINGAMEVIEW": "",
+	"enterID": "Enter game-ID",
+	"gameID": "#game-ID",
+	"userName": "Who are you?",
+	"enterNick": "enter nickname..",
+	"joinGame": "Join game",
+	"goBack": "Back",
+
+	"LOBBYVIEW": "",
+	"nickName": "#nickname",
+	"goBack": "Back",
+
+	"HOSTPREGAMEVIEW": "",
+	"hostPreGame": "Host pre game",
+	"goBack": "Back",
+
+
+	"JOINVIEW": "",
+	"goBack": "Back",
+
+	"POLLVIEW": "",
+	"goBack": "Back",
+
+	"RESULTVIEW": "",
+	"goBack": "Back"
+
+
 }

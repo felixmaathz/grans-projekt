@@ -7,10 +7,25 @@ const routes = [
     name: 'Start',
     component: StartView
   },
+  {
+    path: '/hostorjoin/:lang',
+    name: 'HostOrJoinView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/HostOrJoinView.vue')
+  },
+  {
+    path: '/choosegamemode/:lang',
+    name: 'ChooseGameModeView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ChooseGameModeView.vue')
+  },
     {
-    path: '/poll/:id',
+    path: '/poll/:id/:lang',
     name: 'PollView',
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+  },
+  {
+    path: '/selectsavedgame/:lang',
+    name: 'SelectSavedGame',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SelectSavedGame.vue')
   },
   {
     path: '/create/:lang',
@@ -21,12 +36,32 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
   },
   {
-    path: '/result/:id',
+    path: '/result/:id/:lang',
     name: 'ResultView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/ResultView.vue')
+  },
+  {
+    path: '/clientjoingame/:lang',
+    name: "ClientJoinGameView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ClientJoinGameView.vue')
+  },
+  {
+    path: '/hostpregame/:lang',
+    name: "HostPreGameView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/HostPreGameView.vue')
+  },
+  {
+    path: '/lobby/:lang',
+    name: "LobbyView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/LobbyView.vue')
+  },
+  {
+    path: '/join/:lang',
+    name: "JoinView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
   }
 ]
 

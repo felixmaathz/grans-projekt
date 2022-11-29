@@ -9,13 +9,18 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
+
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
+    console.log(d)
+    socket.emit('pollCreated', data.createPoll(d));
   });
 
+  socket.on('getQuizzes', function() {
+    socket.emit('returnQuizzes', data.getQuizzes())
+  })
+
   socket.on('addQuestion', function(d) {
-    data.addQuestion(d.pollId, {q: d.q, a: d.a});
-    socket.emit('dataUpdate', data.getAnswers(d.pollId));
+    socket.emit('dataUpdate', data.addQuestion(d.gameId,d.q));
   });
 
   socket.on('editQuestion', function(d) {
@@ -28,6 +33,7 @@ function sockets(io, socket, data) {
     socket.emit('newQuestion', data.getQuestion(pollId))
     socket.emit('dataUpdate', data.getAnswers(pollId));
   });
+
 
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
@@ -43,6 +49,9 @@ function sockets(io, socket, data) {
     data = new Data();
     data.initializeData();
   })
+
+
+
  
 }
 
