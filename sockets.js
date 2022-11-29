@@ -16,7 +16,12 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getQuizzes', function() {
-    socket.emit('returnQuizzes', data.getQuizzes())
+    socket.emit('returnQuizzes', data.getQuizzes());
+  })
+
+  socket.on('removeQuiz',function(d){
+    socket.emit("quizRemoved",data.removeQuiz(d))
+  
   })
 
   socket.on('addQuestion', function(d) {

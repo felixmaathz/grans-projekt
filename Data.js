@@ -44,6 +44,15 @@ Data.prototype.getQuizzes= function (){
   return this.finishedQuizzes;
 }
 
+Data.prototype.removeQuiz=function(gameId){
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if (this.finishedQuizzes[i].gameId===gameId){
+      this.finishedQuizzes.splice(i,1);
+      console.log(this.finishedQuizzes)
+    }
+}
+}
+
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};

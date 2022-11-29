@@ -84,7 +84,7 @@
   </div>
   <footer>
     <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
+      <button style="position:absolute; bottom:100px;" v-on:click="goBack">{{uiLabels.goBack}}</button>
     </div>
   </footer>
   </body>
@@ -113,9 +113,15 @@ export default {
   },
   created: function () {
 
+    
     this.gameId=prompt("Choose game ID")
-    console.log(this.gameId)
-    socket.emit('createPoll', this.gameId)
+    if(this.gameId==null||this.gameId=="" ){
+      history.back()
+  
+    }else{  console.log(this.gameId)
+    socket.emit('createPoll', this.gameId)}
+    
+    
 
 
     this.lang = this.$route.params.lang;
@@ -166,6 +172,15 @@ export default {
         return this.formValidation = true;
       }
     },
+
+    goBack:function(){
+      if(this.finishedQuiz.listOfQuestions.length == 0){
+        socket.emit('removeQuiz',this.gameId)
+        
+      }
+      this.$router.go(-1)
+
+    }
   }
 }
 </script>
