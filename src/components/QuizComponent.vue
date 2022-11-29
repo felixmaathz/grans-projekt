@@ -5,7 +5,7 @@
     </div>
     <div class="gameDescription">
       <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
-      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
+      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.oneQuestion}}</p>
     </div>
     <div class="gameDetails">
       <button class="playEditButtons">{{uiLabels.playAGame}}</button><button class="playEditButtons">{{uiLabels.editTheGame}}</button>

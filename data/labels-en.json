@@ -43,6 +43,7 @@
 	"playAGame": "Play",
 	"goBack": "Back",
 	"questions": "questions",
+	"oneQuestion": "question",
 
 	"CLIENTJOINGAMEVIEW": "",
 	"enterID": "Enter game-ID",
