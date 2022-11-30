@@ -5,11 +5,11 @@
     </div>
     <div class="gameDescription">
       <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
-      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
+      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
       <router-link v-bind:to = "'/hostpregame/'+lang"> <button class="playEditButtons">{{uiLabels.playAGame}}</button></router-link>
-      <router-link v-bind:to = "'/create/'+lang"> <button class="playEditButtons">{{uiLabels.editTheGame}}</button></router-link>
+      <router-link v-bind:to = "'/editquiz/'+lang"> <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button></router-link>
     </div>
   </div>
 
@@ -40,6 +40,13 @@ export default {
     numberOfQuestions: 0,
       uiLabels: {},
       lang: "",
+    }
+  },
+  methods: {
+    editQuiz: function() {
+      console.log("felix är en duktig programmerare" + this.quiz.questionList)
+      this.$emit("editThisQuiz", this.quiz)
+
     }
   }
 }
