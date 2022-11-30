@@ -6,7 +6,8 @@
       <div class="quizList">
         <QuizComponent v-for="quiz in this.listOfQuizzes"
                        v-bind:quiz="quiz"
-                       v-bind:key="quiz.gameId">
+                       v-bind:key="quiz.gameId"
+                       v-on:editThisQuiz = editQuiz($event)>
         </QuizComponent>
       </div>
     </div>
@@ -54,6 +55,13 @@ export default {
       console.log(this.listOfQuizzes)
     })
   },
+  methods: {
+    editQuiz: function (event) {
+      socket.emit("editQuiz", event)
+      let print = JSON.stringify(event)
+      console.log("fuck" + print)
+    }
+  }
 }
 </script>
 

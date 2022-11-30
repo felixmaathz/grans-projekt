@@ -41,15 +41,14 @@
           </router-link>
         </div>
 
-        <div class = "saveButton">
+<!--        <div class = "saveButton">-->
 
-          <router-link v-bind:to="'//'">
-            <button class="questionButtons" >
-              {{uiLabels.saveGame}}
-            </button>
-          </router-link>
 
-        </div>
+<!--            <button class="questionButtons" v-on:click="goBack" >-->
+<!--              {{uiLabels.saveGame}}-->
+<!--            </button>-->
+
+<!--        </div>-->
       </div>
 
       <div class = "questionListWrapper">

@@ -5,6 +5,7 @@ const languages = ["en", "se"];
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.finishedQuizzes = [];
+  this.editThisQuiz = {}
 }
 
 /***********************************************
@@ -29,16 +30,20 @@ Data.prototype.createPoll = function(gameId) {
 }
 
 Data.prototype.addQuestion = function(gameId, q) {
+
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
       this.finishedQuizzes[i].questionList.push(q);
       console.log("question added to", gameId, q);
       console.log(this.finishedQuizzes[i].questionList)
+    }else{
+      console.log("Quiz not found")
     }
   }
 }
 
 Data.prototype.removeQuestion=function(gameId,index){
+  console.log("remove"+gameId+index)
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
       this.finishedQuizzes[i].questionList.splice(index,1)
@@ -56,6 +61,14 @@ Data.prototype.getQuizzes= function (){
 Data.prototype.removeQuiz=function(gameId){
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
+<<<<<<< HEAD
+      this.finishedQuizzes.splice(i,1);
+      console.log(this.finishedQuizzes)
+    }
+}
+}
+
+=======
       this.finishedQuizzes.splice(i,1)
       console.log("removed "+gameId)
       console.log(this.finishedQuizzes)
@@ -63,6 +76,25 @@ Data.prototype.removeQuiz=function(gameId){
   }
 }
 
+Data.prototype.editTheQuiz=function(quiz){
+  this.editThisQuiz=quiz
+  console.log("saved quiz for edit"+this.editThisQuiz)
+}
+
+Data.prototype.getQuizForEdit=function(){
+  return this.editThisQuiz
+}
+
+Data.prototype.replaceQuiz=function(quiz){
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if (this.finishedQuizzes[i].gameId===quiz.gameId){
+      this.finishedQuizzes[i]=quiz
+      console.log("quiz replaced "+quiz)
+      this.editThisQuiz={}
+    }
+  }
+}
+>>>>>>> origin/main
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};
