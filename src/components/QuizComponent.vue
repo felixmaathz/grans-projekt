@@ -5,11 +5,11 @@
     </div>
     <div class="gameDescription">
       <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
-      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.oneQuestion}}</p>
+      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
       <router-link v-bind:to = "'/hostpregame/'+lang"> <button class="playEditButtons">{{uiLabels.playAGame}}</button></router-link>
-      <router-link v-bind:to = "'/editquiz/'+lang"> <button class="playEditButtons" v-on:click="exportGameId()">{{uiLabels.editTheGame}}</button></router-link>
+      <router-link v-bind:to = "'/editquiz/'+lang"> <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button></router-link>
     </div>
   </div>
 
@@ -27,9 +27,6 @@ export default {
     quiz: Object
   },
   created: function(){
-    this.editGameID = this.quiz.gameId
-    socket.emit('saveGameID', this.editGameID)
-
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -38,18 +35,18 @@ export default {
     })
     this.numberOfQuestions=this.quiz.questionList.length;
   },
-
   data: function(){
     return{
     numberOfQuestions: 0,
       uiLabels: {},
       lang: "",
-      editGameID: "",
     }
   },
-  methods:{
-    exportGameId: function(){
-      socket.emit('editQuiz',this.editGameID)
+  methods: {
+    editQuiz: function() {
+      console.log("felix är en duktig programmerare" + this.quiz.questionList)
+      this.$emit("editThisQuiz", this.quiz)
+
     }
   }
 }

@@ -10,6 +10,7 @@ function sockets(io, socket, data) {
   });
 
 
+
   socket.on('createPoll', function(d) {
     console.log(d)
     socket.emit('pollCreated', data.createPoll(d));
@@ -29,6 +30,19 @@ function sockets(io, socket, data) {
 
   socket.on('removeQuestion', function(d){
     socket.emit('questionRemoved', data.removeQuestion(d.gameId,d.index))
+  })
+
+  socket.on('editQuiz', function(d){
+    socket.emit('quizEdit', data.editTheQuiz(d))
+    console.log("fyfan asså"+d)
+  })
+
+  socket.on('getQuizForEdit', function(){
+    socket.emit('returnQuizForEdit', data.getQuizForEdit())
+  })
+
+  socket.on('replaceQuiz', function(d){
+    socket.emit('quizReplaced', data.replaceQuiz(d))
   })
 
   socket.on('editQuestion', function(d) {
