@@ -1,12 +1,13 @@
 <template>
   <body>
-  <h2>Edit quiz: {{this.gameId }} </h2>
+  <h2>Edit quiz: {{ this.finishedQuiz.gameId}}</h2>
   <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
         {{uiLabels.question}}:
         <input type="text" v-model="questionObject.questionText">
+
         <div>
           {{uiLabels.answer}}:
           <!--        <input v-for="(_, i) in answers"-->
@@ -46,7 +47,7 @@
       <div class = "questionListWrapper">
         <h3>{{uiLabels.questionList}}</h3>
         <hr>
-        <div class="questionList" v-for="(question,index) in finishedQuiz.listOfQuestions"
+        <div class="questionList" v-for="(question,index) in this.finishedQuiz.questionList"
              v-bind:key="question">
           <li>
             <button v-on:click="deleteQuestion(index)">X</button>
@@ -76,7 +77,7 @@
   </div>
   <footer>
     <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
+      <button style="position:absolute; bottom:100px;" v-on:click="replaceQuiz">{{uiLabels.goBack}}</button>
     </div>
   </footer>
   </body>
@@ -93,7 +94,7 @@ export default {
       listOfQuizzes: undefined,
       gameId: "",
 
-      finishedQuiz: {name: "", listOfQuestions: []},
+      finishedQuiz: {name: "",questionList: []},
       questionObject: {questionText: "", questionAnswer: undefined},
       formValidation: false,
 
@@ -113,11 +114,14 @@ export default {
           this.listOfQuizzes=quizList
     })
 
-    socket.on('quizEdit', (gameId)=>{
-      this.gameId=gameId
-      console.log(this.gameId)
-    })
+    socket.emit('getQuizForEdit');
+    socket.on('returnQuizForEdit', (quizForEdit) =>{
+      this.finishedQuiz=quizForEdit
 
+
+      let object = JSON.stringify(this.finishedQuiz)
+      console.log("saved"+object)
+    })
 
 
     this.lang = this.$route.params.lang;
@@ -145,9 +149,9 @@ export default {
       if(this.formValidation===true) {
         const question = Object.assign({}, this.questionObject)
 
-        this.finishedQuiz.listOfQuestions.push(question)
-        console.log(this.finishedQuiz.listOfQuestions)
-        socket.emit("addQuestion", {gameId: this.gameId, q: question})
+        this.finishedQuiz.questionList.push(question)
+        console.log(this.finishedQuiz.questionList)
+        socket.emit("addQuestion", {gameId: this.finishedQuiz.gameId, q: question})
       }
 
       this.questionObject.questionText= "";
@@ -161,7 +165,8 @@ export default {
     // },
 
     deleteQuestion: function (index) {
-      this.finishedQuiz.listOfQuestions.splice(index, 1)
+      this.finishedQuiz.questionList.splice(index, 1)
+      socket.emit('removeQuestion', {gameId: this.finishedQuiz.gameId, index: index})
     },
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||
@@ -172,6 +177,15 @@ export default {
         return this.formValidation = true;
       }
     },
+    replaceQuiz: function (){
+      if(this.finishedQuiz.questionList.length===0){
+        socket.emit('removeQuiz',this.finishedQuiz.gameId)
+        console.log("removed"+this.finishedQuiz.gameId)
+      }else{
+        socket.emit('replaceQuiz', this.finishedQuiz)
+      }
+      this.$router.go(-1)
+    }
   }
 }
 </script>
