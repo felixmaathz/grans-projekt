@@ -1,11 +1,10 @@
 <template>
   <body>
-  <h2>{{ uiLabels.createYourQuestions }} </h2>
+  <h2>Edit quiz: {{this.gameId }} </h2>
   <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
-        <h3>{{ this.finishedQuiz.name }}</h3>
         {{uiLabels.question}}:
         <input type="text" v-model="questionObject.questionText">
         <div>
@@ -32,17 +31,10 @@
           {{uiLabels.addYourQuestion}}
         </button>
 
-        <div class = "playButton">
-          <router-link v-bind:to="'//'">
-            <button class="questionButtons" >
-              {{uiLabels.playGame}}
-            </button>
-          </router-link>
-        </div>
 
         <div class = "saveButton">
 
-          <router-link v-bind:to="'//'">
+          <router-link v-bind:to="'/selectsavedgame/'+lang">
             <button class="questionButtons" >
               {{uiLabels.saveGame}}
             </button>
@@ -95,15 +87,18 @@ import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'CreateView',
+  name: 'EditQuizView',
   data: function () {
     return {
+      listOfQuizzes: undefined,
+      gameId: "",
+
       finishedQuiz: {name: "", listOfQuestions: []},
       questionObject: {questionText: "", questionAnswer: undefined},
       formValidation: false,
 
       lang: "",
-      gameId: "",
+
       question: "",
       answers: ["", ""],
       questionNumber: 0,
@@ -113,9 +108,17 @@ export default {
   },
   created: function () {
 
-    this.gameId=prompt("Choose game ID")
-    console.log(this.gameId)
-    socket.emit('createPoll', this.gameId)
+    socket.emit('getQuizzes');
+    socket.on('returnQuizzes', (quizList) =>{
+          this.listOfQuizzes=quizList
+    })
+
+    socket.on('quizEdit', (gameId)=>{
+      this.gameId=gameId
+      console.log(this.gameId)
+    })
+
+
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -127,6 +130,10 @@ export default {
     )
     socket.on("pollCreated", (data) =>
         this.data = data)
+
+    socket.on("savedGameID", (returnedQuiz) =>
+        this.finishedQuiz = returnedQuiz)
+
 
   },
 

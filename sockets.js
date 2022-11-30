@@ -19,6 +19,11 @@ function sockets(io, socket, data) {
     socket.emit('returnQuizzes', data.getQuizzes())
   })
 
+  socket.on('editQuiz', function(d){
+    console.log("edit")
+    socket.emit('quizEdit', d)
+  })
+
   socket.on('addQuestion', function(d) {
     socket.emit('dataUpdate', data.addQuestion(d.gameId,d.q));
   });
@@ -48,6 +53,11 @@ function sockets(io, socket, data) {
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();
+  });
+
+  socket.on('saveGameID', function(d) {
+    console.log(d)
+    socket.emit('savedGameID', data.saveGameId(d));
   })
 
 

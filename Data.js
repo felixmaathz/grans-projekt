@@ -44,6 +44,8 @@ Data.prototype.getQuizzes= function (){
   return this.finishedQuizzes;
 }
 
+
+
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};
@@ -112,6 +114,17 @@ Data.prototype.getAnswers = function(gameId) {
     }
   }
   return {}
+}
+
+Data.prototype.saveGameId= function(gameId) {
+  console.log(gameId)
+
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if (this.finishedQuizzes[i].gameId===gameId) {
+      console.log("returned"+this.finishedQuizzes.gameId)
+      return this.finishedQuizzes[i]
+    }
+  }
 }
 module.exports = Data;
 

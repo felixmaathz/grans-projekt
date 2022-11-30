@@ -62,6 +62,12 @@ const routes = [
     path: '/join/:lang',
     name: "JoinView",
     component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
+  },
+
+  {
+    path: '/editquiz/:lang',
+    name: "EditQuizView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
   }
 ]
 

@@ -6,7 +6,8 @@
       <div class="quizList">
         <QuizComponent v-for="quiz in this.listOfQuizzes"
                        v-bind:quiz="quiz"
-                       v-bind:key="quiz.gameId">
+                       v-bind:key="quiz.gameId"
+                       v-on:click="editQuiz()">
         </QuizComponent>
       </div>
     </div>
@@ -54,6 +55,11 @@ export default {
       console.log(this.listOfQuizzes)
     })
   },
+  methods: {
+    editQuiz: function(){
+
+    }
+  }
 }
 </script>
 
