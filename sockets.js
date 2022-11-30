@@ -28,6 +28,10 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.addQuestion(d.gameId,d.q));
   });
 
+  socket.on('removeQuestion', function(d){
+    socket.emit('questionRemoved', data.removeQuestion(d.gameId,d.index))
+  })
+
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
     socket.emit('questionEdited', data.getAllQuestions(d.pollId));

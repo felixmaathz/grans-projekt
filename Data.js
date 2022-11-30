@@ -29,13 +29,22 @@ Data.prototype.createPoll = function(gameId) {
 }
 
 Data.prototype.addQuestion = function(gameId, q) {
-  let poll = [];
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
-      poll = this.finishedQuizzes[i];
-      poll.questionList.push(q);
+      this.finishedQuizzes[i].questionList.push(q);
       console.log("question added to", gameId, q);
-      console.log(poll.questionList)
+      console.log(this.finishedQuizzes[i].questionList)
+    }
+  }
+}
+
+Data.prototype.removeQuestion=function(gameId,index){
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if (this.finishedQuizzes[i].gameId===gameId){
+      this.finishedQuizzes[i].questionList.splice(index,1)
+      console.log("removed question from "+gameId)
+      console.log(this.finishedQuizzes[i].questionList)
+      return(this.finishedQuizzes[i].questionList)
     }
   }
 }
