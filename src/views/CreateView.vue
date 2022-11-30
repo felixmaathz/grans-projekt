@@ -177,7 +177,7 @@ export default {
     goBack:function(){
       if(this.finishedQuiz.listOfQuestions.length === 0){
         socket.emit('removeQuiz',this.gameId)
-        
+        console.log("removed"+this.gameId)
       }
       this.$router.go(-1)
 
