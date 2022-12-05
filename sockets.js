@@ -34,7 +34,6 @@ function sockets(io, socket, data) {
 
   socket.on('editQuiz', function(d){
     socket.emit('quizEdit', data.editTheQuiz(d))
-    console.log("fyfan asså"+d)
   })
 
   socket.on('getQuizForEdit', function(){
@@ -50,12 +49,14 @@ function sockets(io, socket, data) {
     socket.emit('questionEdited', data.getAllQuestions(d.pollId));
   });
 
-  socket.on('joinPoll', function(pollId) {
-    socket.join(pollId);
-    socket.emit('newQuestion', data.getQuestion(pollId))
-    socket.emit('dataUpdate', data.getAnswers(pollId));
-  });
+  socket.on('createGame', function(d){
+    console.log("game created")
+    socket.emit('gameCreated', data.createGame(d))
+  })
 
+  socket.on('joinGame', function(d){
+    socket.emit('gameJoined', data.joinGame(d))
+  })
 
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
