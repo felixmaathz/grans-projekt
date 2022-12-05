@@ -7,7 +7,8 @@
         <QuizComponent v-for="quiz in this.listOfQuizzes"
                        v-bind:quiz="quiz"
                        v-bind:key="quiz.gameId"
-                       v-on:editThisQuiz = editQuiz($event)>
+                       v-on:editThisQuiz = editQuiz($event)
+                       v-on:createGame = createGame($event)>
         </QuizComponent>
       </div>
     </div>
@@ -58,8 +59,10 @@ export default {
   methods: {
     editQuiz: function (event) {
       socket.emit("editQuiz", event)
-      let print = JSON.stringify(event)
-      console.log("fuck" + print)
+    },
+    createGame: function (event) {
+      console.log("game created")
+      socket.emit('createGame',event)
     }
   }
 }

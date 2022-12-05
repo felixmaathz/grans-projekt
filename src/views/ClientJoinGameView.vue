@@ -13,7 +13,7 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.gameID">
+        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameID">
       </p>
     </form>
   <div>
@@ -22,13 +22,13 @@
     <form>
       <p>
         <label for="nickname"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.enterNick">
+        <input type="text" v-model="user.username" v-bind:placeholder="uiLabels.enterNick">
 
       </p>
     </form>
 
     <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang"><button>{{uiLabels.joinGame}} </button></router-link>
+    <router-link v-bind:to="'/lobby/'+lang"><button v-on:click="joinGame()">{{uiLabels.joinGame}} </button></router-link>
   </div>
   <footer>
     <div style="margin: 2em">
@@ -47,6 +47,7 @@ export default {
 
   data: function () {
     return {
+      user: {username:"", joinGameId: ""},
       uiLabels: {},
       lang: "",
     }
@@ -59,6 +60,12 @@ export default {
 
     })
   },
+  methods:{
+    joinGame: function(){
+      console.log("HEJ")
+      socket.emit('joinGame', this.user)
+    }
+  }
 }
 
 
