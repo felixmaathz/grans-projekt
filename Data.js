@@ -95,7 +95,7 @@ Data.prototype.createGame=function (quiz){
 }
 
 Data.prototype.joinGame=function(user){
-  if(user.joinGameId===this.createdGame.gameId){
+  if(user.gameId===this.createdGame.gameId){
     this.createdGame.connectedUsers.push(user)
     console.log("User '"+user.username+"' connected")
   }else{
