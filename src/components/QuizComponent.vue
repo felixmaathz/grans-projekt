@@ -8,9 +8,9 @@
       <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
-      <router-link v-bind:to = "'/hostpregame/'+lang" style="width: 50%">
+<!--      <router-link v-bind:to = "'/hostpregame/'+lang+id" style="width: 50%">-->
         <button class="playEditButtons" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
-      </router-link>
+<!--      </router-link>-->
 
       <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">
         <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button>
@@ -32,6 +32,7 @@ export default {
     quiz: Object
   },
   created: function(){
+
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {

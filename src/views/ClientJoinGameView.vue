@@ -28,7 +28,7 @@
     </form>
 
     <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang"><button v-on:click="joinGame()">{{uiLabels.joinGame}} </button></router-link>
+    <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId"><button v-on:click="joinGame()">{{uiLabels.joinGame}} </button></router-link>
   </div>
   <footer>
     <div style="margin: 2em">
@@ -53,6 +53,7 @@ export default {
     }
   },
   created: function () {
+    this.user.joinGameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -62,7 +63,6 @@ export default {
   },
   methods:{
     joinGame: function(){
-      console.log("HEJ")
       socket.emit('joinGame', this.user)
     }
   }
