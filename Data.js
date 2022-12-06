@@ -103,6 +103,10 @@ Data.prototype.joinGame=function(user){
     console.log("Game ID not found!")
   }
 }
+
+Data.prototype.getUsers=function(){
+  return this.createdGame.connectedUsers;
+}
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};
