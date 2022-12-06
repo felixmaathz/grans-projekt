@@ -1,8 +1,8 @@
 <template>
   <body>
 <div>
-
-  {{uiLabels.nickName}}
+hej
+  //{{user.nick}}
 
 </div>
 
@@ -20,11 +20,15 @@ const socket = io();
 
 export default {
   name: "LobbyView",
+  props: {
+    user: Object
+  },
 
   data: function () {
     return {
       uiLabels: {},
       lang: "",
+
     }
   },
   created: function () {
@@ -34,6 +38,8 @@ export default {
       this.uiLabels = labels
 
     })
+    this.id = this.$route.params.id;
+    this.nick= this.$route.params.nick;
   },
 }
 </script>

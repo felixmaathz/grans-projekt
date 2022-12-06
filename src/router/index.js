@@ -54,7 +54,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/HostPreGameView.vue')
   },
   {
-    path: '/lobby/:lang',
+    path: '/lobby/:id/:lang',
     name: "LobbyView",
     component: () => import(/* webpackChunkName: "about" */ '../views/LobbyView.vue')
   },
