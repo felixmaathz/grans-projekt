@@ -67,7 +67,12 @@ const routes = [
     path: '/editquiz/:lang/:id',
     name: "editQuizView",
     component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
-}
+  },
+  {
+    path: '/game/:lang/:id',
+    name: "GameView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/GameView.vue')
+  }
 ]
 
 const router = createRouter({
