@@ -49,7 +49,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ClientJoinGameView.vue')
   },
   {
-    path: '/hostpregame/:lang',
+    path: '/hostpregame/:id/:lang',
     name: "HostPreGameView",
     component: () => import(/* webpackChunkName: "about" */ '../views/HostPreGameView.vue')
   },

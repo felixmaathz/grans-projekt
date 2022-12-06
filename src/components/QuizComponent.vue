@@ -4,11 +4,11 @@
       <span class="gameId">{{ quiz.gameId}}</span>
     </div>
     <div class="gameDescription">
-      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
+      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.moreQuestions}}</p>
       <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
-      <router-link v-bind:to = "'/hostpregame/'+lang" style="width: 50%">
+      <router-link v-bind:to = "'/hostpregame/'+id+'/'+lang" style="width: 50%">
         <button class="playEditButtons" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
       </router-link>
 
@@ -39,12 +39,14 @@ export default {
 
     })
     this.numberOfQuestions=this.quiz.questionList.length;
+    this.id = this.quiz.gameId;
   },
   data: function(){
     return{
     numberOfQuestions: 0,
       uiLabels: {},
       lang: "",
+      id:"",
     }
   },
   methods: {
@@ -55,6 +57,7 @@ export default {
     createGame: function(){
 
       this.$emit("createGame", this.quiz)
+
     }
   }
 }

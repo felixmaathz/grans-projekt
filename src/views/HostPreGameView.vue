@@ -32,6 +32,7 @@ export default {
       this.uiLabels = labels
 
     })
+    this.id = this.$route.params.id;
   },
 }
 
