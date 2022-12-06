@@ -3,7 +3,10 @@
  <div>
    {{uiLabels.hostPreGame}}
  </div>
-
+<div v-for="user in this.connectedUsers"
+      v-bind:key="user">
+  {{user.username}}
+</div>
   <footer>
     <div style="margin: 2em">
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
@@ -23,14 +26,21 @@ export default {
     return {
       uiLabels: {},
       lang: "",
+      gameId:"",
+      connectedUsers: []
     }
   },
   created: function () {
+    this.gameId=this.$route.params.id
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
 
+    })
+    socket.on('userJoined', (users) =>{
+      console.log('user joined')
+      this.connectedUsers = users
     })
   },
 }

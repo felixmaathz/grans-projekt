@@ -40,7 +40,8 @@ export default {
       listOfQuizzes: undefined,
       uiLabels: {},
       lang: "",
-      quizNames: ""
+      quizNames: "",
+      gameId:""
     }
   },
   created: function () {
@@ -58,9 +59,13 @@ export default {
   },
   methods: {
     editQuiz: function (event) {
+      this.gameId=event.gameId
+      this.$router.push({path: '/editquiz/'+this.lang+'/'+this.gameId})
       socket.emit("editQuiz", event)
     },
     createGame: function (event) {
+      this.gameId=event.gameId
+      this.$router.push({path: '/hostpregame/'+this.lang+'/'+this.gameId})
       console.log("game created")
       socket.emit('createGame',event)
     }

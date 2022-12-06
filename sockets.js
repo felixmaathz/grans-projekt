@@ -55,7 +55,8 @@ function sockets(io, socket, data) {
   })
 
   socket.on('joinGame', function(d){
-    socket.emit('gameJoined', data.joinGame(d))
+    data.joinGame(d)
+    io.emit('userJoined', data.getUsers())
   })
 
   socket.on('runQuestion', function(d) {
