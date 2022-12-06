@@ -3,7 +3,7 @@
 
     <div>
       <div class="languageButtonDiv">
-        <button class="languageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+        <button class="gameButtons language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
       </div>
 
       <h1 class = "gameName">{{uiLabels.gameTitle}}</h1>
@@ -75,6 +75,12 @@ export default {
 }
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen&display=swap');
+
+
+/**{*/
+/*  outline: 1px solid greenyellow;*/
+/*}*/
   header {
     background-color: gray;
     width: 100%;
@@ -83,17 +89,18 @@ export default {
   }
 
   body{
-    background: rgb(253,52,76);
-    background: radial-gradient(circle, rgba(253,52,76,1) 35%, rgba(182,49,65,1) 90%);
+    background: #EF233C;
+    background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-family: "Trebuchet MS",serif;
+    font-family: "Silkscreen", cursive;
   }
 
   h1{
     color: #00C3BA;
-    -webkit-text-stroke: 0.3vw black;
+    /*-webkit-text-stroke: 0.01vw black;*/
+    text-shadow: 6px 6px black;
   }
 
   .gameName{
@@ -102,25 +109,29 @@ export default {
   }
 
   .gameButtons{
-    font-family: "Trebuchet MS",serif;
+    font-family: "Press Start 2P",cursive;
     color: #FEF9CC;
-    background-color: #1F6E77;
+    background-color: #00C3BA;
     /*-webkit-text-stroke: 1px black;*/
     cursor: pointer;
     width: 30vw;
     height: 10vh;
     margin: 20px;
     font-size: 3vw;
-    border-radius: 4vw;
+    text-shadow: 2px 2px #1F6E77;
+    /*border-radius: 4vw;*/
+    box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.6vw;
+    border-width: 0.4vw;
     border-style: solid ;
-    transition-duration: 0.15s;
-
+    /*transition-duration: 0.15s;*/
   }
-  button:hover{
-    background-color: #00C3BA;
-    border-width: 0.3vw;
+  .gameButtons:hover{
+    padding-right: 0.05em;
+    padding-top: 0.05em;
+    background-color: #31a6b2;
+    box-shadow: inset -0.1em -0.1em #027a75;
+    /*border-width: 0.3vw;*/
     color: #FEF9CC;
 
   }
@@ -128,22 +139,37 @@ export default {
   .languageButtonDiv{
     width: 10vw;
     height: 10vh;
+  }
 
+  .gameButtons.language{
+    width: 10vw;
+    height: 10vh;
+    font-size: 0.9vw;
+    box-shadow: inset -0.35em -0.35em #268b96;
+  }
+  .gameButtons.language:hover{
+    box-shadow: inset -0.2em -0.2em #027a75;
+    padding-right: 0.15em;
+    padding-top: 0.2em;
   }
 
   .languageButton{
-    font-family: "Trebuchet MS", serif;
+    font-family: "Press Start 2P",cursive;
+    color: #FEF9CC;
+    background-color: #00C3BA;
+    /*-webkit-text-stroke: 1px black;*/
     cursor: pointer;
     width: 10vw;
     height: 10vh;
-    margin: 2vw;
-    font-size: 1.5em;
-    border-radius: 4vw;
+    margin: 20px;
+    font-size: 0.9vw;
+    text-shadow: 2px 2px #1F6E77;
+    /*border-radius: 4vw;*/
+    box-shadow: inset -0.35em -0.35em #268b96;
     border-color: #2B211B;
-    border-width: 0.6vw;
+    border-width: 0.4vw;
     border-style: solid ;
-    transition-duration: 0.15s;
-
+    /*transition-duration: 0.15s;*/
   }
 
   .logo {
