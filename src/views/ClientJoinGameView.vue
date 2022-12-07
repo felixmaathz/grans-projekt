@@ -21,7 +21,8 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameID" class="questionInput">
+        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameID"
+               class="questionInput">
       </p>
     </form>
   <div class="enterNick">
@@ -30,7 +31,8 @@
     <form>
       <p>
         <label for="nickname"></label> <br>
-        <input type="text" v-model="user.username" v-bind:placeholder="uiLabels.enterNick" class="questionInput">
+        <input type="text" v-model="user.username" v-bind:placeholder="uiLabels.enterNick"
+               class="questionInput" minlength="3" maxlength="10">
 
       </p>
     </form>
