@@ -7,37 +7,37 @@
       arrow_back
     </span></button>
     </div>
-    <h1 >{{ uiLabels.createYourQuestions }} </h1>
+  <h1 >{{ uiLabels.createYourQuestions }} </h1>
 
   </div>
-  <div>
+    <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
-        <h3>Game ID: {{this.gameId}}</h3>
+        <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
         <input class="questionInput" type="text"
                v-model="questionObject.questionText" placeholder="Start typing..." autofocus>
         <div  class="answerButtonsWrapper">
-          <!--          {{uiLabels.answer}}:-->
-          <button v-on:click="chooseAnswer(true)" class="answerButton true"
-                  :class="{selected: trueSelected}">
-            TRUE
-          </button>
-          <button v-on:click="chooseAnswer(false)" class="answerButton false"
-                  :class="{selected: falseSelected}">
-            FALSE
-          </button>
+<!--          {{uiLabels.answer}}:-->
+            <button v-on:click="chooseAnswer(true)" class="answerButton true"
+                    :class="{selected: trueSelected}">
+              {{uiLabels.true}}
+            </button>
+            <button v-on:click="chooseAnswer(false)" class="answerButton false"
+                    :class="{selected: falseSelected}">
+              {{uiLabels.false}}
+            </button>
 
 
 
-          <!--          <input type="radio" id="Yes"-->
-          <!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
-          <!--          <label for="html">{{uiLabels.yes}}</label>-->
+<!--          <input type="radio" id="Yes"-->
+<!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
+<!--          <label for="html">{{uiLabels.yes}}</label>-->
 
-          <!--          <input type="radio" id="Nej"-->
-          <!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
-          <!--                  class="radioButtons">-->
-          <!--          <label for="html">{{uiLabels.no}}</label><br>-->
+<!--          <input type="radio" id="Nej"-->
+<!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
+<!--                  class="radioButtons">-->
+<!--          <label for="html">{{uiLabels.no}}</label><br>-->
 
 
         </div>
@@ -47,22 +47,22 @@
         </button>
 
 
-        <router-link v-bind:to="'//'">
-          <button class="questionButtons" >
-            {{uiLabels.playGame}}
-          </button>
-        </router-link>
+          <router-link v-bind:to="'//'">
+            <button class="questionButtons" >
+              {{uiLabels.playGame}}
+            </button>
+          </router-link>
 
 
-        <!--        <div class = "saveButton">-->
+<!--        <div class = "saveButton">-->
 
-        <!--          <router-link v-bind:to="'//'">-->
-        <!--            <button class="questionButtons" >-->
-        <!--              {{uiLabels.saveGame}}-->
-        <!--            </button>-->
-        <!--          </router-link>-->
+<!--          <router-link v-bind:to="'//'">-->
+<!--            <button class="questionButtons" >-->
+<!--              {{uiLabels.saveGame}}-->
+<!--            </button>-->
+<!--          </router-link>-->
 
-        <!--        </div>-->
+<!--        </div>-->
       </div>
 
       <div class = "questionListWrapper">
@@ -71,18 +71,18 @@
         <div class="questionList" v-for="(question,index) in finishedQuiz.listOfQuestions"
              v-bind:key="question">
 
-          <div class="questionWrapper">
-            <button v-on:click="deleteQuestion(index)" class="deleteButton">
+            <div class="questionWrapper">
+              <button v-on:click="deleteQuestion(index)" class="deleteButton">
                 <span
                     class="material-symbols-outlined X">
                   DELETE
                 </span>
-            </button>
-            <div class="question">
-              {{"Q: "+question.questionText}}<br>
-              {{"A: "+question.questionAnswer}}
-            </div>
-          </div>
+              </button>
+              <div class="question">
+                {{"Q: "+question.questionText}}<br>
+                {{"A: "+question.questionAnswer}}
+              </div>
+              </div>
 
 
         </div>
@@ -121,8 +121,6 @@ export default {
       formValidation: false,
       trueSelected: false,
       falseSelected: false,
-      finishedQuizzes: [],
-      isUnique: false,
 
       lang: "",
       gameId: "",
@@ -135,6 +133,17 @@ export default {
   },
   created: function () {
 
+    
+    this.gameId=prompt("Choose game ID")
+    if(this.gameId==null||this.gameId==="" ){
+      history.back()
+  
+    }
+    else{
+      this.finishedQuiz.name=this.gameId
+      console.log(this.gameId)
+      socket.emit('createPoll', this.gameId)
+    }
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -147,18 +156,6 @@ export default {
     socket.on("pollCreated", (data) =>
         this.data = data)
     console.log(this.data)
-
-    this.gameId=prompt("Choose game ID")
-
-    if(this.gameId==null||this.gameId===""){
-      history.back()
-      console.log("Choose other game ID")
-    }
-    else{
-      this.finishedQuiz.name=this.gameId
-      console.log(this.gameId)
-      socket.emit('createPoll', this.gameId)
-    }
   },
 
   methods: {
@@ -273,14 +270,14 @@ body{
   color: #FEF9CC;
 }
 
-.material-symbols-outlined {
-  font-size: 4vw ;
-  font-variation-settings:
-      'FILL' 1,
-      'wght' 700,
-      'GRAD' 200,
-      'opsz' 48
-}
+ .material-symbols-outlined {
+   font-size: 4vw ;
+   font-variation-settings:
+       'FILL' 1,
+       'wght' 700,
+       'GRAD' 200,
+       'opsz' 48
+ }
 
 
 
@@ -289,7 +286,7 @@ h1{
   color: #00C3BA;
   font-size: 5vw;
   /*-webkit-text-stroke: 0.01vw black;*/
-  text-shadow: 6px 6px black;
+  text-shadow: 4px 2px black;
 }
 
 h3{
@@ -306,6 +303,7 @@ h3{
   font-size: 2vw;
   border-bottom-style: solid;
   border-bottom-color: #2B211B;
+  text-align:center;
 }
 
 ::placeholder{
@@ -319,6 +317,8 @@ h3{
   align-items: center;
   height: 4em;
   width: 50%;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .answerButton{
   width: 40%;
@@ -338,14 +338,15 @@ h3{
   background-color: #3dda09;
   text-shadow: 2px 2px #2fa409;
   box-shadow: inset -0.25em -0.25em #2a9108;
+  font-size: 1.4vw;
 }
 
 .answerButton.false{
   background-color: #ff0000;
   text-shadow: 2px 2px #bb0000;
   box-shadow: inset -0.25em -0.25em #bb0000;
+  font-size: 1.4vw;
 }
-
 .answerButton.true:hover{
   box-shadow: inset -0.15em -0.15em #174d05;
   padding-right: 0.05em;
@@ -420,7 +421,7 @@ h3{
   color: #2B211B;
   background-color: #FEF9CC;
   order: 0;
-  width: 25vw;
+  width:37vw;
   height: 30em;
   overflow: auto;
   border-style: solid;
@@ -434,7 +435,7 @@ h3{
   width: 60vw;
   height: 95%;
   order: 1;
-  margin-left: 5%;
+  margin-left: 0%;
   margin-right: 5%;
   text-align: center;
 
