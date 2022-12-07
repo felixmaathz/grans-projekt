@@ -1,11 +1,13 @@
 <template>
   <body>
 <div>
-  LOBBY
-  <UserComponent v-for="user in this.connectedUsers"
-                 v-bind:user="user"
-                 v-bind:key="user.username">
-  </UserComponent>
+  <h1>LOBBY</h1>
+  <div class="userListWrapper">
+    <UserComponent v-for="user in this.connectedUsers"
+                   v-bind:user="user"
+                   v-bind:key="user.username">
+    </UserComponent>
+  </div>
 
 </div>
 
@@ -68,5 +70,75 @@ export default {
 </script>
 
 <style scoped>
+body{
+  background: #EF233C;
+  background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Silkscreen", cursive;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+.backButtonDiv{
+  width: 10vw;
+  height: 10vh;
+  margin-right: 10vw;
+  left: 0;
+  position: absolute;
+
+}
+
+.backButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 10vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 0.9vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.35em -0.35em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  border-style: solid ;
+  /*transition-duration: 0.15s;*/
+}
+.backButton:hover{
+  background-color: #31a6b2;
+  box-shadow: inset -0.25em -0.25em #027a75;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+
+.material-symbols-outlined {
+  font-size: 4vw ;
+  font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 48
+}
+
+h1{
+  color: #00C3BA;
+  font-size: 5vw;
+  /*-webkit-text-stroke: 0.01vw black;*/
+  text-shadow: 4px 2px black;
+}
+
+
+.userListWrapper{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 </style>
