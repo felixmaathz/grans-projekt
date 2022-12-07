@@ -1,5 +1,4 @@
 {
-
 	"STARTVIEW": "",
 	"playTheGame": "PLAY",
 	"createTheGame": "CREATE",
@@ -11,10 +10,10 @@
 	"question": "Question",
 	"changeLanguage": "Byt till svenska",
 
-
-
-
 	"CREATEVIEW": "",
+	"gameId": "Game ID",
+	"true": "True",
+	"false": "False",
 	"createYourQuestions": "Create Your Questions",
 	"question": "Question",
 	"questionList": "Question List",
@@ -27,8 +26,8 @@
 	"goBack": "Back",
 
 	"HOSTORJOINVIEW": "",
-	"hostAGame": "Host a lobby",
-	"joinAGame": "Join a lobby",
+	"hostAGame": "Host game",
+	"joinAGame": "Join game",
 	"goBack": "Back",
 
 	"CHOOSEGAMEMODEVIEW": "",
@@ -42,7 +41,7 @@
 	"editTheGame": "Edit",
 	"playAGame": "Play",
 	"goBack": "Back",
-	"questions": "questions",
+	"moreQuestions": "questions",
 	"aQuestion": "question",
 
 	"CLIENTJOINGAMEVIEW": "",

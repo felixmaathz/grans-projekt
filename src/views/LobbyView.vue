@@ -1,8 +1,11 @@
 <template>
   <body>
 <div>
-
-  {{uiLabels.nickName}}
+  LOBBY
+  <div v-for="user in this.connectedUsers"
+       v-bind:key="user">
+    {{user.username}}
+  </div>
 
 </div>
 
@@ -25,17 +28,27 @@ export default {
     return {
       uiLabels: {},
       lang: "",
+      connectedUsers: [],
+
     }
   },
   created: function () {
+
+    //this.id = this.$route.params.id;
+    //this.nick= this.$route.params.nick;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
 
     })
+    socket.on('userJoined', (users) => {
+      console.log('user joined')
+      this.connectedUsers = users
+    })
   },
 }
+
 </script>
 
 <style scoped>

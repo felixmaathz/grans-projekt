@@ -8,8 +8,13 @@
       <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
-      <router-link v-bind:to = "'/hostpregame/'+lang"> <button class="playEditButtons">{{uiLabels.playAGame}}</button></router-link>
-      <router-link v-bind:to = "'/editquiz/'+lang"> <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button></router-link>
+<!--      <router-link v-bind:to = "'/hostpregame/'+lang+id" style="width: 50%">-->
+        <button class="playEditButtons" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
+<!--      </router-link>-->
+
+<!--      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">-->
+        <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button>
+<!--      </router-link>-->
     </div>
   </div>
 
@@ -27,6 +32,7 @@ export default {
     quiz: Object
   },
   created: function(){
+
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -44,9 +50,12 @@ export default {
   },
   methods: {
     editQuiz: function() {
-      console.log("felix är en duktig programmerare" + this.quiz.questionList)
       this.$emit("editThisQuiz", this.quiz)
 
+    },
+    createGame: function(){
+
+      this.$emit("createGame", this.quiz)
     }
   }
 }
@@ -63,7 +72,8 @@ export default {
 }
 
 .playEditButtons{
-  width: 50%;
+  height: 100%;
+  width: 100%;
   font-size: 3.5vh;
 }
 

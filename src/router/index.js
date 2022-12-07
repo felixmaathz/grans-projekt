@@ -49,12 +49,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ClientJoinGameView.vue')
   },
   {
-    path: '/hostpregame/:lang',
+    path: '/hostpregame/:lang/:id',
     name: "HostPreGameView",
     component: () => import(/* webpackChunkName: "about" */ '../views/HostPreGameView.vue')
   },
   {
-    path: '/lobby/:lang',
+    path: '/lobby/:lang/:id',
     name: "LobbyView",
     component: () => import(/* webpackChunkName: "about" */ '../views/LobbyView.vue')
   },
@@ -64,10 +64,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
   },
   {
-    path: '/editquiz/:lang',
+    path: '/editquiz/:lang/:id',
     name: "editQuizView",
     component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
-}
+  }
 ]
 
 const router = createRouter({

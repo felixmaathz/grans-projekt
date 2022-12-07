@@ -7,7 +7,8 @@
         <QuizComponent v-for="quiz in this.listOfQuizzes"
                        v-bind:quiz="quiz"
                        v-bind:key="quiz.gameId"
-                       v-on:editThisQuiz = editQuiz($event)>
+                       v-on:editThisQuiz = editQuiz($event)
+                       v-on:createGame = createGame($event)>
         </QuizComponent>
       </div>
     </div>
@@ -36,14 +37,16 @@ export default {
 
   data: function () {
     return {
-      listOfQuizzes: undefined,
+      listOfQuizzes: [],
       uiLabels: {},
       lang: "",
-      quizNames: ""
+      quizNames: "",
+      gameId:""
     }
   },
   created: function () {
     this.lang = this.$route.params.lang;
+    this.gameId=this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -57,9 +60,15 @@ export default {
   },
   methods: {
     editQuiz: function (event) {
+      this.gameId=event.gameId
+      this.$router.push({path: '/editquiz/'+this.lang+'/'+this.gameId})
       socket.emit("editQuiz", event)
-      let print = JSON.stringify(event)
-      console.log("fuck" + print)
+    },
+    createGame: function (event) {
+      this.gameId=event.gameId
+      this.$router.push({path: '/hostpregame/'+this.lang+'/'+this.gameId})
+      console.log("game created")
+      socket.emit('createGame',event)
     }
   }
 }

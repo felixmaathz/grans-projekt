@@ -5,7 +5,8 @@ const languages = ["en", "se"];
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.finishedQuizzes = [];
-  this.editThisQuiz = {}
+  this.editThisQuiz = {};
+  this.createdGame={gameId:"",connectedUsers: [], questions: []};
 }
 
 /***********************************************
@@ -21,12 +22,17 @@ Data.prototype.getUILabels = function (lang = "en") {
 
 Data.prototype.createPoll = function(gameId) {
   console.log(gameId)
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if(this.finishedQuizzes[i].gameId===gameId){
+      return false;
+    }
+  }
   let finishedQuiz = {gameId: gameId,questionList:[]}
   // this.finishedQuizzes[gameId]=finishedQuiz
   this.finishedQuizzes.push(finishedQuiz)
   console.log(finishedQuiz)
   console.log(this.finishedQuizzes)
-  return finishedQuiz
+  return true
 }
 
 Data.prototype.addQuestion = function(gameId, q) {
@@ -85,6 +91,26 @@ Data.prototype.replaceQuiz=function(quiz){
       this.editThisQuiz={}
     }
   }
+}
+
+Data.prototype.createGame=function (quiz){
+  this.createdGame.gameId=quiz.gameId;
+  this.createdGame.questions=quiz.questionList;
+  console.log("Created game '"+quiz.gameId+"' successfully!")
+}
+
+Data.prototype.joinGame=function(user){
+
+  if(user.joinGameId===this.createdGame.gameId){
+    this.createdGame.connectedUsers.push(user)
+    console.log("User '"+user.username+"' connected")
+  }else{
+    console.log("Game ID not found!")
+  }
+}
+
+Data.prototype.getUsers=function(){
+  return this.createdGame.connectedUsers;
 }
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
