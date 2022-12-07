@@ -285,7 +285,8 @@ body{
 
 h1{
   color: #00C3BA;
-  font-size: 5vw;
+  font-size: 4vw;
+  margin-bottom: 4vw;
   /*-webkit-text-stroke: 0.01vw black;*/
   text-shadow: 4px 2px black;
 }

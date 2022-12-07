@@ -7,7 +7,7 @@
       arrow_back
     </span></button>
     </div>
-    <h1>JOIN GAME ID: {{ this.gameId }} </h1>
+    <h1 style="margin-top: 8vw;">{{uiLabels.gameId}}: {{ this.gameId }} </h1>
 
   </div>
 <!--<div v-for="user in this.connectedUsers"-->
@@ -22,15 +22,10 @@
  </div>
 
  <router-link v-on:click="hostStartGame();" v-bind:to="'/result/'+gameId+'/'+lang">
-   <button>
+   <button class="startGameButton">
      {{uiLabels.startTheGame}}
    </button>
  </router-link>
-  <footer>
-    <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-    </div>
-  </footer>
   </body>
 </template>
 
@@ -159,6 +154,31 @@ h1{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.startGameButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #45af00;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 30vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #206c00;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #206c00;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  margin-top: 10vw;
+}
+.startGameButton:hover{
+  box-shadow: inset -0.15em -0.15em #174d05;
+  padding-right: 0.05em;
+  padding-top: 0.15em;
+  background-color: #299306;
+  text-shadow: 2px 2px #174d05;
 }
 
 </style>
