@@ -42,7 +42,7 @@
 	"editTheGame": "Edit",
 	"playAGame": "Play",
 	"goBack": "Back",
-	"moreQuestions": "questions",
+	"questionsMultiple": "questions",
 	"aQuestion": "question",
 
 	"CLIENTJOINGAMEVIEW": "",
@@ -61,6 +61,7 @@
 	"HOSTPREGAMEVIEW": "",
 	"hostPreGame": "Host pre game",
 	"goBack": "Back",
+	"startTheGame": "Start game",
 
 
 	"JOINVIEW": "",

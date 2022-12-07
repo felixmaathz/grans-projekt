@@ -42,7 +42,7 @@
 	"editTheGame": "Redigera",
 	"playAGame": "Spela",
 	"goBack": "Tillbaka",
-	"moreQuestions": "frågor",
+	"questionsMultiple": "frågor",
 	"aQuestion": "fråga",
 
 	"CLIENTJOINGAMEVIEW": "",
@@ -61,6 +61,8 @@
 	"HOSTPREGAMEVIEW": "",
 	"hostPreGame": "Värdens lobby",
 	"goBack": "Tillbaka",
+	"startTheGame": "Starta spel",
+
 
 	"JOINVIEW": "",
 	"goBack": "Tillbaka",
@@ -70,6 +72,4 @@
 
 	"RESULTVIEW": "",
 	"goBack": "Tillbaka"
-
-
 }

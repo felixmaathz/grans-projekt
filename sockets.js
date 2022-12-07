@@ -9,6 +9,11 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
+  socket.on('gameSoonToStart', function() {
+    console.log("inne i sockets")
+    io.emit("gameWillStart");
+  });
+
 
 
   socket.on('createPoll', function(d) {

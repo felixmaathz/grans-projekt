@@ -20,6 +20,17 @@
                 v-bind:key="user.username">
  </UserComponent>
  </div>
+
+ <router-link v-on:click="hostStartGame();" v-bind:to="'/result/'+gameId+'/'+lang">
+   <button>
+     {{uiLabels.startTheGame}}
+   </button>
+ </router-link>
+  <footer>
+    <div style="margin: 2em">
+      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
+    </div>
+  </footer>
   </body>
 </template>
 
@@ -61,6 +72,14 @@ export default {
       console.log('user joined')
       this.connectedUsers = users
     })
+  },
+
+  methods: {
+    hostStartGame: function() {
+      console.log("spelet kommer starta inom kort")
+      socket.emit("gameSoonToStart", {gameId:this.gameId, nick:this.nick, lang:this.lang})
+
+    }
   },
 }
 
