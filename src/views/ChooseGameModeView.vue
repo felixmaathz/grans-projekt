@@ -7,7 +7,7 @@
       arrow_back</span></button>
   </div>
 
-   <div style="margin-top:15vw">
+   <div style="margin-top:10vw">
       <router-link v-bind:to="'/selectsavedgame/'+lang">
         <button class="gameButtons">
           {{uiLabels.playSavedQuiz}}
