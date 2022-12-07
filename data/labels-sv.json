@@ -13,8 +13,8 @@
 	"CREATEVIEW": "",
 	"typeHere": "Skriv här...",
 	"gameId": "Spelets ID",
-	"true": "Sant",
-	"false": "Falskt",
+	"true": "SANT",
+	"false": "FALSKT",
 	"createYourQuestions": "Skapa dina frågor",
 	"question": "Fråga",
 	"questionList": "Frågelista",
@@ -49,9 +49,10 @@
 	"enterID": "Fyll i spel-ID",
 	"gameID": "#spel-ID",
 	"userName": "Vem är du?",
-	"enterNick": "fyll i användarnamn..",
+	"enterNick": "välj namn...",
 	"joinGame": "Gå med i spel",
 	"goBack": "Tillbaka",
+	"joinLobby": "Gå med i lobby",
 
 	"LOBBYVIEW": "",
 	"nickName": "#användarnamn",
@@ -60,6 +61,8 @@
 	"HOSTPREGAMEVIEW": "",
 	"hostPreGame": "Värdens lobby",
 	"goBack": "Tillbaka",
+	"startTheGame": "Starta spel",
+
 
 	"JOINVIEW": "",
 	"goBack": "Tillbaka",
