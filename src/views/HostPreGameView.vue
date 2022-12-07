@@ -2,6 +2,7 @@
   <body>
  <div>
    {{uiLabels.hostPreGame}}
+
  </div>
 
   <footer>

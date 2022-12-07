@@ -28,7 +28,7 @@
     </form>
 
     <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang"><button>{{uiLabels.joinGame}} </button></router-link>
+    <router-link v-bind:to="'/lobby/'+lang"><button v-on:click = "exportID">{{uiLabels.joinGame}} </button></router-link>
   </div>
   <footer>
     <div style="margin: 2em">
