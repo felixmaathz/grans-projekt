@@ -9,9 +9,9 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
-  socket.on('gameSoonToStart', function(d) {
+  socket.on('gameSoonToStart', function() {
     console.log("inne i sockets")
-    io.emit("gameWillStart",d);
+    io.emit("gameWillStart");
   });
 
 

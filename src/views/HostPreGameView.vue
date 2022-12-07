@@ -34,12 +34,12 @@ export default {
     return {
       uiLabels: {},
       lang: "",
-      gameId:"",
+      gameId: "",
       connectedUsers: [],
     }
   },
   created: function () {
-    this.gameId=this.$route.params.id;
+    this.gameId = this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -47,12 +47,19 @@ export default {
 
     })
 
-    socket.on('userJoined', (users) =>{
+    socket.on('userJoined', (users) => {
       console.log('user joined')
       this.connectedUsers = users
     })
-    },
-  }
+  },
+  methods: {
+    hostStartGame: function () {
+      console.log("spelet kommer starta inom kort")
+      socket.emit("gameSoonToStart", {gameId: this.gameId, nick: this.nick, lang: this.lang})
+
+    }
+  },
+}
 
 </script>
 

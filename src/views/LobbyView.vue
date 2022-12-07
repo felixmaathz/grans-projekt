@@ -49,9 +49,7 @@ export default {
       this.connectedUsers = users
 
     })
-    socket.on('gameWillStart', function (d) {
-
-      console.log('lobbyn heter '+ d.nick)
+    socket.on('gameWillStart', function () {
       router.push({path: '/'})
 
     })
