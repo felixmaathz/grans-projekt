@@ -8,8 +8,13 @@
       v-bind:key="user">
   {{user.username}}
 </div>
+ <div style="margin: 2em">
+   <!--<button style="position:absolute; bottom:100px;" v-on:click="startGame()">Start</button>-->
+   <button v-bind="'/poll/'+lang"></button>
+ </div>
+
   <footer>
-    <div style="margin: 2em">
+    <div>
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
     </div>
   </footer>
@@ -44,6 +49,7 @@ export default {
       this.connectedUsers = users
     })
   },
+
 }
 
 </script>
