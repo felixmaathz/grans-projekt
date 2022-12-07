@@ -286,7 +286,7 @@ h1{
   color: #00C3BA;
   font-size: 5vw;
   /*-webkit-text-stroke: 0.01vw black;*/
-  text-shadow: 6px 6px black;
+  text-shadow: 4px 2px black;
 }
 
 h3{
@@ -417,7 +417,7 @@ h3{
   color: #2B211B;
   background-color: #FEF9CC;
   order: 0;
-  width: 25vw;
+  width: 30vw;
   height: 30em;
   overflow: auto;
   border-style: solid;

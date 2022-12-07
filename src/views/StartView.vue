@@ -100,7 +100,7 @@ export default {
   h1{
     color: #00C3BA;
     /*-webkit-text-stroke: 0.01vw black;*/
-    text-shadow: 6px 6px black;
+    text-shadow: 5px 5px black;
   }
 
   .gameName{
@@ -183,19 +183,6 @@ export default {
     height:2.5rem;
     vertical-align: bottom;
     margin-right: 0.5rem;
-  }
-  .hamburger {
-    color:white;
-    width:1em;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding:0.5rem;
-    top:0;
-    left:0;
-    height: 2rem;
-    cursor: pointer;
-    font-size: 1.5rem;
   }
 
 /*@media screen and (max-width:50em) {*/
