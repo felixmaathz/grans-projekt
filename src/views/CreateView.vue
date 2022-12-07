@@ -16,7 +16,8 @@
       <div class="questionToolWrapper">
         <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
         <input class="questionInput" type="text"
-               v-model="questionObject.questionText" placeholder="Start typing..." autofocus>
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
+
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
             <button v-on:click="chooseAnswer(true)" class="answerButton true"
@@ -398,7 +399,7 @@ h3{
   width: 30vw;
   height: 10vh;
   margin: 20px;
-  font-size: 2vw;
+  font-size: 1.8vw;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
