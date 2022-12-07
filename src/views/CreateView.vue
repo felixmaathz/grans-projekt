@@ -14,18 +14,18 @@
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
-        <h3>Game ID: {{this.gameId}}</h3>
+        <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
         <input class="questionInput" type="text"
                v-model="questionObject.questionText" placeholder="Start typing..." autofocus>
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
             <button v-on:click="chooseAnswer(true)" class="answerButton true"
                     :class="{selected: trueSelected}">
-              TRUE
+              {{uiLabels.true}}
             </button>
             <button v-on:click="chooseAnswer(false)" class="answerButton false"
                     :class="{selected: falseSelected}">
-              FALSE
+              {{uiLabels.false}}
             </button>
 
 
@@ -303,6 +303,7 @@ h3{
   font-size: 2vw;
   border-bottom-style: solid;
   border-bottom-color: #2B211B;
+  text-align:center;
 }
 
 ::placeholder{
@@ -316,6 +317,8 @@ h3{
   align-items: center;
   height: 4em;
   width: 50%;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .answerButton{
   width: 40%;
@@ -335,14 +338,15 @@ h3{
   background-color: #3dda09;
   text-shadow: 2px 2px #2fa409;
   box-shadow: inset -0.25em -0.25em #2a9108;
+  font-size: 1.4vw;
 }
 
 .answerButton.false{
   background-color: #ff0000;
   text-shadow: 2px 2px #bb0000;
   box-shadow: inset -0.25em -0.25em #bb0000;
+  font-size: 1.4vw;
 }
-
 .answerButton.true:hover{
   box-shadow: inset -0.15em -0.15em #174d05;
   padding-right: 0.05em;
@@ -417,7 +421,7 @@ h3{
   color: #2B211B;
   background-color: #FEF9CC;
   order: 0;
-  width: 30vw;
+  width:37vw;
   height: 30em;
   overflow: auto;
   border-style: solid;
@@ -431,7 +435,7 @@ h3{
   width: 60vw;
   height: 95%;
   order: 1;
-  margin-left: 5%;
+  margin-left: 0%;
   margin-right: 5%;
   text-align: center;
 
