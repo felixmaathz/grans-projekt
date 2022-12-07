@@ -3,16 +3,19 @@
  <div>
    {{uiLabels.hostPreGame}}
  </div>
-<!--<div v-for="user in this.connectedUsers"-->
-<!--      v-bind:key="user">-->
-<!--  {{user.username}}-->
-<!--</div>-->
+
  <div>
  <UserComponent v-for="user in this.connectedUsers"
                 v-bind:user="user"
                 v-bind:key="user.username">
  </UserComponent>
  </div>
+
+ <router-link v-on:click="hostStartGame();" v-bind:to="'/result/'+gameId+'/'+lang">
+   <button>
+     {{uiLabels.startTheGame}}
+   </button>
+ </router-link>
   <footer>
     <div style="margin: 2em">
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
@@ -59,6 +62,14 @@ export default {
       console.log('user joined')
       this.connectedUsers = users
     })
+  },
+
+  methods: {
+    hostStartGame: function() {
+      console.log("spelet kommer starta inom kort")
+      socket.emit("gameSoonToStart", {gameId:this.gameId, nick:this.nick, lang:this.lang})
+
+    }
   },
 }
 
