@@ -37,7 +37,7 @@ export default {
 
   data: function () {
     return {
-      listOfQuizzes: undefined,
+      listOfQuizzes: [],
       uiLabels: {},
       lang: "",
       quizNames: "",
@@ -46,6 +46,7 @@ export default {
   },
   created: function () {
     this.lang = this.$route.params.lang;
+    this.gameId=this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels

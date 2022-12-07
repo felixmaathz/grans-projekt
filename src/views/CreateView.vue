@@ -7,10 +7,10 @@
       arrow_back
     </span></button>
     </div>
-  <h1 >{{ uiLabels.createYourQuestions }} </h1>
+    <h1 >{{ uiLabels.createYourQuestions }} </h1>
 
   </div>
-    <div>
+  <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
@@ -18,26 +18,26 @@
         <input class="questionInput" type="text"
                v-model="questionObject.questionText" placeholder="Start typing..." autofocus>
         <div  class="answerButtonsWrapper">
-<!--          {{uiLabels.answer}}:-->
-            <button v-on:click="chooseAnswer(true)" class="answerButton true"
-                    :class="{selected: trueSelected}">
-              TRUE
-            </button>
-            <button v-on:click="chooseAnswer(false)" class="answerButton false"
-                    :class="{selected: falseSelected}">
-              FALSE
-            </button>
+          <!--          {{uiLabels.answer}}:-->
+          <button v-on:click="chooseAnswer(true)" class="answerButton true"
+                  :class="{selected: trueSelected}">
+            TRUE
+          </button>
+          <button v-on:click="chooseAnswer(false)" class="answerButton false"
+                  :class="{selected: falseSelected}">
+            FALSE
+          </button>
 
 
 
-<!--          <input type="radio" id="Yes"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
-<!--          <label for="html">{{uiLabels.yes}}</label>-->
+          <!--          <input type="radio" id="Yes"-->
+          <!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
+          <!--          <label for="html">{{uiLabels.yes}}</label>-->
 
-<!--          <input type="radio" id="Nej"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
-<!--                  class="radioButtons">-->
-<!--          <label for="html">{{uiLabels.no}}</label><br>-->
+          <!--          <input type="radio" id="Nej"-->
+          <!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
+          <!--                  class="radioButtons">-->
+          <!--          <label for="html">{{uiLabels.no}}</label><br>-->
 
 
         </div>
@@ -47,22 +47,22 @@
         </button>
 
 
-          <router-link v-bind:to="'//'">
-            <button class="questionButtons" >
-              {{uiLabels.playGame}}
-            </button>
-          </router-link>
+        <router-link v-bind:to="'//'">
+          <button class="questionButtons" >
+            {{uiLabels.playGame}}
+          </button>
+        </router-link>
 
 
-<!--        <div class = "saveButton">-->
+        <!--        <div class = "saveButton">-->
 
-<!--          <router-link v-bind:to="'//'">-->
-<!--            <button class="questionButtons" >-->
-<!--              {{uiLabels.saveGame}}-->
-<!--            </button>-->
-<!--          </router-link>-->
+        <!--          <router-link v-bind:to="'//'">-->
+        <!--            <button class="questionButtons" >-->
+        <!--              {{uiLabels.saveGame}}-->
+        <!--            </button>-->
+        <!--          </router-link>-->
 
-<!--        </div>-->
+        <!--        </div>-->
       </div>
 
       <div class = "questionListWrapper">
@@ -71,18 +71,18 @@
         <div class="questionList" v-for="(question,index) in finishedQuiz.listOfQuestions"
              v-bind:key="question">
 
-            <div class="questionWrapper">
-              <button v-on:click="deleteQuestion(index)" class="deleteButton">
+          <div class="questionWrapper">
+            <button v-on:click="deleteQuestion(index)" class="deleteButton">
                 <span
                     class="material-symbols-outlined X">
                   DELETE
                 </span>
-              </button>
-              <div class="question">
-                {{"Q: "+question.questionText}}<br>
-                {{"A: "+question.questionAnswer}}
-              </div>
-              </div>
+            </button>
+            <div class="question">
+              {{"Q: "+question.questionText}}<br>
+              {{"A: "+question.questionAnswer}}
+            </div>
+          </div>
 
 
         </div>
@@ -121,6 +121,8 @@ export default {
       formValidation: false,
       trueSelected: false,
       falseSelected: false,
+      finishedQuizzes: [],
+      isUnique: false,
 
       lang: "",
       gameId: "",
@@ -133,17 +135,6 @@ export default {
   },
   created: function () {
 
-    
-    this.gameId=prompt("Choose game ID")
-    if(this.gameId==null||this.gameId==="" ){
-      history.back()
-  
-    }
-    else{
-      this.finishedQuiz.name=this.gameId
-      console.log(this.gameId)
-      socket.emit('createPoll', this.gameId)
-    }
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -156,6 +147,18 @@ export default {
     socket.on("pollCreated", (data) =>
         this.data = data)
     console.log(this.data)
+
+    this.gameId=prompt("Choose game ID")
+
+    if(this.gameId==null||this.gameId===""){
+      history.back()
+      console.log("Choose other game ID")
+    }
+    else{
+      this.finishedQuiz.name=this.gameId
+      console.log(this.gameId)
+      socket.emit('createPoll', this.gameId)
+    }
   },
 
   methods: {
@@ -270,14 +273,14 @@ body{
   color: #FEF9CC;
 }
 
- .material-symbols-outlined {
-   font-size: 4vw ;
-   font-variation-settings:
-       'FILL' 1,
-       'wght' 700,
-       'GRAD' 200,
-       'opsz' 48
- }
+.material-symbols-outlined {
+  font-size: 4vw ;
+  font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 48
+}
 
 
 
