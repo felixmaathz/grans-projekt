@@ -4,16 +4,21 @@
       <span class="gameId">{{ quiz.gameId}}</span>
     </div>
     <div class="gameDescription">
-      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
-      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
+      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questionsMultiple}}</p>
+      <p v-else-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
 <!--      <router-link v-bind:to = "'/hostpregame/'+lang+id" style="width: 50%">-->
-        <button class="playEditButtons" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
+        <button class="playButton" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
 <!--      </router-link>-->
 
 <!--      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">-->
-        <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+       <div class="editButtonDiv">
+        <button class="editButton" v-on:click="editQuiz()" >
+          <span class="material-symbols-outlined"> edit_note</span>
+        </button>
+       </div>
 <!--      </router-link>-->
     </div>
   </div>
@@ -71,25 +76,78 @@ export default {
   border-style: solid;
 }
 
-.playEditButtons{
-  height: 100%;
-  width: 100%;
-  font-size: 3.5vh;
+.playButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 30vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+}
+.playButton:hover{
+  padding-right: 0.25em;
+  padding-top: 0.05em;
+  background-color: #31a6b2;
+  box-shadow: inset -0.1em -0.1em #027a75;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+.editButtonDiv{
+  width: 10vw;
+  margin-top: 1.5vw;
+  margin-right: 1.5vw;
+
+}
+.editButton {
+  height: 10vh;
+  background-color: #ffc507;
+  text-shadow: 2px 2px #e7ac00;
+  color: #FEF9CC;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  box-shadow: inset -0.3em -0.3em #e7ac00;
+}
+.editButton:hover{
+  padding-right: 0.45em;
+  padding-top: 0.05em;
+  background-color: #e7a100;
+  box-shadow: inset -0.15em -0.15em #d29906;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+.material-symbols-outlined {
+  font-size: 4vw;
+  height: 5.4vw;
+  font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
 }
 
 .quizWrapper{
+  background-color: #FEF9CC;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 25vw;
-  height: 20vh;
-  margin: 25px;
-  border-style: solid;
+  height: 23vh;
+  margin: 3vw;
   position: relative;
+  border-style: solid;
+  border-bottom-color: black;
+  border-width: thick;
 }
 
 .gameIdBox{
-  border-style: solid;
   display: flex;
   position: absolute;
   margin-left: auto;
@@ -100,13 +158,14 @@ export default {
   height: 20%;
   justify-content: center;
   order: 0;
-
   font-size: 3vh;
 }
 .gameDescription{
   height: 45%;
   bottom: 30%;
   border-style: solid;
+  border-bottom-color: black;
+  border-width: thick;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,7 +190,5 @@ export default {
   justify-content: center;
 
 }
-
-
 
 </style>

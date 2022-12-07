@@ -42,7 +42,7 @@
 	"editTheGame": "Redigera",
 	"playAGame": "Spela",
 	"goBack": "Tillbaka",
-	"moreQuestions": "frågor",
+	"questionsMultiple": "frågor",
 	"aQuestion": "fråga",
 
 	"CLIENTJOINGAMEVIEW": "",
@@ -70,6 +70,4 @@
 
 	"RESULTVIEW": "",
 	"goBack": "Tillbaka"
-
-
 }
