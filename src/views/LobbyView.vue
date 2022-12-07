@@ -42,6 +42,11 @@ export default {
       this.uiLabels = labels
 
     })
+    socket.emit('getUsers')
+    socket.on('returnUsers', (users)=>{
+      this.connectedUsers = users
+    })
+
     socket.on('userJoined', (users) => {
       console.log('user joined')
       this.connectedUsers = users

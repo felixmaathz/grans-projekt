@@ -60,6 +60,10 @@ function sockets(io, socket, data) {
     io.emit('userJoined', data.getUsers())
   })
 
+  socket.on('getUsers', function(){
+    socket.emit('returnUsers', data.getUsers())
+  })
+
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
