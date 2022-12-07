@@ -416,7 +416,6 @@ h3{
   box-shadow: inset -0.1em -0.1em #027a75;
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
-
 }
 .questionListWrapper {
   color: #2B211B;
@@ -439,7 +438,6 @@ h3{
   margin-left: 0%;
   margin-right: 5%;
   text-align: center;
-
 }
 
 .questionList{
