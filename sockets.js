@@ -25,6 +25,10 @@ function sockets(io, socket, data) {
     console.log("getting quizes")
     socket.emit('returnQuizzes', data.getQuizzes())
   })
+  socket.on('getSelectedQuiz', function(){
+    console.log("mottagit quiz")
+    socket.emit('returnSelectedQuiz', data.getSelectedQuiz())
+  })
 
   socket.on('removeQuiz', function(d){
     socket.emit('quizRemoved', data.removeQuiz(d))
