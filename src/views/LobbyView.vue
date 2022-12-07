@@ -2,10 +2,10 @@
   <body>
 <div>
   LOBBY
-  <div v-for="user in this.connectedUsers"
-       v-bind:key="user">
-    {{user.username}}
-  </div>
+  <UserComponent v-for="user in this.connectedUsers"
+                 v-bind:user="user"
+                 v-bind:key="user.username">
+  </UserComponent>
 
 </div>
 
@@ -19,10 +19,15 @@
 
 <script>
 import io from 'socket.io-client';
+import router from "@/router";
+import UserComponent from "@/components/UserComponent";
 const socket = io();
 
 export default {
   name: "LobbyView",
+  components: {
+    UserComponent
+  },
 
   data: function () {
     return {
@@ -42,9 +47,20 @@ export default {
       this.uiLabels = labels
 
     })
+    socket.emit('getUsers')
+    socket.on('returnUsers', (users)=>{
+      this.connectedUsers = users
+    })
+
     socket.on('userJoined', (users) => {
       console.log('user joined')
       this.connectedUsers = users
+    })
+    socket.on('gameWillStart', function () {
+      //this.$router.push({path: '/'})
+      //router.go(-1)
+      router.push({path:'/'})
+
     })
   },
 }

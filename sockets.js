@@ -9,6 +9,11 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
+  socket.on('gameSoonToStart', function() {
+    console.log("inne i sockets")
+    io.emit("gameWillStart");
+  });
+
 
 
   socket.on('createPoll', function(d) {
@@ -58,6 +63,10 @@ function sockets(io, socket, data) {
   socket.on('joinGame', function(d){
     data.joinGame(d)
     io.emit('userJoined', data.getUsers())
+  })
+
+  socket.on('getUsers', function(){
+    socket.emit('returnUsers', data.getUsers())
   })
 
   socket.on('runQuestion', function(d) {
