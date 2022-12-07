@@ -7,7 +7,7 @@
       arrow_back
     </span></button>
     </div>
-    <h1 >Edit Quiz: {{this.finishedQuiz.gameId}} </h1>
+    <h1 class="header" >Edit Quiz: {{this.finishedQuiz.gameId}} </h1>
 
   </div>
   <div>
@@ -16,7 +16,7 @@
       <div class="questionToolWrapper">
         <h3>Game ID: {{this.finishedQuiz.gameId}}</h3>
         <input class="questionInput" type="text"
-               v-model="questionObject.questionText" placeholder="Start typing..." autofocus>
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
         <div  class="answerButtonsWrapper">
           <!--          {{uiLabels.answer}}:-->
           <button v-on:click="chooseAnswer(true)" class="answerButton true"
@@ -301,7 +301,7 @@ h1{
   color: #00C3BA;
   font-size: 5vw;
   /*-webkit-text-stroke: 0.01vw black;*/
-  text-shadow: 6px 6px black;
+  text-shadow: 4px 2px black;
 }
 
 h3{
@@ -318,6 +318,7 @@ h3{
   font-size: 2vw;
   border-bottom-style: solid;
   border-bottom-color: #2B211B;
+  text-align: center;
 }
 
 ::placeholder{
@@ -331,6 +332,8 @@ h3{
   align-items: center;
   height: 4em;
   width: 50%;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .answerButton{
   width: 40%;
@@ -350,12 +353,14 @@ h3{
   background-color: #3dda09;
   text-shadow: 2px 2px #2fa409;
   box-shadow: inset -0.25em -0.25em #2a9108;
+  font-size: 1.4vw;
 }
 
 .answerButton.false{
   background-color: #ff0000;
   text-shadow: 2px 2px #bb0000;
   box-shadow: inset -0.25em -0.25em #bb0000;
+  font-size: 1.4vw;
 }
 
 .answerButton.true:hover{
@@ -409,7 +414,7 @@ h3{
   width: 30vw;
   height: 10vh;
   margin: 20px;
-  font-size: 2vw;
+  font-size: 1.8vw;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
@@ -432,7 +437,7 @@ h3{
   color: #2B211B;
   background-color: #FEF9CC;
   order: 0;
-  width: 25vw;
+  width:37vw;
   height: 30em;
   overflow: auto;
   border-style: solid;
@@ -446,10 +451,9 @@ h3{
   width: 60vw;
   height: 95%;
   order: 1;
-  margin-left: 5%;
+  margin-left: 0%;
   margin-right: 5%;
   text-align: center;
-
 }
 
 .questionList{
