@@ -1,7 +1,7 @@
 <template>
   <div class="quizWrapper">
     <div class="gameIdBox">
-      <span class="gameId">{{ quiz.gameId}}</span>
+      <span class="gameId">{{ quiz.gameId}}: </span>
     </div>
     <div class="gameDescription">
       <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questionsMultiple}}</p>
@@ -14,7 +14,7 @@
 
 <!--      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">-->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-       <div class="editButtonDiv">
+       <div>
         <button class="editButton" v-on:click="editQuiz()" >
           <span class="material-symbols-outlined"> edit_note</span>
         </button>
@@ -91,41 +91,47 @@ export default {
   box-shadow: inset -0.15em -0.15em #268b96;
   border-color: #2B211B;
   border-width: 0.4vw;
+  margin-top: 4vw;
 }
+
 .playButton:hover{
-  padding-right: 0.25em;
-  padding-top: 0.05em;
   background-color: #31a6b2;
   box-shadow: inset -0.1em -0.1em #027a75;
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
+  padding-right: 0.05em;
+  padding-top: 0.05em;
 }
-.editButtonDiv{
-  width: 10vw;
-  margin-top: 1.5vw;
-  margin-right: 1.5vw;
 
-}
-.editButton {
-  height: 10vh;
-  background-color: #ffc507;
-  text-shadow: 2px 2px #e7ac00;
+.editButton{
+  font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
+  background-color: #ffc507;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 6vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #b97f00;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #b97f00;
   border-color: #2B211B;
   border-width: 0.4vw;
-  box-shadow: inset -0.3em -0.3em #e7ac00;
+  margin-top: 4vw;
 }
+
 .editButton:hover{
-  padding-right: 0.45em;
-  padding-top: 0.05em;
   background-color: #e7a100;
-  box-shadow: inset -0.15em -0.15em #d29906;
+  box-shadow: inset -0.1em -0.1em #b97f00;
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
+  padding-right: 0.05em;
+  padding-top: 0.05em;
 }
+
 .material-symbols-outlined {
   font-size: 4vw;
-  height: 5.4vw;
   font-variation-settings:
       'FILL' 0,
       'wght' 400,
@@ -138,13 +144,13 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 25vw;
-  height: 23vh;
-  margin: 3vw;
+  width: 26vw;
+  height: 25vh;
+  margin: 1vw;
   position: relative;
   border-style: solid;
   border-bottom-color: black;
-  border-width: thick;
+  border-width: 0.5vw;
 }
 
 .gameIdBox{
@@ -160,12 +166,10 @@ export default {
   order: 0;
   font-size: 3vh;
 }
+
 .gameDescription{
-  height: 45%;
+  height: 90%;
   bottom: 30%;
-  border-style: solid;
-  border-bottom-color: black;
-  border-width: thick;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,11 +188,10 @@ export default {
   left: 0;
   right: 0;
   text-align: center;
-  height: 30%;
+  height: 75%;
   bottom: 0;
   display: flex;
   justify-content: center;
-
 }
 
 </style>
