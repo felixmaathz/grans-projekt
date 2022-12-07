@@ -7,6 +7,14 @@
       v-bind:key="user">
   {{user.username}}
 </div>
+
+ <router-link v-on:click="hostStartGame();" v-bind:to="'/result/'+gameId+'/'+lang">
+   <button>
+     {{uiLabels.startTheGame}}
+   </button>
+ </router-link>
+
+
   <footer>
     <div style="margin: 2em">
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
@@ -27,23 +35,24 @@ export default {
       uiLabels: {},
       lang: "",
       gameId:"",
-      connectedUsers: []
+      connectedUsers: [],
     }
   },
   created: function () {
-    this.gameId=this.$route.params.id
+    this.gameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
 
     })
+
     socket.on('userJoined', (users) =>{
       console.log('user joined')
       this.connectedUsers = users
     })
-  },
-}
+    },
+  }
 
 </script>
 

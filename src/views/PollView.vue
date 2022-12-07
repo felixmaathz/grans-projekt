@@ -1,5 +1,6 @@
 <template>
   <body>
+  HÄR SKA VI SPELA SPELET
   <div>
     <ReorderQuestion />
     {{pollId}}
