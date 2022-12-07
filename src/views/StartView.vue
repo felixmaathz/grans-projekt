@@ -105,7 +105,7 @@ export default {
 
   .gameName{
     margin-top: 15vh;
-    font-size: 10vw;
+    font-size: 7vw;
   }
 
   .gameButtons{
