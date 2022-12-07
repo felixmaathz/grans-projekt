@@ -17,6 +17,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getQuizzes', function() {
+    console.log("getting quizes")
     socket.emit('returnQuizzes', data.getQuizzes())
   })
 

@@ -12,9 +12,9 @@
         <button class="playEditButtons" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
 <!--      </router-link>-->
 
-      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">
+<!--      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">-->
         <button class="playEditButtons" v-on:click="editQuiz()" >{{uiLabels.editTheGame}}</button>
-      </router-link>
+<!--      </router-link>-->
     </div>
   </div>
 
