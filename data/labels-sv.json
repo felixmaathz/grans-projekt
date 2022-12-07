@@ -1,5 +1,4 @@
 {
-
 	"STARTVIEW": "",
 	"playTheGame": "SPELA",
 	"createTheGame": "SKAPA",
@@ -11,9 +10,11 @@
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
 
-
-
 	"CREATEVIEW": "",
+	"typeHere": "Skriv här...",
+	"gameId": "Spelets ID",
+	"true": "Sant",
+	"false": "Falskt",
 	"createYourQuestions": "Skapa dina frågor",
 	"question": "Fråga",
 	"questionList": "Frågelista",
@@ -26,8 +27,8 @@
 	"goBack": "Tillbaka",
 
 	"HOSTORJOINVIEW": "",
-	"hostAGame": "Skapa en lobby",
-	"joinAGame": "Gå med i en lobby",
+	"hostAGame": "Skapa spel",
+	"joinAGame": "Gå med i spel",
 	"goBack": "Tillbaka",
 
 	"CHOOSEGAMEMODEVIEW": "",

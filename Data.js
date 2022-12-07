@@ -22,12 +22,17 @@ Data.prototype.getUILabels = function (lang = "en") {
 
 Data.prototype.createPoll = function(gameId) {
   console.log(gameId)
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if(this.finishedQuizzes[i].gameId===gameId){
+      return false;
+    }
+  }
   let finishedQuiz = {gameId: gameId,questionList:[]}
   // this.finishedQuizzes[gameId]=finishedQuiz
   this.finishedQuizzes.push(finishedQuiz)
   console.log(finishedQuiz)
   console.log(this.finishedQuizzes)
-  return finishedQuiz
+  return true
 }
 
 Data.prototype.addQuestion = function(gameId, q) {
