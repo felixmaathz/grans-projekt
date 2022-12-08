@@ -80,8 +80,8 @@
                 </span>
               </button>
               <div class="question">
-                {{"Q: "+question.questionText}}<br>
-                {{"A: "+question.questionAnswer}}
+                {{uiLabels.q +question.questionText}}<br>
+                {{uiLabels.a +question.questionAnswer}}
               </div>
               </div>
 

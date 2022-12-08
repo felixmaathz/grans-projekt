@@ -15,7 +15,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('joinPoll', function(gameId){
-    console.log("Client connected to"+gameId)
+    console.log("Client connected to "+gameId)
     socket.join(gameId)
   })
 

@@ -7,25 +7,25 @@
       arrow_back
     </span></button>
     </div>
-    <h1 class="header" >Edit Quiz: {{this.finishedQuiz.gameId}} </h1>
+    <h1 class="header" >{{uiLabels.editTheGame}}: {{this.finishedQuiz.gameId}} </h1>
 
   </div>
   <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
-        <h3>Game ID: {{this.finishedQuiz.gameId}}</h3>
+        <h3>{{uiLabels.gameId}}: {{this.finishedQuiz.gameId}}</h3>
         <input class="questionInput" type="text"
                v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
         <div  class="answerButtonsWrapper">
           <!--          {{uiLabels.answer}}:-->
           <button v-on:click="chooseAnswer(true)" class="answerButton true"
                   :class="{selected: trueSelected}">
-            TRUE
+            {{uiLabels.true}}
           </button>
           <button v-on:click="chooseAnswer(false)" class="answerButton false"
                   :class="{selected: falseSelected}">
-            FALSE
+            {{uiLabels.false}}
           </button>
 
 
@@ -79,8 +79,8 @@
                 </span>
             </button>
             <div class="question">
-              {{"Q: "+question.questionText}}<br>
-              {{"A: "+question.questionAnswer}}
+              {{uiLabels.q + question.questionText}}<br>
+              {{uiLabels.a +question.questionAnswer}}
             </div>
           </div>
 
