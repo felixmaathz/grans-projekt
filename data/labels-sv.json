@@ -25,6 +25,9 @@
 	"playGame": "Spela",
 	"saveGame": "Spara",
 	"goBack": "Tillbaka",
+	"q": "F: ",
+	"a": "S: ",
+	"chooseId": "Välj spelets ID",
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Skapa spel",
@@ -39,7 +42,7 @@
 	"chooseOrEdit": "Välj sparat spel eller redigera",
 	"theGamesName": "Spelets namn...",
 	"startTheGame": "Start",
-	"editTheGame": "Redigera",
+	"editTheGame": "Redigera spel",
 	"playAGame": "Spela",
 	"goBack": "Tillbaka",
 	"questionsMultiple": "frågor",
@@ -47,7 +50,7 @@
 
 	"CLIENTJOINGAMEVIEW": "",
 	"enterID": "Fyll i spel-ID",
-	"gameID": "#spel-ID",
+	"gameId": "#spel-ID",
 	"userName": "Vem är du?",
 	"enterNick": "välj namn...",
 	"joinGame": "Gå med i spel",
