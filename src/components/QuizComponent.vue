@@ -100,7 +100,7 @@ export default {
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
   padding-right: 0.05em;
-  padding-top: 0.05em;
+  padding-top: 0.1em;
 }
 
 .editButton{

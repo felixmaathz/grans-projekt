@@ -22,7 +22,6 @@
 
 <script>
 import io from 'socket.io-client';
-import router from "@/router";
 import UserComponent from "@/components/UserComponent";
 const socket = io();
 
@@ -37,19 +36,27 @@ export default {
       uiLabels: {},
       lang: "",
       connectedUsers: [],
-
+      finishedQuiz:{},
+      myUsername: ""
     }
   },
   created: function () {
 
-    //this.id = this.$route.params.id;
-    //this.nick= this.$route.params.nick;
+
+    socket.emit('getGameInfo')
+    socket.on('returnGameInfo', (game)=>{
+      this.finishedQuiz=game
+      socket.emit('joinPoll', this.finishedQuiz.gameId)
+    })
+    this.myUsername = this.$route.params.nick;
+    this.gameId = this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
 
     })
+
     socket.emit('getUsers')
     socket.on('returnUsers', (users)=>{
       this.connectedUsers = users
@@ -59,13 +66,17 @@ export default {
       console.log('user joined')
       this.connectedUsers = users
     })
-    socket.on('gameWillStart', function () {
-      //this.$router.push({path: '/'})
-      //router.go(-1)
-      router.push({path:'/'})
 
+
+    socket.on('gameWillStart', ()=> {
+      this.redirectUser()
     })
   },
+  methods:{
+    redirectUser: function(){
+      this.$router.push({path: '/poll/'+this.gameId+'/'+this.myUsername+'/'+this.lang })
+    }
+  }
 }
 
 </script>

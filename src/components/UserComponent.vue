@@ -37,9 +37,9 @@ export default {
   },
   methods:{
     pickColor: function(){
-      let colors = ["#A40E4C","#2C2C54","#ACC3A6","#F5D6BA","#F49D6E",
-        "#F96900","#758ECD","#0496FF","#FFA630","#6699CC"]
-      let colorIndex = Math.floor(Math.random() * (colors.length - 0));
+      let colors = ["#A40E4C","#2C2C54","#ACC3A6","#8ef635","#F49D6E",
+        "#F96900","#0047ff","#0496FF","#FFA630","#6699CC"]
+      let colorIndex = Math.floor(Math.random() * (colors.length));
 
 
       return colors[colorIndex]
@@ -115,7 +115,7 @@ export default {
 
 .username{
   width: 100%;
-  font-size: 2em;
+  font-size: 3em;
   word-wrap: break-word;
   margin: auto;
 }

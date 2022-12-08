@@ -2,7 +2,7 @@
   <body>
   HÄR SKA VI SPELA SPELET
   <div>
-    <ReorderQuestion />
+
     {{pollId}}
     <QuestionComponent v-bind:question="question"
               v-on:answer="submitAnswer"/>
@@ -19,7 +19,6 @@
 <script>
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
-// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -27,7 +26,6 @@ export default {
   name: 'PollView',
   components: {
     QuestionComponent,
-    // ReorderQuestion
   },
   data: function () {
     return {
@@ -46,7 +44,7 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-    }),
+    })
 
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)

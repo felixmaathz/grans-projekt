@@ -99,6 +99,11 @@ Data.prototype.createGame=function (quiz){
   console.log("Created game '"+quiz.gameId+"' successfully!")
 }
 
+Data.prototype.getGameInfo=function(){
+  console.log("Returning game"+this.createdGame.gameId)
+  return this.createdGame
+}
+
 Data.prototype.joinGame=function(user){
 
   if(user.joinGameId===this.createdGame.gameId){

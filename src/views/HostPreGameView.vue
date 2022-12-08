@@ -48,16 +48,25 @@ export default {
       lang: "",
       gameId:"",
       connectedUsers: []
+
     }
   },
   created: function () {
+    // socket.emit('getGameInfo')
+    // socket.on('returnGameInfo', (game)=>{
+    //   this.gameId=game.gameId
+    //   console.log("Game recieved: "+this.gameId)
+    //   socket.emit('joinPoll', this.gameId)
+    // })
     this.gameId=this.$route.params.id
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-
     })
+
+
+    socket.emit('joinPoll', this.gameId)
     socket.emit('getUsers')
     socket.on('returnUsers', (users)=>{
       this.connectedUsers = users
@@ -72,8 +81,7 @@ export default {
   methods: {
     hostStartGame: function() {
       console.log("spelet kommer starta inom kort")
-      socket.emit("gameSoonToStart", {gameId:this.gameId, nick:this.nick, lang:this.lang})
-
+      socket.emit("gameSoonToStart",this.gameId)
     }
   },
 }
