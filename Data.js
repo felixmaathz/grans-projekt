@@ -4,7 +4,7 @@ const languages = ["en", "se"];
 
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.finishedQuizzes = [];
+  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"qwerty",questionAnswer:true}]}];
   this.editThisQuiz = {};
   this.createdGame={gameId:"",connectedUsers: [], questions: []};
 }

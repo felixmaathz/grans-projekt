@@ -135,7 +135,7 @@ export default {
   },
   created: function () {
 
-    
+
     this.gameId=prompt("Choose game ID")
     if(this.gameId==null||this.gameId==="" ){
       history.back()

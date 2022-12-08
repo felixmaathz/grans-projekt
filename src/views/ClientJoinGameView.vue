@@ -59,7 +59,7 @@ export default {
     }
   },
   created: function () {
-    this.user.username=this.$route.params.nick
+    this.user.username=this.$route.params.nick;
     this.user.joinGameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
