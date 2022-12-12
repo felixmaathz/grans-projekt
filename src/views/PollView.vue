@@ -1,16 +1,19 @@
 <template>
   <body>
-  HÄR SKA VI SPELA SPELET <br>
-  Game Id: {{selectedQuiz.gameId}}<br>
-  Nickname: {{selectedQuiz.connectedUsers}}
-  <div class="questions" v-for="question in this.selectedQuiz.questions" v-bind:key="question">
-      {{question.questionText}}
-   <div>
-     <button>True</button>
-      <button>False</button>
-   </div>
+    <div>
+      HÄR SKA VI SPELA SPELET <br>
+      Game Id: {{selectedQuiz.gameId}}<br>
+      <p v-for="username in this.selectedQuiz.connectedUsers" v-bind:key="username">
+      Deltagare: {{username.username}}</p><br>
+      Frågor: <p v-for="question in this.selectedQuiz.questions" v-bind:key="question">
+      {{question.questionText}} </p>
 
-  </div>
+      <p>{{selectedQuiz.questions}}</p>
+
+       <QuizComponent >
+
+      </QuizComponent>
+      </div>
 <!--  <div>
     <ReorderQuestion />
     {{pollId}}
@@ -31,10 +34,12 @@
 //import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
+import QuizComponent from "@/components/QuizComponent";
 const socket = io();
 
 export default {
   name: 'PollView',
+  components: {QuizComponent},
   //components: {
     //QuestionComponent,
     // ReorderQuestion
@@ -76,14 +81,14 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
-    }
+    },
   }
 }
 </script>
 
 <style>
 .questions{
-  display: flex;
+
   border: solid;
   width: 300px;
   height: 50px;
