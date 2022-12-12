@@ -4,9 +4,10 @@ const languages = ["en", "se"];
 
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.finishedQuizzes = [];
+  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"qwerty",questionAnswer:true}]}];
   this.editThisQuiz = {};
   this.createdGame={gameId:"",connectedUsers: [], questions: []};
+  this.gameId ="";
 }
 
 /***********************************************
@@ -103,6 +104,11 @@ Data.prototype.createGame=function (quiz){
   console.log("Created game '"+quiz.gameId+"' successfully!")
 }
 
+Data.prototype.getGameInfo=function(){
+  console.log("Returning game"+this.createdGame.gameId)
+  return this.createdGame
+}
+
 Data.prototype.joinGame=function(user){
 
   if(user.joinGameId===this.createdGame.gameId){
@@ -116,6 +122,8 @@ Data.prototype.joinGame=function(user){
 Data.prototype.getUsers=function(){
   return this.createdGame.connectedUsers;
 }
+
+
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};

@@ -38,7 +38,7 @@
     </form>
 
     <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId"><button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button></router-link>
+    <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username"><button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button></router-link>
   </div>
 
   </body>
@@ -59,6 +59,7 @@ export default {
     }
   },
   created: function () {
+    this.user.username=this.$route.params.nick;
     this.user.joinGameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -69,7 +70,8 @@ export default {
   },
   methods:{
     joinGame: function(){
-      socket.emit('joinGame', this.user)
+      let user = Object.assign({},this.user)
+      socket.emit('joinGame', user)
     }
   }
 }
