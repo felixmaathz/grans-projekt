@@ -25,6 +25,7 @@ const socket = io();
 
      })
    },
+
    data: function() {
      return {
        uiLabels: {},

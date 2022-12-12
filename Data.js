@@ -4,7 +4,9 @@ const languages = ["en", "se"];
 
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"qwerty",questionAnswer:true}]}];
+  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"är detta kul?",questionAnswer:true},
+      {questionText:"Är Hugo 210cm", questionAnswer:false}, {questionText:"Är Gabriel törstig?", questionAnswer:true}]}];
+
   this.editThisQuiz = {};
   this.createdGame={gameId:"",connectedUsers: [], questions: []};
   this.gameId ="";

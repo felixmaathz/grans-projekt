@@ -21,7 +21,7 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameID"
+        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameId"
                class="questionInput">
       </p>
     </form>
