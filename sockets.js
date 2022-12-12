@@ -80,6 +80,16 @@ function sockets(io, socket, data) {
     socket.emit('returnUsers', data.getUsers())
   })
 
+  socket.on('chooseGameId', function(chosenGameId) {
+    socket.join(chosenGameId)
+  })
+
+  socket.on('chosenGameId', function(chosenGameId){
+    socket.join(chosenGameId)
+    io.to(chosenGameId).emit('theChosenGameId')
+
+  })
+
   // socket.on('runQuestion', function(d) {
   //   io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
   //   io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
