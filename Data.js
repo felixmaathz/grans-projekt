@@ -7,6 +7,7 @@ function Data() {
   this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"qwerty",questionAnswer:true}]}];
   this.editThisQuiz = {};
   this.createdGame={gameId:"",connectedUsers: [], questions: []};
+  this.gameId ="";
 }
 
 /***********************************************
@@ -117,6 +118,8 @@ Data.prototype.joinGame=function(user){
 Data.prototype.getUsers=function(){
   return this.createdGame.connectedUsers;
 }
+
+
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};

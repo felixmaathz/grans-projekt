@@ -16,7 +16,7 @@
       <div class="questionToolWrapper">
         <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
         <input class="questionInput" type="text"
-               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere">
 
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
@@ -106,16 +106,29 @@
     <!--    </div>-->
 
   </div>
+
+  <div id="app">
+
+    <PopUpComponent
+        v-show="isPopUpVisible"
+        @close="closePopUp"
+        v-on:chosenGameId = "getChosenGameId($event)"
+    />
+  </div>
   </body>
 </template>
 
 <script>
 import io from 'socket.io-client';
+import PopUpComponent from "@/components/PopUpComponent";
 const socket = io();
 
 
 export default {
   name: 'CreateView',
+  components:{
+    PopUpComponent
+  },
   data: function () {
     return {
       finishedQuiz: {name: "", listOfQuestions: []},
@@ -130,22 +143,13 @@ export default {
       answers: ["", ""],
       questionNumber: 0,
       data: {},
-      uiLabels: {}
+      uiLabels: {},
+
+      isPopUpVisible: true,
+      hejsan:""
     }
   },
   created: function () {
-
-
-    this.gameId=prompt("Choose game ID")
-    if(this.gameId==null||this.gameId==="" ){
-      history.back()
-  
-    }
-    else{
-      this.finishedQuiz.name=this.gameId
-      console.log(this.gameId)
-      socket.emit('createPoll', this.gameId)
-    }
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -158,12 +162,32 @@ export default {
     socket.on("pollCreated", (data) =>
         this.data = data)
     console.log(this.data)
+
+
   },
 
   methods: {
     // createPoll: function () {
     //   socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     // },
+
+    getChosenGameId: function(event){
+      this.gameId = event;
+      console.log(this.hejsan)
+
+
+    if(this.gameId==null||this.gameId==="" ){
+      history.back()
+
+    }
+    else{
+      this.finishedQuiz.name=this.gameId
+      console.log(this.gameId)
+      socket.emit('createPoll', this.gameId)
+  }
+
+
+    },
 
     chooseAnswer: function(answer) {
       if(answer){
@@ -216,8 +240,11 @@ export default {
       }
       this.$router.go(-1)
 
+    },
+    closePopUp() {
+      this.isPopUpVisible = false;
     }
-  }
+  },
 }
 </script>
 
