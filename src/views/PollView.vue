@@ -35,16 +35,21 @@
 <script>
 // @ is an alias to /src
 //import QuestionComponent from '@/components/QuestionComponent.vue';
+// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
+//import QuizComponent from "@/components/QuizComponent";
 const socket = io();
 
 export default {
   name: 'PollView',
-  components: {
+  //components: {QuizComponent},
+  //components: {
     //QuestionComponent,
-  },
+    // ReorderQuestion
+  //},
   data: function () {
     return {
+      selectedQuiz: {},
       question: {
         q: "",
         a: []
@@ -67,6 +72,14 @@ export default {
     socket.on("newQuestion", q =>
         this.question = q
     )
+
+    socket.emit('getSelectedQuiz');
+    console.log("niklas har gjort rätt")
+    socket.on('returnSelectedQuiz', (quizList) => {
+      this.selectedQuiz = quizList
+      console.log(this.selectedQuiz)
+      console.log("det har kommit fram")
+    })
   },
   methods: {
     submitAnswer: function (answer) {
