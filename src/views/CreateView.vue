@@ -146,7 +146,7 @@ export default {
       uiLabels: {},
 
       isPopUpVisible: true,
-      hejsan:""
+
     }
   },
   created: function () {
@@ -173,7 +173,7 @@ export default {
 
     getChosenGameId: function(event){
       this.gameId = event;
-      console.log(this.hejsan)
+
 
 
     if(this.gameId==null||this.gameId==="" ){

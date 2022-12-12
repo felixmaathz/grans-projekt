@@ -7,12 +7,15 @@
       Frågor nedan!!!
       <br>
 
-    <QuestionComponent
-      v-for="question in this.selectedQuiz.questions"
-      v-bind:question="question"
-      v-bind:key="question">
-   </QuestionComponent>
+      <div
+        v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+        <QuestionComponent
+            v-show= "index=== event"
+            v-bind:question="question"
+            v-on:questionNext = "getNextQuestion($event)">
+          </QuestionComponent>
 
+        </div>
       </div>
 
 <!--  <div>
@@ -37,6 +40,7 @@ import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
 
+
 export default {
   name: 'PollView',
   components: {QuestionComponent},
@@ -54,6 +58,7 @@ export default {
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
+
 
     }
   },
@@ -81,11 +86,17 @@ export default {
       console.log(this.selectedQuiz)
       console.log("det har kommit fram")
     })
+
+
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
+
+    getNextQuestion: function(event) {
+      event +=1;
+    }
   }
 }
 </script>
