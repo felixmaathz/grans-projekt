@@ -65,6 +65,10 @@ Data.prototype.getQuizzes= function (){
   return this.finishedQuizzes;
 }
 
+Data.prototype.getSelectedQuiz= function (){
+  return(this.createdGame)
+}
+
 Data.prototype.removeQuiz=function(gameId){
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
