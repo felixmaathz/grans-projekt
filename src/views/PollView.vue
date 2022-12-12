@@ -5,14 +5,14 @@
       Game Id: {{selectedQuiz.gameId}}<br>
       <p v-for="username in this.selectedQuiz.connectedUsers" v-bind:key="username">
       Deltagare: {{username.username}}</p><br>
-      Frågor: <p v-for="question in this.selectedQuiz.questions" v-bind:key="question">
-      {{question.questionText}} </p>
 
-      <p>{{selectedQuiz.questions}}</p>
-
-       <QuizComponent >
-
-      </QuizComponent>
+      <div v-for="question in this.selectedQuiz.questions" v-bind:question="question"
+           v-bind:key="question" >
+        <QuestionComponent v-if="knapp"
+           v-bind:question="question"
+           v-bind:key="question" >
+        </QuestionComponent>
+      </div>
       </div>
 <!--  <div>
     <ReorderQuestion />
@@ -31,29 +31,24 @@
 
 <script>
 // @ is an alias to /src
-//import QuestionComponent from '@/components/QuestionComponent.vue';
+import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
-import QuizComponent from "@/components/QuizComponent";
+
 const socket = io();
 
 export default {
   name: 'PollView',
-  components: {QuizComponent},
-  //components: {
-    //QuestionComponent,
+  components: {QuestionComponent},
     // ReorderQuestion
   //},
   data: function () {
     return {
       selectedQuiz: {},
-      question: {
-        q: "",
-        a: []
-      },
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
+      knapp: true,
     }
   },
   created: function () {

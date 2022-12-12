@@ -1,8 +1,9 @@
 <template>
   <div>
     <div>
-      <p> fråga 1</p>
       {{question.questionText}}
+      <button>True</button>
+      <button>False</button>
     </div>
   </div>
 </template>
@@ -22,13 +23,6 @@ const socket = io();
      socket.on("init", (labels) => {
        this.uiLabels = labels
 
-     })
-     socket.emit('getSelectedQuiz');
-     console.log("niklas har gjort rätt")
-     socket.on('returnSelectedQuiz', (quizList) => {
-       this.selectedQuiz = quizList
-       console.log(this.selectedQuiz)
-       console.log("det har kommit fram")
      })
    },
    data: function() {
