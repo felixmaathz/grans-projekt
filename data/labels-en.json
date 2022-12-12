@@ -25,6 +25,9 @@
 	"playGame": "Play",
 	"saveGame": "Save",
 	"goBack": "Back",
+	"q": "Q: ",
+	"a": "A: ",
+
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Host game",
@@ -39,7 +42,7 @@
 	"chooseOrEdit": "Choose or edit a saved game",
 	"theGamesName": "Game name...",
 	"startTheGame": "Start",
-	"editTheGame": "Edit",
+	"editTheGame": "Edit quiz",
 	"playAGame": "Play",
 	"goBack": "Back",
 	"questionsMultiple": "questions",
@@ -47,7 +50,7 @@
 
 	"CLIENTJOINGAMEVIEW": "",
 	"enterID": "Enter game-ID",
-	"gameID": "#game-ID",
+	"gameId": "#game-ID",
 	"userName": "Who are you?",
 	"enterNick": "enter nickname...",
 	"joinGame": "Join game",
@@ -71,7 +74,9 @@
 	"goBack": "Back",
 
 	"RESULTVIEW": "",
-	"goBack": "Back"
+	"goBack": "Back",
 
-
+	"PopUpComponent": "",
+	"confirm": "Confirm",
+	"chooseId": "Choose game ID"
 }

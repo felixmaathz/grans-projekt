@@ -90,6 +90,7 @@ body{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  overflow: auto;
 }
 .backButtonDiv{
   width: 10vw;

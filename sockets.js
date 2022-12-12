@@ -9,10 +9,15 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
-  socket.on('gameSoonToStart', function() {
+  socket.on('gameSoonToStart', function(gameId) {
     console.log("inne i sockets")
-    io.emit("gameWillStart");
+    io.to(gameId).emit("gameWillStart");
   });
+
+  socket.on('joinPoll', function(gameId){
+    console.log("Client connected to "+gameId)
+    socket.join(gameId)
+  })
 
 
 
@@ -28,6 +33,11 @@ function sockets(io, socket, data) {
   socket.on('getSelectedQuiz', function(){
     console.log("mottagit quiz")
     socket.emit('returnSelectedQuiz', data.getSelectedQuiz())
+  })
+
+  socket.on('getGameInfo', function(){
+    console.log("getting game")
+    socket.emit('returnGameInfo', data.getGameInfo())
   })
 
   socket.on('removeQuiz', function(d){
@@ -54,10 +64,10 @@ function sockets(io, socket, data) {
     socket.emit('quizReplaced', data.replaceQuiz(d))
   })
 
-  socket.on('editQuestion', function(d) {
-    data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
-    socket.emit('questionEdited', data.getAllQuestions(d.pollId));
-  });
+  // socket.on('editQuestion', function(d) {
+  //   data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
+  //   socket.emit('questionEdited', data.getAllQuestions(d.pollId));
+  // });
 
   socket.on('createGame', function(d){
     console.log("game created")
@@ -65,28 +75,39 @@ function sockets(io, socket, data) {
   })
 
   socket.on('joinGame', function(d){
+    socket.join(d.joinGameId)           //Join the room
     data.joinGame(d)
-    io.emit('userJoined', data.getUsers())
+    io.to(d.joinGameId).emit('userJoined', data.getUsers())
   })
 
   socket.on('getUsers', function(){
     socket.emit('returnUsers', data.getUsers())
   })
 
-  socket.on('runQuestion', function(d) {
-    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
-  });
-
-  socket.on('submitAnswer', function(d) {
-    data.submitAnswer(d.pollId, d.answer);
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
-  });
-
-  socket.on('resetAll', () => {
-    data = new Data();
-    data.initializeData();
+  socket.on('chooseGameId', function(chosenGameId) {
+    socket.join(chosenGameId)
   })
+
+  socket.on('chosenGameId', function(chosenGameId){
+    socket.join(chosenGameId)
+    io.to(chosenGameId).emit('theChosenGameId')
+
+  })
+
+  // socket.on('runQuestion', function(d) {
+  //   io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
+  //   io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+  // });
+
+  // socket.on('submitAnswer', function(d) {
+  //   data.submitAnswer(d.pollId, d.answer);
+  //   io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+  // });
+  //
+  // socket.on('resetAll', () => {
+  //   data = new Data();
+  //   data.initializeData();
+  // })
 
 
 
