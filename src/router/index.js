@@ -18,7 +18,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ChooseGameModeView.vue')
   },
     {
-    path: '/poll/:id/:lang',
+    path: '/poll/:id/:nick/:lang',
     name: 'PollView',
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
   },
@@ -49,12 +49,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ClientJoinGameView.vue')
   },
   {
-    path: '/hostpregame/:lang',
+    path: '/hostpregame/:lang/:id',
     name: "HostPreGameView",
     component: () => import(/* webpackChunkName: "about" */ '../views/HostPreGameView.vue')
   },
   {
-    path: '/lobby/:lang',
+    path: '/lobby/:lang/:id/:nick',
     name: "LobbyView",
     component: () => import(/* webpackChunkName: "about" */ '../views/LobbyView.vue')
   },
@@ -62,6 +62,11 @@ const routes = [
     path: '/join/:lang',
     name: "JoinView",
     component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
+  },
+  {
+    path: '/editquiz/:lang/:id',
+    name: "editQuizView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
   }
 ]
 

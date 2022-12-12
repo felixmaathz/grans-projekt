@@ -1,11 +1,19 @@
 <template>
 
   <body>
-  <div>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <div class="backButtonDiv">
+    <button class="backButton" v-on:click="this.$router.go(-1)"><span class="material-symbols-outlined">
+      arrow_back
+    </span></button>
+  </div>
+
+
+  <div style="margin-top: 6vw;">
 
 
     <!-- view text-->
-    <div>
+    <div class="enterGameID">
       {{uiLabels.enterID}}
     </div>
 
@@ -13,28 +21,26 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.gameID">
+        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameId"
+               class="questionInput">
       </p>
     </form>
-  <div>
+  <div class="enterNick">
     {{uiLabels.userName}}
   </div>
     <form>
       <p>
         <label for="nickname"></label> <br>
-        <input type="text" v-bind:placeholder="uiLabels.enterNick">
+        <input type="text" v-model="user.username" v-bind:placeholder="uiLabels.enterNick"
+               class="questionInput" minlength="3" maxlength="10">
 
       </p>
     </form>
 
     <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang"><button>{{uiLabels.joinGame}} </button></router-link>
+    <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username"><button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button></router-link>
   </div>
-  <footer>
-    <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-    </div>
-  </footer>
+
   </body>
 </template>
 
@@ -47,11 +53,14 @@ export default {
 
   data: function () {
     return {
+      user: {username:"", joinGameId: ""},
       uiLabels: {},
       lang: "",
     }
   },
   created: function () {
+    this.user.username=this.$route.params.nick;
+    this.user.joinGameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -59,6 +68,12 @@ export default {
 
     })
   },
+  methods:{
+    joinGame: function(){
+      let user = Object.assign({},this.user)
+      socket.emit('joinGame', user)
+    }
+  }
 }
 
 
@@ -67,4 +82,102 @@ export default {
 
 <style scoped>
 
+body{
+  background: #EF233C;
+  background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Silkscreen", cursive;
+}
+.questionButtons{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 30vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+
+  /*transition-duration: 0.15s;*/
+}
+.questionButtons:hover{
+  padding-right: 0.05em;
+  padding-top: 0.05em;
+  background-color: #31a6b2;
+  box-shadow: inset -0.1em -0.1em #027a75;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+.questionInput{
+  font-family: "Press Start 2P",cursive;
+  border: none;
+  color: #FEF9CC;
+  background: transparent;
+  width: 40%;
+  height: 7vh;
+  font-size: 2vw;
+  border-bottom-style: solid;
+  border-bottom-color: #2B211B;
+  text-align:center;
+}
+::placeholder{
+   color: #FEF9CC;
+   opacity: 70%;
+ }
+.enterGameID{
+  font-size: 2vw;
+}
+
+.enterNick{
+  font-size: 2vw;
+}
+
+
+.backButtonDiv{
+  width: 10vw;
+  height: 10vh;
+  margin-right: 10vw;
+
+}
+
+.backButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 10vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 0.9vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.35em -0.35em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  border-style: solid ;
+  /*transition-duration: 0.15s;*/
+}
+.backButton:hover{
+  background-color: #31a6b2;
+  box-shadow: inset -0.25em -0.25em #027a75;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+.material-symbols-outlined {
+  font-size: 4vw ;
+  font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 48
+}
 </style>

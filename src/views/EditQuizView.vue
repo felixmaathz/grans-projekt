@@ -7,38 +7,37 @@
       arrow_back
     </span></button>
     </div>
-  <h1 >{{ uiLabels.createYourQuestions }} </h1>
+    <h1 class="header" >{{uiLabels.editTheGame}}: {{this.finishedQuiz.gameId}} </h1>
 
   </div>
-    <div>
+  <div>
 
     <div class="pageGrid">
       <div class="questionToolWrapper">
-        <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
+        <h3>{{uiLabels.gameId}}: {{this.finishedQuiz.gameId}}</h3>
         <input class="questionInput" type="text"
-               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere">
-
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
         <div  class="answerButtonsWrapper">
-<!--          {{uiLabels.answer}}:-->
-            <button v-on:click="chooseAnswer(true)" class="answerButton true"
-                    :class="{selected: trueSelected}">
-              {{uiLabels.true}}
-            </button>
-            <button v-on:click="chooseAnswer(false)" class="answerButton false"
-                    :class="{selected: falseSelected}">
-              {{uiLabels.false}}
-            </button>
+          <!--          {{uiLabels.answer}}:-->
+          <button v-on:click="chooseAnswer(true)" class="answerButton true"
+                  :class="{selected: trueSelected}">
+            {{uiLabels.true}}
+          </button>
+          <button v-on:click="chooseAnswer(false)" class="answerButton false"
+                  :class="{selected: falseSelected}">
+            {{uiLabels.false}}
+          </button>
 
 
 
-<!--          <input type="radio" id="Yes"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
-<!--          <label for="html">{{uiLabels.yes}}</label>-->
+          <!--          <input type="radio" id="Yes"-->
+          <!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
+          <!--          <label for="html">{{uiLabels.yes}}</label>-->
 
-<!--          <input type="radio" id="Nej"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
-<!--                  class="radioButtons">-->
-<!--          <label for="html">{{uiLabels.no}}</label><br>-->
+          <!--          <input type="radio" id="Nej"-->
+          <!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
+          <!--                  class="radioButtons">-->
+          <!--          <label for="html">{{uiLabels.no}}</label><br>-->
 
 
         </div>
@@ -48,42 +47,42 @@
         </button>
 
 
-          <router-link v-bind:to="'//'">
-            <button class="questionButtons" >
-              {{uiLabels.playGame}}
-            </button>
-          </router-link>
+        <router-link v-bind:to="'//'">
+          <button class="questionButtons" >
+            {{uiLabels.playGame}}
+          </button>
+        </router-link>
 
 
-<!--        <div class = "saveButton">-->
+        <!--        <div class = "saveButton">-->
 
-<!--          <router-link v-bind:to="'//'">-->
-<!--            <button class="questionButtons" >-->
-<!--              {{uiLabels.saveGame}}-->
-<!--            </button>-->
-<!--          </router-link>-->
+        <!--          <router-link v-bind:to="'//'">-->
+        <!--            <button class="questionButtons" >-->
+        <!--              {{uiLabels.saveGame}}-->
+        <!--            </button>-->
+        <!--          </router-link>-->
 
-<!--        </div>-->
+        <!--        </div>-->
       </div>
 
       <div class = "questionListWrapper">
         <h3>{{uiLabels.questionList}}</h3>
 
-        <div class="questionList" v-for="(question,index) in finishedQuiz.listOfQuestions"
+        <div class="questionList" v-for="(question,index) in finishedQuiz.questionList"
              v-bind:key="question">
 
-            <div class="questionWrapper">
-              <button v-on:click="deleteQuestion(index)" class="deleteButton">
+          <div class="questionWrapper">
+            <button v-on:click="deleteQuestion(index)" class="deleteButton">
                 <span
                     class="material-symbols-outlined X">
                   DELETE
                 </span>
-              </button>
-              <div class="question">
-                {{uiLabels.q +question.questionText}}<br>
-                {{uiLabels.a +question.questionAnswer}}
-              </div>
-              </div>
+            </button>
+            <div class="question">
+              {{uiLabels.q + question.questionText}}<br>
+              {{uiLabels.a +question.questionAnswer}}
+            </div>
+          </div>
 
 
         </div>
@@ -106,50 +105,51 @@
     <!--    </div>-->
 
   </div>
-
-  <div id="app">
-
-    <PopUpComponent
-        v-show="isPopUpVisible"
-        @close="closePopUp"
-        v-on:chosenGameId = "getChosenGameId($event)"
-    />
-  </div>
   </body>
 </template>
 
 <script>
 import io from 'socket.io-client';
-import PopUpComponent from "@/components/PopUpComponent";
 const socket = io();
 
-
 export default {
-  name: 'CreateView',
-  components:{
-    PopUpComponent
-  },
+  name: 'EditQuizView',
   data: function () {
     return {
+      listOfQuizzes: undefined,
+      gameId: "",
       finishedQuiz: {name: "", listOfQuestions: []},
       questionObject: {questionText: "", questionAnswer: undefined},
       formValidation: false,
       trueSelected: false,
       falseSelected: false,
+      finishedQuizzes: [],
+      isUnique: false,
 
       lang: "",
-      gameId: "",
+
       question: "",
       answers: ["", ""],
       questionNumber: 0,
       data: {},
-      uiLabels: {},
-
-      isPopUpVisible: true,
-      hejsan:""
+      uiLabels: {}
     }
   },
   created: function () {
+
+    socket.emit('getQuizzes');
+    socket.on('returnQuizzes', (quizList) =>{
+          this.listOfQuizzes=quizList
+    })
+
+    socket.emit('getQuizForEdit');
+    socket.on('returnQuizForEdit', (quizForEdit) =>{
+      this.finishedQuiz=quizForEdit
+
+      let object = JSON.stringify(this.finishedQuiz)
+      console.log("saved"+object)
+    })
+
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -161,8 +161,6 @@ export default {
     )
     socket.on("pollCreated", (data) =>
         this.data = data)
-    console.log(this.data)
-
 
   },
 
@@ -170,24 +168,6 @@ export default {
     // createPoll: function () {
     //   socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     // },
-
-    getChosenGameId: function(event){
-      this.gameId = event;
-      console.log(this.hejsan)
-
-
-    if(this.gameId==null||this.gameId==="" ){
-      history.back()
-
-    }
-    else{
-      this.finishedQuiz.name=this.gameId
-      console.log(this.gameId)
-      socket.emit('createPoll', this.gameId)
-  }
-
-
-    },
 
     chooseAnswer: function(answer) {
       if(answer){
@@ -203,9 +183,9 @@ export default {
     addQuestion: function () {
       if(this.formValidation===true) {
         const question = Object.assign({}, this.questionObject)
-        console.log(this.finishedQuiz.listOfQuestions)
-        socket.emit("addQuestion", {gameId: this.gameId, q: question})
-        this.finishedQuiz.listOfQuestions.push(question)
+        console.log(this.finishedQuiz.questionList)
+        socket.emit("addQuestion", {gameId: this.finishedQuiz.gameId, q: question})
+        this.finishedQuiz.questionList.push(question)
       }
       this.questionObject.questionText= "";
       this.questionObject.questionAnswer =  undefined;
@@ -220,8 +200,8 @@ export default {
     // },
 
     deleteQuestion: function (index) {
-      socket.emit('removeQuestion', {gameId: this.gameId, index: index})
-      this.finishedQuiz.listOfQuestions.splice(index,1)
+      socket.emit('removeQuestion', {gameId: this.finishedQuiz.gameId, index: index})
+      this.finishedQuiz.questionList.splice(index,1)
     },
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||
@@ -232,19 +212,25 @@ export default {
         return this.formValidation = true;
       }
     },
-
-    goBack:function(){
-      if(this.finishedQuiz.listOfQuestions.length === 0){
-        socket.emit('removeQuiz',this.gameId)
-        console.log("removed"+this.gameId)
+    replaceQuiz: function (){
+      if(this.finishedQuiz.questionList.length===0){
+        socket.emit('removeQuiz',this.finishedQuiz.gameId)
+        console.log("removed"+this.finishedQuiz.gameId)
+      }else{
+        socket.emit('replaceQuiz', this.finishedQuiz)
       }
       this.$router.go(-1)
-
     },
-    closePopUp() {
-      this.isPopUpVisible = false;
+    goBack:function(){
+      if(this.finishedQuiz.questionList.length===0){
+        socket.emit('removeQuiz',this.finishedQuiz.gameId)
+        console.log("removed"+this.finishedQuiz.gameId)
+      }else{
+        socket.emit('replaceQuiz', this.finishedQuiz)
+      }
+      this.$router.go(-1)
     }
-  },
+  }
 }
 </script>
 
@@ -299,22 +285,21 @@ body{
   color: #FEF9CC;
 }
 
- .material-symbols-outlined {
-   font-size: 4vw ;
-   font-variation-settings:
-       'FILL' 1,
-       'wght' 700,
-       'GRAD' 200,
-       'opsz' 48
- }
+.material-symbols-outlined {
+  font-size: 4vw ;
+  font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 48
+}
 
 
 
 
 h1{
   color: #00C3BA;
-  font-size: 4vw;
-  margin-bottom: 4vw;
+  font-size: 5vw;
   /*-webkit-text-stroke: 0.01vw black;*/
   text-shadow: 4px 2px black;
 }
@@ -333,7 +318,7 @@ h3{
   font-size: 2vw;
   border-bottom-style: solid;
   border-bottom-color: #2B211B;
-  text-align:center;
+  text-align: center;
 }
 
 ::placeholder{
@@ -377,6 +362,7 @@ h3{
   box-shadow: inset -0.25em -0.25em #bb0000;
   font-size: 1.4vw;
 }
+
 .answerButton.true:hover{
   box-shadow: inset -0.15em -0.15em #174d05;
   padding-right: 0.05em;
@@ -445,6 +431,7 @@ h3{
   box-shadow: inset -0.1em -0.1em #027a75;
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
+
 }
 .questionListWrapper {
   color: #2B211B;

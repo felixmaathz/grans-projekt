@@ -1,9 +1,8 @@
 {
-
 	"STARTVIEW": "",
 	"playTheGame": "SPELA",
 	"createTheGame": "SKAPA",
-	"gameTitle": "Stämmer det?",
+	"gameTitle": "Sant eller falskt?",
 	"sales-pitch": "Svar. Helt. Enkelt.",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa röstning",
@@ -11,9 +10,11 @@
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
 
-
-
 	"CREATEVIEW": "",
+	"typeHere": "Skriv här...",
+	"gameId": "Spelets ID",
+	"true": "SANT",
+	"false": "FALSKT",
 	"createYourQuestions": "Skapa dina frågor",
 	"question": "Fråga",
 	"questionList": "Frågelista",
@@ -24,10 +25,13 @@
 	"playGame": "Spela",
 	"saveGame": "Spara",
 	"goBack": "Tillbaka",
+	"q": "F: ",
+	"a": "S: ",
+
 
 	"HOSTORJOINVIEW": "",
-	"hostAGame": "Skapa en lobby",
-	"joinAGame": "Gå med i en lobby",
+	"hostAGame": "Skapa spel",
+	"joinAGame": "Gå med i spel",
 	"goBack": "Tillbaka",
 
 	"CHOOSEGAMEMODEVIEW": "",
@@ -38,18 +42,20 @@
 	"chooseOrEdit": "Välj sparat spel eller redigera",
 	"theGamesName": "Spelets namn...",
 	"startTheGame": "Start",
-	"editTheGame": "Redigera",
+	"editTheGame": "Redigera spel",
 	"playAGame": "Spela",
 	"goBack": "Tillbaka",
-	"questions": "frågor",
+	"questionsMultiple": "frågor",
+	"aQuestion": "fråga",
 
 	"CLIENTJOINGAMEVIEW": "",
 	"enterID": "Fyll i spel-ID",
-	"gameID": "#spel-ID",
+	"gameId": "#spel-ID",
 	"userName": "Vem är du?",
-	"enterNick": "fyll i användarnamn..",
+	"enterNick": "välj namn...",
 	"joinGame": "Gå med i spel",
 	"goBack": "Tillbaka",
+	"joinLobby": "Gå med i lobby",
 
 	"LOBBYVIEW": "",
 	"nickName": "#användarnamn",
@@ -58,6 +64,8 @@
 	"HOSTPREGAMEVIEW": "",
 	"hostPreGame": "Värdens lobby",
 	"goBack": "Tillbaka",
+	"startTheGame": "Starta spel",
+
 
 	"JOINVIEW": "",
 	"goBack": "Tillbaka",
@@ -66,7 +74,9 @@
 	"goBack": "Tillbaka",
 
 	"RESULTVIEW": "",
-	"goBack": "Tillbaka"
+	"goBack": "Tillbaka",
 
-
+	"PopUpComponent": "",
+	"confirm": "Bekräfta",
+	"chooseId": "Välj spelets ID"
 }

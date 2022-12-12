@@ -1,15 +1,25 @@
 <template>
   <div class="quizWrapper">
     <div class="gameIdBox">
-      <span class="gameId">{{ quiz.gameId}}</span>
+      <span class="gameId">{{ quiz.gameId}}: </span>
     </div>
     <div class="gameDescription">
-      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
-      <p v-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.questions}}</p>
+      <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questionsMultiple}}</p>
+      <p v-else-if="this.numberOfQuestions===1">{{this.numberOfQuestions+ " " + uiLabels.aQuestion}}</p>
     </div>
     <div class="gameDetails">
-      <router-link v-bind:to = "'/hostpregame/'+lang"> <button class="playEditButtons">{{uiLabels.playAGame}}</button></router-link>
-      <router-link v-bind:to = "'/create/'+lang"> <button class="playEditButtons">{{uiLabels.editTheGame}}</button></router-link>
+<!--      <router-link v-bind:to = "'/hostpregame/'+lang+id" style="width: 50%">-->
+        <button class="playButton" v-on:click="createGame()">{{uiLabels.playAGame}}</button>
+<!--      </router-link>-->
+
+<!--      <router-link v-bind:to = "'/editquiz/'+lang" style="width: 50%">-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+       <div>
+        <button class="editButton" v-on:click="editQuiz()" >
+          <span class="material-symbols-outlined"> edit_note</span>
+        </button>
+       </div>
+<!--      </router-link>-->
     </div>
   </div>
 
@@ -27,6 +37,7 @@ export default {
     quiz: Object
   },
   created: function(){
+
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -40,6 +51,16 @@ export default {
     numberOfQuestions: 0,
       uiLabels: {},
       lang: "",
+    }
+  },
+  methods: {
+    editQuiz: function() {
+      this.$emit("editThisQuiz", this.quiz)
+
+    },
+    createGame: function(){
+
+      this.$emit("createGame", this.quiz)
     }
   }
 }
@@ -55,24 +76,84 @@ export default {
   border-style: solid;
 }
 
-.playEditButtons{
-  width: 50%;
-  font-size: 3.5vh;
+.playButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 30vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  margin-top: 4vw;
+}
+
+.playButton:hover{
+  background-color: #31a6b2;
+  box-shadow: inset -0.1em -0.1em #027a75;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+  padding-right: 0.05em;
+  padding-top: 0.1em;
+}
+
+.editButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #ffc507;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 6vw;
+  height: 10vh;
+  margin: 20px;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #b97f00;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #b97f00;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  margin-top: 4vw;
+}
+
+.editButton:hover{
+  background-color: #e7a100;
+  box-shadow: inset -0.1em -0.1em #b97f00;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+  padding-right: 0.05em;
+  padding-top: 0.05em;
+}
+
+.material-symbols-outlined {
+  font-size: 4vw;
+  font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
 }
 
 .quizWrapper{
+  background-color: #FEF9CC;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 25vw;
-  height: 20vh;
-  margin: 25px;
-  border-style: solid;
+  width: 26vw;
+  height: 25vh;
+  margin: 1vw;
   position: relative;
+  border-style: solid;
+  border-bottom-color: black;
+  border-width: 0.5vw;
 }
 
 .gameIdBox{
-  border-style: solid;
   display: flex;
   position: absolute;
   margin-left: auto;
@@ -83,13 +164,12 @@ export default {
   height: 20%;
   justify-content: center;
   order: 0;
-
   font-size: 3vh;
 }
+
 .gameDescription{
-  height: 45%;
+  height: 90%;
   bottom: 30%;
-  border-style: solid;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,13 +188,10 @@ export default {
   left: 0;
   right: 0;
   text-align: center;
-  height: 30%;
+  height: 75%;
   bottom: 0;
   display: flex;
   justify-content: center;
-
 }
-
-
 
 </style>

@@ -1,6 +1,7 @@
 <template>
   <body>
   <div>
+    PRESENTERA RESULTATET FÖR SPELET
     {{question}}
   </div>
   <BarsComponent v-bind:data="data"/>
