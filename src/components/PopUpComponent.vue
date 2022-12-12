@@ -102,8 +102,8 @@ export default {
 .modal {
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
-  width: 50%;
-  height: 30%;
+  width: 45%;
+  height: 35%;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;

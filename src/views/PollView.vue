@@ -10,9 +10,10 @@
 
       <p>{{selectedQuiz.questions}}</p>
 
-       <QuizComponent >
+<!--      <QuizComponent>-->
+<!--        hej-->
+<!--      </QuizComponent>-->
 
-      </QuizComponent>
       </div>
 <!--  <div>
     <ReorderQuestion />
@@ -34,12 +35,12 @@
 //import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
-import QuizComponent from "@/components/QuizComponent";
+//import QuizComponent from "@/components/QuizComponent";
 const socket = io();
 
 export default {
   name: 'PollView',
-  components: {QuizComponent},
+  //components: {QuizComponent},
   //components: {
     //QuestionComponent,
     // ReorderQuestion
