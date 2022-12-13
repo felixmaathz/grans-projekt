@@ -121,7 +121,14 @@ Data.prototype.addCollabQuestion = function(question){
 }
 
 Data.prototype.deleteCollabQuestion = function(index){
+  console.log("Deleted question at index: "+index)
   this.createdGame.questions.splice(index,1)
+  return this.createdGame.questions
+}
+
+//Dom här två gör typ samma sak, ta bort den ena kanske?
+Data.prototype.getQuestions = function(){
+  console.log("Getting questions")
   return this.createdGame.questions
 }
 

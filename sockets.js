@@ -89,6 +89,11 @@ function sockets(io, socket, data) {
     io.to(d.gameId).emit('collabQuestionDeleted', data.deleteCollabQuestion(d.index))
   })
 
+  socket.on('getQuestions', function(gameId){
+    socket.join(gameId)
+    io.to(gameId).emit('returnQuestions', data.getQuestions())
+  })
+
   socket.on('joinGame', function(d){
     socket.join(d.joinGameId)           //Join the room
     data.joinGame(d)

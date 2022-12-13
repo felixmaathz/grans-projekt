@@ -2,6 +2,7 @@
   <body>
   <div>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <div class="backButtonDiv">
       <button class="backButton" v-on:click="this.$router.go(-1)">
             <span class="material-symbols-outlined">
@@ -42,6 +43,9 @@
       <button class="questionButtons" v-on:click="validateForm();addQuestion()">
         {{uiLabels.addYourQuestion}}
       </button>
+      <button>
+        Start
+      </button>
     </div>
 
 
@@ -75,7 +79,7 @@ const socket = io();
 
 
 export default {
-  name: "CollabLobbyView",
+  name: "HostCollabLobbyView",
   components: {
     UserComponent
   },

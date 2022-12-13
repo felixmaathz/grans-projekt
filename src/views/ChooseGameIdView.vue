@@ -6,7 +6,7 @@
     <input placeholder="username" v-model="user.username">
   </div>
   <div>
-    <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username">
+    <router-link v-bind:to="'/hostcollablobby/'+lang+'/'+user.joinGameId+'/'+user.username">
       <button  v-on:click="createCollabGame()">
         Create Game
       </button>
