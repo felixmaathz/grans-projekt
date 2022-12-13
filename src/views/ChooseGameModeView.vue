@@ -14,9 +14,11 @@
         </button>
      </router-link>
      <br>
+     <router-link v-bind:to="'/choosegameid/'+lang">
       <button class="gameButtons">
         {{uiLabels.createCoQuiz}}
       </button>
+     </router-link>
    </div>
   </body>
 </template>

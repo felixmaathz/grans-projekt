@@ -28,7 +28,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/SelectSavedGame.vue')
   },
   {
-    path: '/create/:lang',
+    path: '/create/:lang/',
     name: 'CreateView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -67,7 +67,20 @@ const routes = [
     path: '/editquiz/:lang/:id',
     name: "editQuizView",
     component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
+  },
+  {
+    //Add ID
+    path: '/collablobby/:lang/:id/:nick',
+    name: "collabLobbyView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/CollabLobbyView.vue')
+  },
+  {
+    //Add ID
+    path: '/choosegameid/:lang/',
+    name: "chooseGameIdView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ChooseGameIdView.vue')
   }
+
 ]
 
 const router = createRouter({

@@ -16,7 +16,7 @@
       <div class="questionToolWrapper">
         <h3>{{uiLabels.gameId}}: {{this.gameId}}</h3>
         <input class="questionInput" type="text"
-               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere">
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
 
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
