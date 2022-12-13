@@ -2,8 +2,8 @@
   <div>
     <div>
       {{question.questionText}}
-      <button >True</button>
-      <button>False</button>
+      <button v-on:click="chooseAnswer(true)"> {{uiLabels.true}}</button>
+      <button v-on:click="chooseAnswer(false)"> {{uiLabels.false}}</button>
     </div>
   </div>
 </template>
@@ -24,13 +24,15 @@ const socket = io();
        this.uiLabels = labels
 
      })
-
    },
 
    data: function() {
      return {
        uiLabels: {},
        lang: "",
+       answeredQuestions: [
+         {q:"", a:undefined}
+       ],
 
      }
    },
@@ -38,9 +40,20 @@ const socket = io();
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
+    },
+    chooseAnswer: function(answer) {
+      console.log(this.question.questionText + "   " + answer)
+      this.answeredQuestions.push(this.question.questionText, answer)
+
+
+
+      console.log(this.answeredQuestions.q + "   " + this.answeredQuestions.a)
+
+
     }
   }
 }
+
 </script>
 
 <!--

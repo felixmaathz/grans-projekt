@@ -7,15 +7,21 @@
       Frågor nedan!!!
       <br>
 
-      <div v-for="question in this.selectedQuiz.questions" v-bind:question="question"
-           v-bind:key="question" >
-        <QuestionComponent v-if="knapp"
-                           v-bind:question="question"
-                           v-bind:key="question" >
+      <div
+        v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+
+        <QuestionComponent
+
+            v-show= "index==activeIndex"
+            v-bind:question="question">
+
         </QuestionComponent>
 
+        </div>
       </div>
-      </div>
+
+
+
 
 <!--  <div>
     <ReorderQuestion />
@@ -25,6 +31,8 @@
   </div>-->
   <footer>
     <div style="margin: 2em">
+      <button v-on:click="nextQuestion()"> Next question</button>
+
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
     </div>
 
@@ -38,6 +46,7 @@ import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 const socket = io();
+
 
 export default {
   name: 'PollView',
@@ -56,15 +65,14 @@ export default {
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
-      knapp:true,
+      activeIndex: 0
+
 
     }
   },
 
 
   created: function () {
-
-
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -84,12 +92,23 @@ export default {
       console.log(this.selectedQuiz)
       console.log("det har kommit fram")
     })
+
+
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
-  }
+    nextQuestion: function() {
+      if(this.activeIndex == this.selectedQuiz.questions.length-1) {
+          console.log("slut på frågor")
+          return
+      }
+      else {
+        this.activeIndex +=1;
+      }
+    }
+  },
 }
 </script>
 
