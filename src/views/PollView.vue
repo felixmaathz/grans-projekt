@@ -28,9 +28,6 @@
         </div>
       </div>
 
-
-
-
 <!--  <div>
     <ReorderQuestion />
     {{pollId}}
@@ -55,7 +52,6 @@ import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
 
-
 export default {
   name: 'PollView',
   components: {WaitingComponent, QuestionComponent},
@@ -70,7 +66,6 @@ export default {
         q: "",
         a: []
       },
-
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
@@ -79,7 +74,7 @@ export default {
       theUser:"",
       gameId:"",
 
-      isPopUpVisible: true,
+      isPopUpVisible: true
 
 
     }
@@ -87,6 +82,8 @@ export default {
 
 
   created: function () {
+
+
     this.lang = this.$route.params.lang;
     this.theUser = this.$route.params.nick;
     this.gameId =this.$route.params.id;
@@ -105,6 +102,8 @@ export default {
     console.log("niklas har gjort rätt")
     socket.on('returnSelectedQuiz', (quizList) => {
       this.selectedQuiz = quizList
+      console.log(this.selectedQuiz)
+      console.log("det har kommit fram")
     })
 
   },
@@ -141,7 +140,13 @@ export default {
 </script>
 
 <style>
+.questions{
 
+  border: solid;
+  width: 300px;
+  height: 50px;
+
+}
 
 
 </style>
