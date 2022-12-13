@@ -3,7 +3,7 @@
     <div>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <div class="backButtonDiv">
-          <button class="backButton" v-on:click="this.$router.go(-1)">
+          <button class="backButton" v-on:click="this.$router.go(-1);userLeft()">
             <span class="material-symbols-outlined">
               arrow_back
             </span>
@@ -66,6 +66,10 @@ export default {
       console.log('user joined')
       this.connectedUsers = users
     })
+    socket.on('userLeft', (users) => {
+      console.log('user left')
+      this.connectedUsers = users
+    })
 
 
     socket.on('gameWillStart', ()=> {
@@ -75,7 +79,14 @@ export default {
   methods:{
     redirectUser: function(){
       this.$router.push({path: '/poll/'+this.gameId+'/'+this.myUsername+'/'+this.lang })
+    },
+
+    userLeft: function(){
+      socket.emit('leaveGame',{username:this.myUsername,gameId: this.gameId})
+
+
     }
+
   }
 }
 
