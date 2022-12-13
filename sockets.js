@@ -119,7 +119,15 @@ function sockets(io, socket, data) {
     socket.emit('returnUsers', data.getUsers())
   })
 
-  socket.on('chooseGameId', function(chosenGameId) {
+  socket.on('totalScore', function(d){
+    console.log(d.theUser + d.theScore)
+    socket.join(d.theGameId)
+    io.to(d.theGameId).emit('returnScore', data.getTotalScore(d))
+
+
+  })
+
+/*  socket.on('chooseGameId', function(chosenGameId) {
     socket.join(chosenGameId)
   })
 
@@ -127,7 +135,7 @@ function sockets(io, socket, data) {
     socket.join(chosenGameId)
     io.to(chosenGameId).emit('theChosenGameId')
 
-  })
+  })*/
 
   // socket.on('runQuestion', function(d) {
   //   io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));

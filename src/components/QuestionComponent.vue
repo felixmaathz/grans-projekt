@@ -2,6 +2,8 @@
   <div>
     <div>
       {{question.questionText}}
+      <button v-on:click="chooseAnswer(true)"> {{uiLabels.true}}</button>
+      <button v-on:click="chooseAnswer(false)"> {{uiLabels.false}}</button>
     </div>
   </div>
 </template>
@@ -32,11 +34,14 @@ const socket = io();
    },
 
   methods: {
-    answer: function (answer) {
-      this.$emit("answer", answer);
+    chooseAnswer: function(answer) {
+      this.$emit('answer', answer)
+
+
     }
-  }
+  },
 }
+
 </script>
 
 <!--
