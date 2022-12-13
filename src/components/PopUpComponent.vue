@@ -12,15 +12,7 @@
         >
           <slot name="header">
             {{uiLabels.chooseId}}
-<!--           <button v-on:click="chosenId()"
-                type="button"
-                class="close"
-                @click="$emit('close')"
 
-
-            >
-            confirm
-            </button>-->
           </slot>
         </header>
         <section
@@ -103,7 +95,7 @@ export default {
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 45%;
-  height: 35%;
+  height: 38%;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;
@@ -130,8 +122,9 @@ export default {
 
 }
 .close {
+  font-family: "Press Start 2P", cursive;
   border: none;
-  font-size: 3vw;
+  font-size: 2vw;
   margin-top:4vw;
   cursor: pointer;
   font-weight: bold;

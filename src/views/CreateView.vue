@@ -271,7 +271,6 @@ body{
   width: 10vw;
   height: 10vh;
   margin-right: 10vw;
-
 }
 
 .backButton{
@@ -307,9 +306,6 @@ body{
        'GRAD' 200,
        'opsz' 48
  }
-
-
-
 
 h1{
   color: #00C3BA;
