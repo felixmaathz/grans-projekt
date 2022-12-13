@@ -26,8 +26,9 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d));
   });
 
-  socket.on('getQuizzes', function() {
+  socket.on('getQuizzes', function(gameId) {
     console.log("getting quizes")
+    io.to(gameId).emit('returnQuizzes', data.getQuizzes())
     socket.emit('returnQuizzes', data.getQuizzes())
   })
   socket.on('getSelectedQuiz', function(){
@@ -71,7 +72,21 @@ function sockets(io, socket, data) {
 
   socket.on('createGame', function(d){
     console.log("game created")
-    socket.emit('gameCreated', data.createGame(d))
+    data.createGame(d)
+  })
+
+  socket.on('createCollabGame', function(d){
+    data.createCollabGame(d)
+  })
+
+  socket.on('addCollabQuestion', function (d){
+    socket.join(d.gameId)
+    io.to(d.gameId).emit("collabQuestionAdded",data.addCollabQuestion(d.question))
+  })
+
+  socket.on('deleteCollabQuestion', function(d){
+    socket.join(d.gameId)
+    io.to(d.gameId).emit('collabQuestionDeleted', data.deleteCollabQuestion(d.index))
   })
 
   socket.on('joinGame', function(d){
@@ -80,7 +95,9 @@ function sockets(io, socket, data) {
     io.to(d.joinGameId).emit('userJoined', data.getUsers())
   })
 
-  socket.on('getUsers', function(){
+  socket.on('getUsers', function(gameId){
+    console.log("getting users")
+    io.to(gameId).emit('returnUsers', data.getUsers())
     socket.emit('returnUsers', data.getUsers())
   })
 

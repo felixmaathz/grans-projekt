@@ -1,20 +1,20 @@
 <template>
   <body>
     <div>
-      HÄR SKA VI SPELA SPELET <br>
-      Game Id: {{selectedQuiz.gameId}}<br>
-      <p v-for="username in this.selectedQuiz.connectedUsers" v-bind:key="username">
-      Deltagare: {{username.username}}</p><br>
-      Frågor: <p v-for="question in this.selectedQuiz.questions" v-bind:key="question">
-      {{question.questionText}} </p>
+      HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
+      <br>
 
-      <p>{{selectedQuiz.questions}}</p>
+      Frågor nedan!!!
+      <br>
 
-<!--      <QuizComponent>-->
-<!--        hej-->
-<!--      </QuizComponent>-->
+    <QuestionComponent
+      v-for="question in this.selectedQuiz.questions"
+      v-bind:question="question"
+      v-bind:key="question">
+   </QuestionComponent>
 
       </div>
+
 <!--  <div>
     <ReorderQuestion />
     {{pollId}}
@@ -32,15 +32,14 @@
 
 <script>
 // @ is an alias to /src
-//import QuestionComponent from '@/components/QuestionComponent.vue';
+import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
-//import QuizComponent from "@/components/QuizComponent";
 const socket = io();
 
 export default {
   name: 'PollView',
-  //components: {QuizComponent},
+  components: {QuestionComponent},
   //components: {
     //QuestionComponent,
     // ReorderQuestion
@@ -55,9 +54,13 @@ export default {
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
+
     }
   },
+
+
   created: function () {
+
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -95,5 +98,6 @@ export default {
   height: 50px;
 
 }
+
 
 </style>

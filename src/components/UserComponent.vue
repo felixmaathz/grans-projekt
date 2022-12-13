@@ -1,6 +1,7 @@
 <template>
   <div :style="{ backgroundColor: randomColor, color: textColor}" class="userWrapper">
     <div class="username">
+      <span v-if="user.host===true">HOST:</span>
       {{user.username}}
     </div>
   </div>

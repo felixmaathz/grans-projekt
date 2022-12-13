@@ -36,9 +36,16 @@
 
       </p>
     </form>
-
-    <!-- Button for joining game -->
-    <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username"><button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button></router-link>
+    <div>
+        <!-- Button for joining game -->
+        <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===false">
+          <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
+        </router-link>
+      <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===true">
+        <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
+      </router-link>
+      <input type="checkbox" v-model="collabQuiz"><label>Collab quiz?</label>
+    </div>
   </div>
 
   </body>
@@ -56,12 +63,15 @@ export default {
       user: {username:"", joinGameId: ""},
       uiLabels: {},
       lang: "",
+      collabQuiz: false
     }
   },
   created: function () {
     this.user.username=this.$route.params.nick;
     this.user.joinGameId=this.$route.params.id;
     this.lang = this.$route.params.lang;
+
+
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -81,6 +91,10 @@ export default {
 </script>
 
 <style scoped>
+
+*{
+  outline: 1px solid greenyellow;
+}
 
 body{
   background: #EF233C;

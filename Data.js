@@ -4,7 +4,9 @@ const languages = ["en", "se"];
 
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"qwerty",questionAnswer:true}]}];
+  this.finishedQuizzes = [{gameId:"123",questionList:[{questionText:"är detta kul?",questionAnswer:true},
+      {questionText:"Är Hugo 210cm", questionAnswer:false}, {questionText:"Är Gabriel törstig?", questionAnswer:true}]}];
+
   this.editThisQuiz = {};
   this.createdGame={gameId:"",connectedUsers: [], questions: []};
   this.gameId ="";
@@ -102,6 +104,25 @@ Data.prototype.createGame=function (quiz){
   this.createdGame.gameId=quiz.gameId;
   this.createdGame.questions=quiz.questionList;
   console.log("Created game '"+quiz.gameId+"' successfully!")
+}
+
+Data.prototype.createCollabGame = function(user){
+  this.createdGame.connectedUsers=[]
+  this.createdGame.gameId=user.joinGameId
+  this.createdGame.connectedUsers.push(user)
+  this.createdGame.questions=[]
+  console.log("Created collaborative game: "+user.joinGameId)
+}
+
+Data.prototype.addCollabQuestion = function(question){
+  this.createdGame.questions.push(question)
+  console.log("Added question: "+question.questionText)
+  return this.createdGame.questions
+}
+
+Data.prototype.deleteCollabQuestion = function(index){
+  this.createdGame.questions.splice(index,1)
+  return this.createdGame.questions
 }
 
 Data.prototype.getGameInfo=function(){

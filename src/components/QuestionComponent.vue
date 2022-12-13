@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-      <p> fråga 1</p>
       {{question.questionText}}
     </div>
   </div>
@@ -23,14 +22,8 @@ const socket = io();
        this.uiLabels = labels
 
      })
-     socket.emit('getSelectedQuiz');
-     console.log("niklas har gjort rätt")
-     socket.on('returnSelectedQuiz', (quizList) => {
-       this.selectedQuiz = quizList
-       console.log(this.selectedQuiz)
-       console.log("det har kommit fram")
-     })
    },
+
    data: function() {
      return {
        uiLabels: {},
