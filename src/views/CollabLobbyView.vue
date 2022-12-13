@@ -129,8 +129,15 @@ export default {
       console.log("question removed"+questions)
       this.questionList=questions})
 
+    socket.on('gameTerminated', ()=>{
+      this.redirectUser()
+    })
+
   },
   methods: {
+    redirectUser: function(){
+      this.$router.push({path: '/'})
+    },
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||
           this.questionObject.questionText === "") {

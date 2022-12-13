@@ -46,6 +46,9 @@ export default {
     socket.emit('getGameInfo')
     socket.on('returnGameInfo', (game)=>{
       this.finishedQuiz=game
+      if(this.finishedQuiz.gameId===""){
+        this.$router.go(-1)
+      }
       socket.emit('joinPoll', this.finishedQuiz.gameId)
     })
     this.myUsername = this.$route.params.nick;

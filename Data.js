@@ -126,6 +126,12 @@ Data.prototype.deleteCollabQuestion = function(index){
   return this.createdGame.questions
 }
 
+Data.prototype.terminateGame = function (){
+  this.createdGame.gameId=""
+  this.createdGame.connectedUsers=[]
+  this.createdGame.questions=[]
+}
+
 //Dom här två gör typ samma sak, ta bort den ena kanske?
 Data.prototype.getQuestions = function(){
   console.log("Getting questions")

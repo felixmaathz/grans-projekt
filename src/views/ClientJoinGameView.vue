@@ -92,9 +92,9 @@ export default {
 
 <style scoped>
 
-*{
-  outline: 1px solid greenyellow;
-}
+/**{*/
+/*  outline: 1px solid greenyellow;*/
+/*}*/
 
 body{
   background: #EF233C;
