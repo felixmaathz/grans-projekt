@@ -1,4 +1,10 @@
 <template>
+  <div>
+    <WaitingComponent
+      v-show="isPopUpVisible"
+      @close="closePopUp"/>
+
+  </div>
   <body>
   {{uiLabels.theScore}} {{yourScore}}
     <div>
@@ -35,7 +41,6 @@
     <div style="margin: 2em">
       <button v-on:click="nextQuestion()"> Next question</button>
 
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
     </div>
 
   </footer>
@@ -47,12 +52,13 @@
 import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
+import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
 
 
 export default {
   name: 'PollView',
-  components: {QuestionComponent},
+  components: {WaitingComponent, QuestionComponent},
   //components: {
     //QuestionComponent,
     // ReorderQuestion
@@ -71,7 +77,9 @@ export default {
       activeIndex: 0,
       yourScore:0,
       theUser:"",
-      gameId:""
+      gameId:"",
+
+      isPopUpVisible: true,
 
 
     }
@@ -124,6 +132,9 @@ export default {
       else{
         console.log("fel svar")
       }
+    },
+    closePopUp() {
+      this.isPopUpVisible = false;
     }
   },
 }
