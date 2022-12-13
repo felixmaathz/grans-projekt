@@ -40,27 +40,7 @@
     </div>
 
   </footer>
-  <p id="timer" class="timer ">
-    10
-  </p>
 
-  <!-- <div>
-
-
-     <QuestionComponent v-bind:question="question"
-               v-on:answer="submitAnswer"/>
-   </div>
-   <div style="margin: 2em">
-       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-     </div>-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <div class="backButtonDiv">
-    <button class="backButton" v-on:click="this.$router.go(-1)">
-        <span class="material-symbols-outlined">
-          Close
-        </span>
-    </button>
-  </div>
   </body>
 </template>
 
@@ -138,9 +118,18 @@ export default {
       console.log("Svaret " + event + " kom fram till pollview")
       this.answeredQuestions.a.push(event)
       console.log(this.answeredQuestions.a)
-    },
 
-    closePopUp: function () {
+
+      if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+        console.log("rätt svar")
+        this.yourScore +=1000
+        console.log("Du har " + this.yourScore)
+      }
+      else{
+        console.log("fel svar")
+      }
+    },
+    closePopUp:function(){
       this.isPopUpVisible = false;
     }
   },
