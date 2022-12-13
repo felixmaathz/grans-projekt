@@ -1,9 +1,13 @@
 <template>
   <body>
-  <div>
-    PRESENTERA RESULTATET FÖR SPELET
-    {{question}}
+  <div v-for="user in userList"
+       v-bind:key="user">
+    {{user.username}}
+    {{user.endScore}}
+
+
   </div>
+  PRESENTERA RESULTATET FÖR SPELET
   <BarsComponent v-bind:data="data"/>
   <footer>
     <div style="margin: 2em">
@@ -30,6 +34,7 @@ export default {
       data: {},
       uiLabels: {},
       lang: "",
+      userList: []
 
     }
   },
@@ -49,6 +54,10 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
+    socket.on('returnScore', (user)=>{
+      this.userList = user
+    })
   },
+
 }
 </script>

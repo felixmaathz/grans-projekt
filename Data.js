@@ -174,6 +174,17 @@ Data.prototype.getUsers=function(){
   return this.createdGame.connectedUsers;
 }
 
+Data.prototype.getTotalScore=function(d) {
+  for(let i=0; i<this.createdGame.connectedUsers.length;i++) {
+    console.log("name: "+this.createdGame.connectedUsers[i].username)
+    if(this.createdGame.connectedUsers[i].username===d.theUser){
+      this.createdGame.connectedUsers[i].endScore = d.theScore
+      console.log("Score: "+this.createdGame.connectedUsers[i].endScore)
+    }
+  }
+  return this.createdGame.connectedUsers
+}
+
 
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {

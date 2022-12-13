@@ -1,5 +1,6 @@
 <template>
   <body>
+  {{uiLabels.theScore}} {{yourScore}}
     <div>
       HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
       <br>
@@ -13,7 +14,8 @@
         <QuestionComponent
 
             v-show= "index==activeIndex"
-            v-bind:question="question">
+            v-bind:question="question"
+            v-on:answer = "saveAnswer($event)">
 
         </QuestionComponent>
 
@@ -58,14 +60,18 @@ export default {
   data: function () {
     return {
       selectedQuiz: {},
-      question: {
+      answeredQuestions: {
         q: "",
         a: []
       },
+
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
-      activeIndex: 0
+      activeIndex: 0,
+      yourScore:0,
+      theUser:"",
+      gameId:""
 
 
     }
@@ -74,6 +80,8 @@ export default {
 
   created: function () {
     this.lang = this.$route.params.lang;
+    this.theUser = this.$route.params.nick;
+    this.gameId =this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -89,23 +97,32 @@ export default {
     console.log("niklas har gjort rätt")
     socket.on('returnSelectedQuiz', (quizList) => {
       this.selectedQuiz = quizList
-      console.log(this.selectedQuiz)
-      console.log("det har kommit fram")
     })
-
 
   },
   methods: {
-    submitAnswer: function (answer) {
-      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
-    },
+
     nextQuestion: function() {
       if(this.activeIndex == this.selectedQuiz.questions.length-1) {
           console.log("slut på frågor")
-          return
+          socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore:this.yourScore})
       }
       else {
         this.activeIndex +=1;
+      }
+    },
+    saveAnswer: function(event) {
+      console.log("Svaret "+event+ " kom fram till pollview")
+      this.answeredQuestions.a.push(event)
+      console.log(this.answeredQuestions.a)
+
+      if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+        console.log("rätt svar")
+        this.yourScore +=1000
+        console.log("Du har " + this.yourScore)
+      }
+      else{
+        console.log("fel svar")
       }
     }
   },
@@ -113,13 +130,7 @@ export default {
 </script>
 
 <style>
-.questions{
 
-  border: solid;
-  width: 300px;
-  height: 50px;
-
-}
 
 
 </style>
