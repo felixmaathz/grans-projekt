@@ -99,6 +99,25 @@ Data.prototype.createGame=function (quiz){
   console.log("Created game '"+quiz.gameId+"' successfully!")
 }
 
+Data.prototype.createCollabGame = function(user){
+  this.createdGame.connectedUsers=[]
+  this.createdGame.gameId=user.joinGameId
+  this.createdGame.connectedUsers.push(user)
+  this.createdGame.questions=[]
+  console.log("Created collaborative game: "+user.joinGameId)
+}
+
+Data.prototype.addCollabQuestion = function(question){
+  this.createdGame.questions.push(question)
+  console.log("Added question: "+question.questionText)
+  return this.createdGame.questions
+}
+
+Data.prototype.deleteCollabQuestion = function(index){
+  this.createdGame.questions.splice(index,1)
+  return this.createdGame.questions
+}
+
 Data.prototype.getGameInfo=function(){
   console.log("Returning game"+this.createdGame.gameId)
   return this.createdGame

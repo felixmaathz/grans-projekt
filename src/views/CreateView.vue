@@ -134,9 +134,8 @@ export default {
     }
   },
   created: function () {
-
-
     this.gameId=prompt("Choose game ID")
+
     if(this.gameId==null||this.gameId==="" ){
       history.back()
   
@@ -389,7 +388,6 @@ h3{
   flex-direction: row;
   width: 90em;
   height: 30em;
-
 }
 
 .questionButtons{
