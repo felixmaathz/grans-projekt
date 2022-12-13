@@ -27,6 +27,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getQuizzes', function(gameId) {
+    socket.join(gameId)
     console.log("getting quizes")
     io.to(gameId).emit('returnQuizzes', data.getQuizzes())
     socket.emit('returnQuizzes', data.getQuizzes())

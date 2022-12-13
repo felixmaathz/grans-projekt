@@ -63,7 +63,8 @@ export default {
       user: {username:"", joinGameId: ""},
       uiLabels: {},
       lang: "",
-      collabQuiz: false
+      collabQuiz: false,
+      currentGame: {}
     }
   },
   created: function () {
@@ -77,11 +78,20 @@ export default {
       this.uiLabels = labels
 
     })
+
+    socket.emit('getGameInfo')
+    socket.on('returnGameInfo', (game)=>{
+      this.currentGame=game
+    })
   },
   methods:{
     joinGame: function(){
-      let user = Object.assign({},this.user)
-      socket.emit('joinGame', user)
+      if(this.currentGame.gameId===this.user.joinGameId){
+        let user = Object.assign({},this.user)
+        socket.emit('joinGame', user)
+      }else{
+        this.$router.go(-1)
+      }
     }
   }
 }
@@ -92,9 +102,9 @@ export default {
 
 <style scoped>
 
-/**{*/
-/*  outline: 1px solid greenyellow;*/
-/*}*/
+*{
+  outline: 1px solid greenyellow;
+}
 
 body{
   background: #EF233C;
