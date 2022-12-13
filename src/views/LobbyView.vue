@@ -48,9 +48,9 @@ export default {
       this.finishedQuiz=game
       this.gameId=game.gameId
       console.log(this.gameId)
-      if(this.finishedQuiz.gameId===""){
-        this.$router.go(-1)
-      }
+      // if(this.finishedQuiz.gameId===""){
+      //   this.$router.go(-1)
+      // }
       socket.emit('joinPoll', this.gameId)
     })
     this.myUsername = this.$route.params.nick;

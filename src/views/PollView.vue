@@ -41,6 +41,27 @@
     </div>
 
   </footer>
+  <p id="timer" class="timer ">
+    10
+  </p>
+
+  <!-- <div>
+
+
+     <QuestionComponent v-bind:question="question"
+               v-on:answer="submitAnswer"/>
+   </div>
+   <div style="margin: 2em">
+       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
+     </div>-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <div class="backButtonDiv">
+    <button class="backButton" v-on:click="this.$router.go(-1)">
+        <span class="material-symbols-outlined">
+          Close
+        </span>
+    </button>
+  </div>
   </body>
 </template>
 
@@ -51,6 +72,7 @@ import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
+
 
 export default {
   name: 'PollView',
@@ -66,6 +88,7 @@ export default {
         q: "",
         a: []
       },
+
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
@@ -82,8 +105,6 @@ export default {
 
 
   created: function () {
-
-
     this.lang = this.$route.params.lang;
     this.theUser = this.$route.params.nick;
     this.gameId =this.$route.params.id;
@@ -91,7 +112,6 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     }),
-
         this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
@@ -102,8 +122,6 @@ export default {
     console.log("niklas har gjort rätt")
     socket.on('returnSelectedQuiz', (quizList) => {
       this.selectedQuiz = quizList
-      console.log(this.selectedQuiz)
-      console.log("det har kommit fram")
     })
 
   },
@@ -123,30 +141,105 @@ export default {
       this.answeredQuestions.a.push(event)
       console.log(this.answeredQuestions.a)
 
-      if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
-        console.log("rätt svar")
-        this.yourScore +=1000
-        console.log("Du har " + this.yourScore)
-      }
-      else{
-        console.log("fel svar")
-      }
-    },
-    closePopUp() {
-      this.isPopUpVisible = false;
-    }
-  },
-}
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the countdown date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="timer"
+  document.getElementById("timer").innerHTML = seconds;
+
+  // Change the color of the timer based on the remaining time
+  if (seconds > 5) {
+    document.getElementById("timer").style.color = "green";
+  } else if (seconds > 3) {
+    document.getElementById("timer").style.color = "yellow";
+  } else {
+    document.getElementById("timer").style.color = "red";
+  }
+
+  // If the countdown is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "Let's go!";
+  }
+}, 1000);
 </script>
 
-<style>
-.questions{
+<style scoped>
 
-  border: solid;
-  width: 300px;
-  height: 50px;
-
+body {
+  background: #268b96;
+  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 60%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Silkscreen", cursive;
 }
-
+#GameID {
+  font-family: Silkscreen;
+  font-size: 3em;
+  margin-top: 4vh;
+}
+#theGameWillStartIn {
+  font-size: 2em;
+  font-family: Silkscreen;
+  margin-top: 2vh;
+}
+#timer {
+  font-size: 7em;
+  font-weight: bold;
+  font-family: Silkscreen;
+}
+.timer {
+  font-size: 7em;
+  font-weight: bold;
+  font-family: Silkscreen;
+  color: green;
+}
+.backButtonDiv{
+  width: 10vw;
+  height: 10vh;
+  margin-right: 10vw;
+}
+.backButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: red;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 10vw;
+  height: 10vh;
+  margin-left: 50em;
+  font-size: 0.9vw;
+  text-shadow: 2px 2px #850000;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.35em -0.35em #850000;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  border-style: solid ;
+  /*transition-duration: 0.15s;*/
+}
+.backButton:hover{
+  background-color: #cc0000;
+  box-shadow: inset -0.25em -0.25em #850000;
+  /*border-width: 0.3vw;*/
+  color: #FEF9CC;
+}
+.material-symbols-outlined {
+  font-size: 5em;
+  font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+}
 
 </style>
