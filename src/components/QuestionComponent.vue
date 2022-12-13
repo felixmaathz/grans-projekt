@@ -2,7 +2,7 @@
   <div>
     <div>
       {{question.questionText}}
-      <button>True</button>
+      <button >True</button>
       <button>False</button>
     </div>
   </div>
@@ -24,12 +24,14 @@ const socket = io();
        this.uiLabels = labels
 
      })
+
    },
 
    data: function() {
      return {
        uiLabels: {},
        lang: "",
+
      }
    },
 

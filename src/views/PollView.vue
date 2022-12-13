@@ -7,12 +7,14 @@
       Frågor nedan!!!
       <br>
 
-    <QuestionComponent
-      v-for="question in this.selectedQuiz.questions"
-      v-bind:question="question"
-      v-bind:key="question">
-   </QuestionComponent>
+      <div v-for="question in this.selectedQuiz.questions" v-bind:question="question"
+           v-bind:key="question" >
+        <QuestionComponent v-if="knapp"
+                           v-bind:question="question"
+                           v-bind:key="question" >
+        </QuestionComponent>
 
+      </div>
       </div>
 
 <!--  <div>
@@ -54,6 +56,7 @@ export default {
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
+      knapp:true,
 
     }
   },
