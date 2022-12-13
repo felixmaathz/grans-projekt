@@ -31,6 +31,10 @@ function sockets(io, socket, data) {
     io.to(gameId).emit('returnQuizzes', data.getQuizzes())
     socket.emit('returnQuizzes', data.getQuizzes())
   })
+  socket.on('getSelectedQuiz', function(){
+    console.log("mottagit quiz")
+    socket.emit('returnSelectedQuiz', data.getSelectedQuiz())
+  })
 
   socket.on('getGameInfo', function(){
     console.log("getting game")
@@ -95,6 +99,16 @@ function sockets(io, socket, data) {
     console.log("getting users")
     io.to(gameId).emit('returnUsers', data.getUsers())
     socket.emit('returnUsers', data.getUsers())
+  })
+
+  socket.on('chooseGameId', function(chosenGameId) {
+    socket.join(chosenGameId)
+  })
+
+  socket.on('chosenGameId', function(chosenGameId){
+    socket.join(chosenGameId)
+    io.to(chosenGameId).emit('theChosenGameId')
+
   })
 
   // socket.on('runQuestion', function(d) {

@@ -27,7 +27,7 @@
 	"goBack": "Back",
 	"q": "Q: ",
 	"a": "A: ",
-	"chooseId": "Choose game ID",
+
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Host game",
@@ -74,7 +74,9 @@
 	"goBack": "Back",
 
 	"RESULTVIEW": "",
-	"goBack": "Back"
+	"goBack": "Back",
 
-
+	"PopUpComponent": "",
+	"confirm": "Confirm",
+	"chooseId": "Choose game ID"
 }

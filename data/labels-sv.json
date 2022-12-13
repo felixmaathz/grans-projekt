@@ -27,7 +27,7 @@
 	"goBack": "Tillbaka",
 	"q": "F: ",
 	"a": "S: ",
-	"chooseId": "Välj spelets ID",
+
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Skapa spel",
@@ -74,5 +74,9 @@
 	"goBack": "Tillbaka",
 
 	"RESULTVIEW": "",
-	"goBack": "Tillbaka"
+	"goBack": "Tillbaka",
+
+	"PopUpComponent": "",
+	"confirm": "Bekräfta",
+	"chooseId": "Välj spelets ID"
 }
