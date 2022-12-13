@@ -146,7 +146,7 @@ export default {
       uiLabels: {},
 
       isPopUpVisible: true,
-      hejsan:""
+
     }
   },
   created: function () {
@@ -173,7 +173,7 @@ export default {
 
     getChosenGameId: function(event){
       this.gameId = event;
-      console.log(this.hejsan)
+
 
 
     if(this.gameId==null||this.gameId==="" ){
@@ -271,7 +271,6 @@ body{
   width: 10vw;
   height: 10vh;
   margin-right: 10vw;
-
 }
 
 .backButton{
@@ -307,9 +306,6 @@ body{
        'GRAD' 200,
        'opsz' 48
  }
-
-
-
 
 h1{
   color: #00C3BA;
