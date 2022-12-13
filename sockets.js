@@ -100,6 +100,11 @@ function sockets(io, socket, data) {
     io.to(d.joinGameId).emit('userJoined', data.getUsers())
   })
 
+  socket.on('leaveGame', function(d){
+    socket.join(d.gameId)
+    io.to(d.gameId).emit('userLeft',data.leftGame(d.username))
+  })
+
   socket.on('getUsers', function(gameId){
     console.log("getting users")
     io.to(gameId).emit('returnUsers', data.getUsers())

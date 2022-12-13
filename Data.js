@@ -147,6 +147,21 @@ Data.prototype.joinGame=function(user){
   }
 }
 
+
+
+Data.prototype.leftGame=function(user){
+  for(let i=0;i<this.createdGame.connectedUsers.length;i++) {
+    if (this.createdGame.connectedUsers[i].username === user) {
+      this.createdGame.connectedUsers.splice(i,1)
+      console.log("player" + this.createdGame.connectedUsers, "left!")
+      console.log(this.createdGame.connectedUsers[i])
+      return (this.createdGame.connectedUsers)
+    }
+
+
+  }
+}
+
 Data.prototype.getUsers=function(){
   return this.createdGame.connectedUsers;
 }
