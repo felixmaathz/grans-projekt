@@ -9,14 +9,19 @@
 
       <div
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+
         <QuestionComponent
-            v-show= "index=== event"
-            v-bind:question="question"
-            v-on:questionNext = "getNextQuestion($event)">
-          </QuestionComponent>
+
+            v-show= "index==activeIndex"
+            v-bind:question="question">
+
+        </QuestionComponent>
 
         </div>
       </div>
+
+
+
 
 <!--  <div>
     <ReorderQuestion />
@@ -26,6 +31,8 @@
   </div>-->
   <footer>
     <div style="margin: 2em">
+      <button v-on:click="nextQuestion()"> Next question</button>
+
       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
     </div>
 
@@ -58,6 +65,7 @@ export default {
       pollId: "inactive poll",
       uiLabels: {},
       lang: "",
+      activeIndex: 0
 
 
     }
@@ -65,8 +73,6 @@ export default {
 
 
   created: function () {
-
-
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
@@ -93,11 +99,16 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
-
-    getNextQuestion: function(event) {
-      event +=1;
+    nextQuestion: function() {
+      if(this.activeIndex == this.selectedQuiz.questions.length-1) {
+          console.log("slut på frågor")
+          return
+      }
+      else {
+        this.activeIndex +=1;
+      }
     }
-  }
+  },
 }
 </script>
 
