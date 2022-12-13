@@ -69,7 +69,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/EditQuizView.vue')
   },
   {
-    //Add ID
+
+    path: '/hostcollablobby/:lang/:id/:nick',
+    name: "hostCollabLobbyView",
+    component: () => import(/* webpackChunkName: "about" */ '../views/HostCollabLobbyView.vue')
+  },
+  {
+
     path: '/collablobby/:lang/:id/:nick',
     name: "collabLobbyView",
     component: () => import(/* webpackChunkName: "about" */ '../views/CollabLobbyView.vue')

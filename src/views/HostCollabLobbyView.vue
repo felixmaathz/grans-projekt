@@ -2,8 +2,9 @@
   <body>
   <div>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <div class="backButtonDiv">
-      <button class="backButton" v-on:click="this.$router.go(-1)">
+      <button class="backButton" v-on:click="this.$router.go(-1);terminateGame()">
             <span class="material-symbols-outlined">
               arrow_back
             </span>
@@ -42,6 +43,9 @@
       <button class="questionButtons" v-on:click="validateForm();addQuestion()">
         {{uiLabels.addYourQuestion}}
       </button>
+      <button>
+        Start
+      </button>
     </div>
 
 
@@ -75,7 +79,7 @@ const socket = io();
 
 
 export default {
-  name: "CollabLobbyView",
+  name: "HostCollabLobbyView",
   components: {
     UserComponent
   },
@@ -129,14 +133,10 @@ export default {
       console.log("question removed"+questions)
       this.questionList=questions})
 
-    socket.on('gameTerminated', ()=>{
-      this.redirectUserHome()
-    })
-
   },
   methods: {
-    redirectUserHome: function(){
-      this.$router.push({path: '/'})
+    terminateGame: function(){
+      socket.emit('terminateGame',this.gameId)
     },
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||

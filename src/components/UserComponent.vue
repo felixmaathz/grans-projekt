@@ -32,11 +32,13 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
+
   this.randomColor=this.pickColor()
   this.textColor=this.pickTextColor(this.randomColor)
 
   },
   methods:{
+
     pickColor: function(){
       let colors = ["#A40E4C","#2C2C54","#ACC3A6","#8ef635","#F49D6E",
         "#F96900","#0047ff","#0496FF","#FFA630","#6699CC"]

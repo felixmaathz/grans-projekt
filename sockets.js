@@ -27,6 +27,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getQuizzes', function(gameId) {
+    socket.join(gameId)
     console.log("getting quizes")
     io.to(gameId).emit('returnQuizzes', data.getQuizzes())
     socket.emit('returnQuizzes', data.getQuizzes())
@@ -89,10 +90,27 @@ function sockets(io, socket, data) {
     io.to(d.gameId).emit('collabQuestionDeleted', data.deleteCollabQuestion(d.index))
   })
 
+  socket.on('getQuestions', function(gameId){
+    socket.join(gameId)
+    io.to(gameId).emit('returnQuestions', data.getQuestions())
+  })
+
   socket.on('joinGame', function(d){
     socket.join(d.joinGameId)           //Join the room
     data.joinGame(d)
     io.to(d.joinGameId).emit('userJoined', data.getUsers())
+  })
+
+  socket.on('leaveGame', function(d){
+    socket.join(d.gameId)
+    io.to(d.gameId).emit('userLeft',data.leftGame(d.username))
+  })
+
+  socket.on('terminateGame', function (gameId){
+    console.log("Terminating game: "+gameId)
+    socket.join(gameId)
+    data.terminateGame()
+    io.to(gameId).emit('gameTerminated')
   })
 
   socket.on('getUsers', function(gameId){
@@ -101,7 +119,15 @@ function sockets(io, socket, data) {
     socket.emit('returnUsers', data.getUsers())
   })
 
-  socket.on('chooseGameId', function(chosenGameId) {
+  socket.on('totalScore', function(d){
+    console.log(d.theUser + d.theScore)
+    socket.join(d.theGameId)
+    io.to(d.theGameId).emit('returnScore', data.getTotalScore(d))
+
+
+  })
+
+/*  socket.on('chooseGameId', function(chosenGameId) {
     socket.join(chosenGameId)
   })
 
@@ -109,7 +135,7 @@ function sockets(io, socket, data) {
     socket.join(chosenGameId)
     io.to(chosenGameId).emit('theChosenGameId')
 
-  })
+  })*/
 
   socket.on('totalScore', function(d){
     console.log(d)

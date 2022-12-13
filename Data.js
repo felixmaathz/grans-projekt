@@ -103,6 +103,7 @@ Data.prototype.replaceQuiz=function(quiz){
 Data.prototype.createGame=function (quiz){
   this.createdGame.gameId=quiz.gameId;
   this.createdGame.questions=quiz.questionList;
+  this.createdGame.connectedUsers=[]
   console.log("Created game '"+quiz.gameId+"' successfully!")
 }
 
@@ -121,7 +122,21 @@ Data.prototype.addCollabQuestion = function(question){
 }
 
 Data.prototype.deleteCollabQuestion = function(index){
+  console.log("Deleted question at index: "+index)
   this.createdGame.questions.splice(index,1)
+  return this.createdGame.questions
+}
+
+Data.prototype.terminateGame = function (){
+  this.createdGame.gameId=""
+  this.createdGame.connectedUsers=[]
+  this.createdGame.questions=[]
+  console.log("Game terminated")
+}
+
+//Dom här två gör typ samma sak, ta bort den ena kanske?
+Data.prototype.getQuestions = function(){
+  console.log("Getting questions")
   return this.createdGame.questions
 }
 
@@ -140,8 +155,34 @@ Data.prototype.joinGame=function(user){
   }
 }
 
+
+
+Data.prototype.leftGame=function(user){
+  for(let i=0;i<this.createdGame.connectedUsers.length;i++) {
+    if (this.createdGame.connectedUsers[i].username === user) {
+      this.createdGame.connectedUsers.splice(i,1)
+      console.log("player" + this.createdGame.connectedUsers, "left!")
+      console.log(this.createdGame.connectedUsers[i])
+      return (this.createdGame.connectedUsers)
+    }
+
+
+  }
+}
+
 Data.prototype.getUsers=function(){
   return this.createdGame.connectedUsers;
+}
+
+Data.prototype.getTotalScore=function(d) {
+  for(let i=0; i<this.createdGame.connectedUsers.length;i++) {
+    console.log("name: "+this.createdGame.connectedUsers[i].username)
+    if(this.createdGame.connectedUsers[i].username===d.theUser){
+      this.createdGame.connectedUsers[i].endScore = d.theScore
+      console.log("Score: "+this.createdGame.connectedUsers[i].endScore)
+    }
+  }
+  return this.createdGame.connectedUsers
 }
 
 

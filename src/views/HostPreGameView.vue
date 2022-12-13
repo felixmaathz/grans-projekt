@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <div class="header">
     <div class="backButtonDiv">
-      <button class="backButton" v-on:click="this.$router.go(-1)"><span class="material-symbols-outlined">
+      <button class="backButton" v-on:click="this.$router.go(-1);terminateGame()"><span class="material-symbols-outlined">
       arrow_back
     </span></button>
     </div>
@@ -79,11 +79,15 @@ export default {
   },
 
   methods: {
+    terminateGame: function(){
+      console.log("terminate")
+      socket.emit('terminateGame',this.gameId)
+    },
     hostStartGame: function() {
       console.log("spelet kommer starta inom kort")
       socket.emit("gameSoonToStart",this.gameId)
     }
-  },
+  }
 }
 
 </script>

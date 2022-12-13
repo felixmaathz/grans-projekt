@@ -34,13 +34,12 @@ const socket = io();
    },
 
   methods: {
-    /*answer: function (answer) {
-      this.$emit("answer", answer);
-    },*/
     chooseAnswer: function(answer) {
-      this.$emit("answer", answer)
-    },
-  }
+      this.$emit('answer', answer)
+
+
+    }
+  },
 }
 
 </script>
