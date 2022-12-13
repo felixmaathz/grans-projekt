@@ -30,27 +30,16 @@ const socket = io();
      return {
        uiLabels: {},
        lang: "",
-       answeredQuestions: [
-         {q:"", a:undefined}
-       ],
-
      }
    },
 
   methods: {
-    answer: function (answer) {
+    /*answer: function (answer) {
       this.$emit("answer", answer);
-    },
+    },*/
     chooseAnswer: function(answer) {
-      console.log(this.question.questionText + "   " + answer)
-      this.answeredQuestions.push(this.question.questionText, answer)
-
-
-
-      console.log(this.answeredQuestions.q + "   " + this.answeredQuestions.a)
-
-
-    }
+      this.$emit("answer", answer)
+    },
   }
 }
 
