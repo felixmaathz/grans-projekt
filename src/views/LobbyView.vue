@@ -46,7 +46,12 @@ export default {
     socket.emit('getGameInfo')
     socket.on('returnGameInfo', (game)=>{
       this.finishedQuiz=game
-      socket.emit('joinPoll', this.finishedQuiz.gameId)
+      this.gameId=game.gameId
+      console.log(this.gameId)
+      if(this.finishedQuiz.gameId===""){
+        this.$router.go(-1)
+      }
+      socket.emit('joinPoll', this.gameId)
     })
     this.myUsername = this.$route.params.nick;
     this.gameId = this.$route.params.id;
@@ -71,12 +76,20 @@ export default {
       this.connectedUsers = users
     })
 
+    socket.on('gameTerminated', ()=>{
+      console.log("Game terminated")
+      this.redirectUserHome()
+    })
+
 
     socket.on('gameWillStart', ()=> {
       this.redirectUser()
     })
   },
   methods:{
+    redirectUserHome: function(){
+      this.$router.push({path: '/'})
+    },
     redirectUser: function(){
       this.$router.push({path: '/poll/'+this.gameId+'/'+this.myUsername+'/'+this.lang })
     },

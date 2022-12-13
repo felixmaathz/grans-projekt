@@ -103,6 +103,7 @@ Data.prototype.replaceQuiz=function(quiz){
 Data.prototype.createGame=function (quiz){
   this.createdGame.gameId=quiz.gameId;
   this.createdGame.questions=quiz.questionList;
+  this.createdGame.connectedUsers=[]
   console.log("Created game '"+quiz.gameId+"' successfully!")
 }
 
@@ -124,6 +125,13 @@ Data.prototype.deleteCollabQuestion = function(index){
   console.log("Deleted question at index: "+index)
   this.createdGame.questions.splice(index,1)
   return this.createdGame.questions
+}
+
+Data.prototype.terminateGame = function (){
+  this.createdGame.gameId=""
+  this.createdGame.connectedUsers=[]
+  this.createdGame.questions=[]
+  console.log("Game terminated")
 }
 
 //Dom här två gör typ samma sak, ta bort den ena kanske?

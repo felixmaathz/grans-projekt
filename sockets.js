@@ -105,6 +105,13 @@ function sockets(io, socket, data) {
     io.to(d.gameId).emit('userLeft',data.leftGame(d.username))
   })
 
+  socket.on('terminateGame', function (gameId){
+    console.log("Terminating game: "+gameId)
+    socket.join(gameId)
+    data.terminateGame()
+    io.to(gameId).emit('gameTerminated')
+  })
+
   socket.on('getUsers', function(gameId){
     console.log("getting users")
     io.to(gameId).emit('returnUsers', data.getUsers())
