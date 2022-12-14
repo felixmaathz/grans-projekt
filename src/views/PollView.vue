@@ -17,7 +17,7 @@
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
         <QuestionComponent
-
+            v-if="remainingTime>5"
             v-show= "index==activeIndex"
             v-bind:question="question"
             v-on:answer = "saveAnswer($event)">
@@ -33,16 +33,6 @@
     <QuestionComponent v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>-->
-  <footer>
-    <div style="margin: 2em">
-      <button v-on:click="nextQuestion()"> Next question</button>
-
-    </div>
-
-  </footer>
-  <p id="timer" class="timer ">
-    10
-  </p>
 
   <!-- <div>
 
@@ -54,13 +44,7 @@
        <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
      </div>-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <div class="backButtonDiv">
-    <button class="backButton" v-on:click="this.$router.go(-1)">
-        <span class="material-symbols-outlined">
-          Close
-        </span>
-    </button>
-  </div>
+
   </body>
 </template>
 
@@ -96,9 +80,9 @@ export default {
       theUser: "",
       gameId: "",
 
-      isPopUpVisible: true
+      isPopUpVisible: true,
 
-
+      remainingTime:15
     }
   },
 
@@ -123,14 +107,25 @@ export default {
       this.selectedQuiz = quizList
     })
 
+
   },
   methods: {
 
+    timer: function(){
+      if(this.remainingTime>-1){
+        setInterval(this.decreaseTime,1000)
+      }
+      setInterval(this.nextQuestion,15000)
+    },
+    decreaseTime: function(){
+      this.remainingTime--
+    },
     nextQuestion: function () {
-      if (this.activeIndex == this.selectedQuiz.questions.length - 1) {
+      if (this.activeIndex === this.selectedQuiz.questions.length - 1) {
         console.log("slut på frågor")
         socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
       } else {
+        this.remainingTime=15
         this.activeIndex += 1;
       }
     },
@@ -142,6 +137,7 @@ export default {
 
     closePopUp: function () {
       this.isPopUpVisible = false;
+      this.timer()
     }
   },
 }

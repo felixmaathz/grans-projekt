@@ -43,7 +43,7 @@
       <button class="questionButtons" v-on:click="validateForm();addQuestion()">
         {{uiLabels.addYourQuestion}}
       </button>
-      <button>
+      <button class="questionButtons" v-on:click="startGame()">
         Start
       </button>
     </div>
@@ -137,6 +137,9 @@ export default {
   methods: {
     terminateGame: function(){
       socket.emit('terminateGame',this.gameId)
+    },
+    startGame: function(){
+
     },
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||

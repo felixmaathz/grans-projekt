@@ -9,7 +9,7 @@
             </span>
           </button>
         </div>
-    <h1>LOBBY</h1>
+    <h1>JOIN GAME: {{this.gameId}}</h1>
       <div class="userListWrapper">
         <UserComponent v-for="user in this.connectedUsers"
                    v-bind:user="user"
@@ -37,7 +37,8 @@ export default {
       lang: "",
       connectedUsers: [],
       finishedQuiz:{},
-      myUsername: ""
+      myUsername: "",
+      gameId:""
     }
   },
   created: function () {
