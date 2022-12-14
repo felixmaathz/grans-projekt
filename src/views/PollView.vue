@@ -6,33 +6,41 @@
   </div>
   <body>
   {{uiLabels.theScore}} {{yourScore}}
-    <div>
-      HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
-      <br>
+  <div>
+    HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
+    <br>
 
-      Frågor nedan!!!
-      <br>
+    Frågor nedan!!!
+    <br>
 
-      <div
+    <div
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
-        <QuestionComponent
-            v-if="remainingTime>5"
-            v-show= "index==activeIndex"
-            v-bind:question="question"
-            v-on:answer = "saveAnswer($event)">
+      <QuestionComponent
+          v-if="remainingTime>5"
+          v-show= "index==activeIndex"
+          v-bind:question="question"
+          v-on:answer = "saveAnswer($event)">
 
-        </QuestionComponent>
+      </QuestionComponent>
+
+    </div>
+    <div class="progressBarWrapper">
+      <div class="progressBar"
+           v-if="remainingTime>1">
+        <div class="progressBarFill">
 
         </div>
       </div>
+    </div>
+  </div>
 
-<!--  <div>
-    <ReorderQuestion />
-    {{pollId}}
-    <QuestionComponent v-bind:question="question"
-              v-on:answer="submitAnswer"/>
-  </div>-->
+  <!--  <div>
+      <ReorderQuestion />
+      {{pollId}}
+      <QuestionComponent v-bind:question="question"
+                v-on:answer="submitAnswer"/>
+    </div>-->
 
   <!-- <div>
 
@@ -81,8 +89,14 @@ export default {
       gameId: "",
 
       isPopUpVisible: true,
+      progressWidth: 100,
+      progressColor: "green",
+      remainingTime:15,
 
-      remainingTime:15
+      progressTimer: undefined,
+      decreaseTimer: undefined,
+      questionTimer: undefined
+
     }
   },
 
@@ -112,20 +126,42 @@ export default {
   methods: {
 
     timer: function(){
+      this.progressTimer = setInterval(this.increaseProgressBar, 100)
+      this.decreaseTimer = setInterval(this.decreaseTime,1000)
+      this.questionTimer = setInterval(this.nextQuestion,15000)
+    },
+    increaseProgressBar: function (){
       if(this.remainingTime>-1){
-        setInterval(this.decreaseTime,1000)
+        if(this.progressWidth>0){
+          this.progressWidth-=1
+        }
       }
-      setInterval(this.nextQuestion,15000)
+      if(this.remainingTime<15 && this.remainingTime>10){
+        this.progressColor="yellow"
+      }
+      if(this.remainingTime<10){
+        this.progressColor="red"
+      }
+
     },
     decreaseTime: function(){
-      this.remainingTime--
+      if(this.remainingTime>-1){
+        this.remainingTime--
+        console.log(this.remainingTime)
+      }
+
     },
     nextQuestion: function () {
       if (this.activeIndex === this.selectedQuiz.questions.length - 1) {
         console.log("slut på frågor")
         socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
+        this.remainingTime=-1
+        clearInterval(this.progressTimer)
+        clearInterval(this.decreaseTimer)
+        clearInterval(this.questionTimer)
       } else {
         this.remainingTime=15
+        this.progressWidth=100
         this.activeIndex += 1;
       }
     },
@@ -158,5 +194,26 @@ export default {
 </script>
 
 <style>
+
+.progressBarWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.progressBar{
+  justify-content: center;
+  width: 40%;
+  height: 40px;
+  border-style: solid;
+  border-color: #2B211B;
+}
+
+.progressBarFill{
+  background-color: v-bind(progressColor);
+  height: 100%;
+  width: v-bind(progressWidth+"%");
+  transition: width 150ms, background-color 5s;
+  transition-timing-function: linear;
+}
 
 </style>
