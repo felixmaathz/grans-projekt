@@ -10,12 +10,12 @@
             </span>
       </button>
     </div>
-    <h1>JOIN ID:  {{this.gameId}}</h1>
+    <h1>{{uiLabels.joinId}}  {{this.gameId}}</h1>
   </div>
 
   <div class="pageGrid">
     <div class="userListWrapper">
-      <h2>Connected Players</h2>
+      <h2>{{uiLabels.connectedPlayers}}</h2>
       <UserComponent v-for="user in this.connectedUsers"
                      v-bind:user="user"
                      v-bind:key="user">
@@ -24,7 +24,7 @@
 
 
     <div class="questionToolWrapper">
-      <h3>Add your questions</h3>
+      <h3>{{uiLabels.addQuestions}}</h3>
       <input class="questionInput" type="text"
              v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
 
@@ -45,14 +45,14 @@
       </button>
 
       <button class="questionButtons" v-on:click="startGame()">
-        Start
+        {{uiLabels.startTheGame}}
       </button>
     </div>
 
 
 
     <div class="questionListWrapper">
-      <h2>Questions</h2>
+      <h2>{{uiLabels.theQuestions}}</h2>
       <div class="questionList" v-for="(question,index) in questionList"
            v-bind:key="question">
 
@@ -64,7 +64,7 @@
                 </span>
           </button>
           <div class="question">
-            {{"Question "+(index+1)}}<br>
+            {{uiLabels.theQuestion + (index+1)}}<br>
           </div>
         </div>
       </div>

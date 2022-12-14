@@ -79,5 +79,14 @@
 
 	"PopUpComponent": "",
 	"confirm": "Confirm",
-	"chooseId": "Choose game ID"
+	"chooseId": "Choose game ID",
+
+	"HOST/COLLABLOBBYVIEW": "",
+	"joinId": "GAME ID:",
+	"addQuestions": "Add your questions",
+	"connectedPlayers": "Connected players",
+	"theQuestions": "Questions",
+	"theQuestion": "Question ",
+	"theHost": "HOST:",
+	"startTheGame": "Start The Game"
 }
