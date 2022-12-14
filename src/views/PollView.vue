@@ -88,6 +88,8 @@ export default {
       theUser: "",
       gameId: "",
 
+      selectedAnswer: undefined,
+
       isPopUpVisible: true,
       progressWidth: 100,
       progressColor: "green",
@@ -148,6 +150,18 @@ export default {
         this.remainingTime--
         console.log(this.remainingTime)
       }
+      if(this.remainingTime===5){
+        this.answeredQuestions.a.push(this.selectedAnswer)
+        console.log(this.answeredQuestions.a)
+        if(this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+          console.log("rätt svar")
+          this.yourScore +=1000
+          console.log("Du har " + this.yourScore)
+        }
+        else{
+          console.log("fel svar")
+        }
+      }
 
     },
     nextQuestion: function () {
@@ -165,19 +179,20 @@ export default {
       }
     },
     saveAnswer: function (event) {
+      this.selectedAnswer=event
       console.log("Svaret " + event + " kom fram till pollview")
-      this.answeredQuestions.a.push(event)
-      console.log(this.answeredQuestions.a)
+      // this.answeredQuestions.a.push(event)
+      // console.log(this.answeredQuestions.a)
 
 
-      if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
-        console.log("rätt svar")
-        this.yourScore +=1000
-        console.log("Du har " + this.yourScore)
-      }
-      else{
-        console.log("fel svar")
-      }
+      // if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+      //   console.log("rätt svar")
+      //   this.yourScore +=1000
+      //   console.log("Du har " + this.yourScore)
+      // }
+      // else{
+      //   console.log("fel svar")
+      // }
     },
 
     closePopUp: function () {
