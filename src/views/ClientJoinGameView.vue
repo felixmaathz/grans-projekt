@@ -44,7 +44,7 @@
       <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===true">
         <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
       </router-link>
-      <input type="checkbox" v-model="collabQuiz"><label>Collab quiz?</label>
+      <input class="collabCheck" type="checkbox" v-model="collabQuiz"><label class="checkText">Collab quiz?</label>
     </div>
   </div>
 
@@ -102,9 +102,9 @@ export default {
 
 <style scoped>
 
-*{
-  outline: 1px solid greenyellow;
-}
+/**{*/
+/*  outline: 1px solid greenyellow;*/
+/*}*/
 
 body{
   background: #EF233C;
@@ -203,5 +203,14 @@ body{
       'wght' 700,
       'GRAD' 200,
       'opsz' 48
+}
+
+.collabCheck{
+transform: scale(2)
+}
+
+.checkText{
+  font-size: 1.4em;
+  padding: 10px;
 }
 </style>
