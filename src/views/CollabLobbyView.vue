@@ -133,11 +133,21 @@ export default {
       this.redirectUserHome()
     })
 
+    socket.on('gameWillStart', ()=> {
+      this.redirectUser()
+    })
+
   },
   methods: {
+
     redirectUserHome: function(){
       this.$router.push({path: '/'})
     },
+
+    redirectUser: function(){
+      this.$router.push({path: '/poll/'+this.gameId+'/'+this.myUsername+'/'+this.lang })
+    },
+
     validateForm: function () {
       if (this.questionObject.questionAnswer === undefined ||
           this.questionObject.questionText === "") {
