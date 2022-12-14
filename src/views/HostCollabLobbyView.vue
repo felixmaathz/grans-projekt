@@ -43,7 +43,7 @@
       <button class="questionButtons" v-on:click="validateForm();addQuestion()">
         {{uiLabels.addYourQuestion}}
       </button>
-      <button>
+      <button v-on:click="hostStartGame()">
         Start
       </button>
     </div>
@@ -135,6 +135,12 @@ export default {
 
   },
   methods: {
+    hostStartGame: function() {
+      console.log("spelet kommer starta inom kort")
+      socket.emit("gameSoonToStart",this.gameId)
+      this.$router.push({path: '/poll/'+this.gameId+'/'+this.myUsername+'/'+this.lang })
+    },
+
     terminateGame: function(){
       socket.emit('terminateGame',this.gameId)
     },
