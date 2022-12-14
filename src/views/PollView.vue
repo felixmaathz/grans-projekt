@@ -2,18 +2,18 @@
   <div>
     <WaitingComponent
         v-show="isPopUpVisible"
-        @close="closePopUp"/>
+        v-on:close="closePopUp"/>
   </div>
   <body>
   {{uiLabels.theScore}} {{yourScore}}
-  <div>
-    HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
-    <br>
+    <div>
+      HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
+      <br>
 
-    Frågor nedan!!!
-    <br>
+      Frågor nedan!!!
+      <br>
 
-    <div
+      <div
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
       <QuestionComponent
@@ -116,7 +116,6 @@ export default {
     )
 
     socket.emit('getSelectedQuiz');
-    console.log("niklas har gjort rätt")
     socket.on('returnSelectedQuiz', (quizList) => {
       this.selectedQuiz = quizList
     })
@@ -214,6 +213,16 @@ export default {
   width: v-bind(progressWidth+"%");
   transition: width 150ms, background-color 5s;
   transition-timing-function: linear;
+}
+
+body {
+  background: #268b96;
+  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 60%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Silkscreen", cursive;
+
 }
 
 </style>

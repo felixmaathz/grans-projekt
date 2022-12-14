@@ -13,6 +13,8 @@
   </p>
 
 
+
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <div class="backButtonDiv">
     <button
@@ -34,56 +36,68 @@ const socket = io();
 export default {
   name: "WaitingComponent",
 
-data:function () {
-  return {
-    pollId: "",
-    lang:"",
-    uiLabels:{}
-  }
-},
-  created: function() {
-    this.pollId =this.$route.params.id;
+  data: function () {
+    return {
+      pollId: "",
+      lang: "",
+      uiLabels: {}
+    }
+  },
+  created: function () {
+    this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-  }
+    this.thePopUp();
+  },
+  methods: {
+
+    thePopUp: function () {
+      const self = this;
+      // Set the date we're counting down to
+      var countDownDate = new Date().getTime() + 11000; // 10 seconds
+
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the countdown date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="timer"
+        document.getElementById("timer").innerHTML = seconds;
+
+        // Change the color of the timer based on the remaining time
+        if (seconds > 5) {
+          document.getElementById("timer").style.color = "green";
+        } else if (seconds > 3) {
+          document.getElementById("timer").style.color = "yellow";
+        } else {
+          document.getElementById("timer").style.color = "red";
+        }
+
+        // If the countdown is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("timer").innerHTML = "Let's go!";
+          self.closePopUp()
+        }
+      }, 1000);
+    },
+
+    closePopUp: function() {
+      setTimeout(() => {this.$emit('close')}, 3000);
+    }
+  },
 }
 
-// Set the date we're counting down to
-var countDownDate = new Date().getTime() + 11000; // 10 seconds
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now and the countdown date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="timer"
-  document.getElementById("timer").innerHTML = seconds;
-
-  // Change the color of the timer based on the remaining time
-  if (seconds > 5) {
-    document.getElementById("timer").style.color = "green";
-  } else if (seconds > 3) {
-    document.getElementById("timer").style.color = "yellow";
-  } else {
-    document.getElementById("timer").style.color = "red";
-  }
-
-  // If the countdown is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "Let's go!";
-  }
-}, 1000);
 </script>
 
 <style scoped>
