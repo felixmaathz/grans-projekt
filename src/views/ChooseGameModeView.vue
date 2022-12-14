@@ -1,3 +1,4 @@
+<!-- CSS OK for laptop -->
 <template>
   <body>
 
@@ -48,7 +49,6 @@ export default {
 </script>
 
 <style scoped>
-
 body {
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
@@ -65,8 +65,9 @@ body {
   cursor: pointer;
   width: 28vw;
   height: 10vh;
-  margin: 20px;
-  font-size: 1.5vw;
+  margin: 1vw;
+  font-size: 1.4vw;
+  line-height: 1;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
@@ -109,7 +110,7 @@ body {
   cursor: pointer;
   width: 10vw;
   height: 10vh;
-  margin: 20px;
+  margin: 2vw;
   font-size: 0.9vw;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/

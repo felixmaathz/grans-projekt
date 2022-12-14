@@ -1,3 +1,4 @@
+<!-- CSS OK for laptop -->
 <template>
   <body>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -281,7 +282,7 @@ body{
   cursor: pointer;
   width: 10vw;
   height: 10vh;
-  margin: 20px;
+  margin: 2vw;
   font-size: 0.9vw;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
@@ -515,6 +516,7 @@ h3{
 
 .question{
   width: 85%;
+  font-size: 1.5vw;
   order: 0;
   word-wrap: break-word;
 }

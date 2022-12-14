@@ -1,3 +1,4 @@
+<!-- CSS OK for laptop -->
 <template>
   <body>
   <div>
@@ -186,10 +187,6 @@ export default {
 </script>
 
 <style scoped>
-/**{*/
-/*  outline: 1px solid greenyellow;*/
-/*}*/
-
 body{
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
@@ -198,7 +195,6 @@ body{
   overflow: hidden;
   font-family: "Silkscreen", cursive;
 }
-
 h1{
   color: #00C3BA;
   font-size: 4vw;
@@ -206,22 +202,14 @@ h1{
   /*-webkit-text-stroke: 0.01vw black;*/
   text-shadow: 4px 2px black;
 }
-
 .pageGrid{
   display: flex;
   width: 100%;
   height: 85%;
-
 }
-
 .backButtonDiv{
-
   position: absolute;
-
 }
-
-
-
 .backButton{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
@@ -255,10 +243,7 @@ h1{
       'GRAD' 200,
       'opsz' 48
 }
-
-
 .userListWrapper{
-
   justify-content: center;
   flex-wrap: wrap;
   width: 20%;
@@ -267,30 +252,24 @@ h1{
   overflow: auto;
   height: 85%;
   order:0;
-
   color: #2B211B;
   background-color: #FEF9CC;
   box-shadow: inset -0.5em -0.5em #c2bd8e;
   border-style: solid;
   border-width: 0.5vw;
-
-
+  font-size: 1.3vw;
 }
-
 .questionToolWrapper{
   display: grid;
   justify-items: center;
   width: 60%;
   height: 95%;
   order: 1;
-
   text-align: center;
 }
-
 h3{
   font-size: 2vw;
 }
-
 .questionInput{
   font-family: "Press Start 2P",cursive;
   border: none;
@@ -303,12 +282,10 @@ h3{
   border-bottom-color: #2B211B;
   text-align:center;
 }
-
 ::placeholder{
   color: #FEF9CC;
   opacity: 70%;
 }
-
 .answerButtonsWrapper{
   display: flex;
   justify-content: center;
@@ -331,14 +308,12 @@ h3{
   border-color: #2B211B;
   border-width: 0.3vw;
 }
-
 .answerButton.true{
   background-color: #3dda09;
   text-shadow: 2px 2px #2fa409;
   box-shadow: inset -0.25em -0.25em #2a9108;
   font-size: 1.4vw;
 }
-
 .answerButton.false{
   background-color: #ff0000;
   text-shadow: 2px 2px #bb0000;
@@ -352,7 +327,6 @@ h3{
   background-color: #299306;
   text-shadow: 2px 2px #174d05;
 }
-
 .answerButton.true.selected{
   box-shadow: inset -0.15em -0.15em #174d05;
   padding-right: 0.05em;
@@ -360,7 +334,6 @@ h3{
   background-color: #299306;
   text-shadow: 2px 2px #174d05;
 }
-
 .answerButton.false:hover{
   box-shadow: inset -0.15em -0.15em #410000;
   padding-right: 0.05em;
@@ -368,7 +341,6 @@ h3{
   background-color: #ad0101;
   text-shadow: 2px 2px #410000;
 }
-
 .answerButton.false.selected{
   box-shadow: inset -0.15em -0.15em #410000;
   padding-right: 0.05em;
@@ -376,27 +348,19 @@ h3{
   background-color: #ad0101;
   text-shadow: 2px 2px #410000;
 }
-
-
-
 .questionButtons{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
   background-color: #00C3BA;
-  /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
   width: 30vw;
   height: 10vh;
   margin: 20px;
   font-size: 1.8vw;
   text-shadow: 2px 2px #1F6E77;
-  /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
   border-color: #2B211B;
   border-width: 0.4vw;
-
-  /*transition-duration: 0.15s;*/
-
 }
 .questionButtons:hover{
   padding-right: 0.05em;
@@ -406,7 +370,6 @@ h3{
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
 }
-
 .questionListWrapper{
   order:2;
   width: 20%;
@@ -420,15 +383,11 @@ h3{
   box-shadow: inset -0.5em -0.5em #c2bd8e;
   border-style: solid;
   border-width: 0.5vw;
-
+  font-size: 1.3vw;
 }
-
-
 .questionList{
   text-align: left;
-
 }
-
 .questionWrapper{
   display: flex;
   align-items: center;

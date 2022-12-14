@@ -1,3 +1,4 @@
+<!-- CSS OK for laptop -->
 <template>
   <body>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -34,14 +35,12 @@ export default {
      socket.emit("pageLoaded", this.lang);
      socket.on("init", (labels) => {
        this.uiLabels = labels
-
      })
   },
 }
 </script>
 
 <style scoped>
-
 body {
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
@@ -50,7 +49,6 @@ body {
   overflow: hidden;
   font-family: "Silkscreen", cursive;
 }
-
 .gameButtons{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
@@ -92,9 +90,7 @@ body {
   width: 10vw;
   height: 10vh;
   margin-right: 10vw;
-
 }
-
 .backButton{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
@@ -103,7 +99,7 @@ body {
   cursor: pointer;
   width: 10vw;
   height: 10vh;
-  margin: 20px;
+  margin: 2vw;
   font-size: 0.9vw;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
@@ -127,5 +123,4 @@ body {
       'GRAD' 200,
       'opsz' 48
 }
-
 </style>
