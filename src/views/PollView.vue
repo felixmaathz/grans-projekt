@@ -158,6 +158,7 @@ export default {
         clearInterval(this.progressTimer)
         clearInterval(this.decreaseTimer)
         clearInterval(this.questionTimer)
+        this.$router.push({path: '/result/'+this.gameId +'/'+this.lang})
       } else {
         this.remainingTime=15
         this.progressWidth=100

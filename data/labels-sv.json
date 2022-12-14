@@ -79,5 +79,15 @@
 
 	"PopUpComponent": "",
 	"confirm": "Bekräfta",
-	"chooseId": "Välj spelets ID"
+	"chooseId": "Välj spelets ID",
+
+	"HOST/COLLABLOBBYVIEW": "",
+	"joinId": "SPELETS ID:",
+	"addQuestions": "Lägg till dina frågor",
+	"connectedPlayers": "Anslutna spelare",
+	"theQuestions": "Frågor",
+	"theQuestion": "Fråga ",
+	"theHost": "VÄRD:",
+	"startTheGame": "Start Spelet"
+
 }
