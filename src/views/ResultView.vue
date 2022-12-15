@@ -59,6 +59,7 @@ export default {
     })
     socket.on('returnScore', (user)=>{
       this.userList = user
+      this.sortList(this.userList)
     })
     socket.emit('getScore', this.gameId)
     socket.on('returnAllScores',(user)=>{

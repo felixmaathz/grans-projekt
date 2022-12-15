@@ -188,11 +188,13 @@ export default {
         }
         else{
           console.log("fel svar")
+          socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
         }
       }
 
     },
     nextQuestion: function () {
+      this.selectedAnswer=undefined;
       if (this.activeIndex === this.selectedQuiz.questions.length - 1) {
         console.log("slut på frågor")
         socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
