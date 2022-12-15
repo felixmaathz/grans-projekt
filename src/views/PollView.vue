@@ -174,7 +174,7 @@ export default {
         this.remainingTime--
         console.log(this.remainingTime)
       }
-      if(this.remainingTime<6){
+      if(this.remainingTime<=5){
         socket.emit('getScore')
       }
       if(this.remainingTime===5){
