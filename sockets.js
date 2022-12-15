@@ -66,10 +66,6 @@ function sockets(io, socket, data) {
     socket.emit('quizReplaced', data.replaceQuiz(d))
   })
 
-  // socket.on('editQuestion', function(d) {
-  //   data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
-  //   socket.emit('questionEdited', data.getAllQuestions(d.pollId));
-  // });
 
   socket.on('createGame', function(d){
     console.log("game created")
@@ -130,38 +126,10 @@ function sockets(io, socket, data) {
     socket.emit('returnAllScores', data.getUsers())
   })
 
-/*  socket.on('chooseGameId', function(chosenGameId) {
-    socket.join(chosenGameId)
-  })
-
-  socket.on('chosenGameId', function(chosenGameId){
-    socket.join(chosenGameId)
-    io.to(chosenGameId).emit('theChosenGameId')
-
-  })*/
 
   socket.on('totalScore', function(d){
     console.log(d)
   })
-
-  // socket.on('runQuestion', function(d) {
-  //   io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
-  //   io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
-  // });
-
-  // socket.on('submitAnswer', function(d) {
-  //   data.submitAnswer(d.pollId, d.answer);
-  //   io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
-  // });
-  //
-  // socket.on('resetAll', () => {
-  //   data = new Data();
-  //   data.initializeData();
-  // })
-
-
-
- 
 }
 
 module.exports = sockets;

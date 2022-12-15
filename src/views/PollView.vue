@@ -32,6 +32,7 @@
       <div class="leaderboard"
            v-if="remainingTime<5">
 
+
       </div>
   </div>
 
@@ -264,6 +265,9 @@ body {
   overflow: hidden;
   font-family: "Silkscreen", cursive;
 
+}
+.leaderboard{
+  background-color: white;
 }
 
 </style>
