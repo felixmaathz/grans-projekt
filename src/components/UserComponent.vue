@@ -118,7 +118,7 @@ export default {
 
 .username{
   width: 100%;
-  font-size: 3em;
+  font-size: 2.5em;
   word-wrap: break-word;
   margin: auto;
 }

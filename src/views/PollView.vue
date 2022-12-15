@@ -1,17 +1,22 @@
 <template>
-  <div>
     <WaitingComponent
         v-show="isPopUpVisible"
         v-on:close="closePopUp"/>
-  </div>
   <body>
+
   {{uiLabels.theScore}} {{yourScore}}
     <div>
       HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
       <br>
 
-      Frågor nedan!!!
-      <br>
+      <div class="progressBarWrapper">
+        <div class="progressBar"
+             v-if="remainingTime>1">
+          <div class="progressBarFill">
+
+          </div>
+        </div>
+      </div>
 
       <div
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
@@ -23,16 +28,11 @@
           v-on:answer = "saveAnswer($event)">
 
       </QuestionComponent>
-
     </div>
-    <div class="progressBarWrapper">
-      <div class="progressBar"
-           v-if="remainingTime>1">
-        <div class="progressBarFill">
+      <div class="leaderboard"
+           v-if="remainingTime<5">
 
-        </div>
       </div>
-    </div>
   </div>
 
   <!--  <div>
@@ -52,7 +52,7 @@
        <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
      </div>-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+  <button v-on:click="stopGame()">STOP</button>
   </body>
 </template>
 
@@ -97,7 +97,10 @@ export default {
 
       progressTimer: undefined,
       decreaseTimer: undefined,
-      questionTimer: undefined
+      questionTimer: undefined,
+
+      start: 0,
+      end: 0,
 
     }
   },
@@ -125,6 +128,12 @@ export default {
 
   },
   methods: {
+
+    stopGame: function() {
+      clearInterval(this.progressTimer)
+      clearInterval(this.decreaseTimer)
+      clearInterval(this.questionTimer)
+    },
 
     timer: function(){
       this.progressTimer = setInterval(this.increaseProgressBar, 100)
@@ -154,8 +163,9 @@ export default {
         this.answeredQuestions.a.push(this.selectedAnswer)
         console.log(this.answeredQuestions.a)
         if(this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+          this.yourScore=this.yourScore+(10000-this.end+this.start)
           console.log("rätt svar")
-          this.yourScore +=1000
+          // this.yourScore +=1000
           console.log("Du har " + this.yourScore)
         }
         else{
@@ -174,6 +184,8 @@ export default {
         clearInterval(this.questionTimer)
         this.$router.push({path: '/result/'+this.gameId +'/'+this.lang})
       } else {
+        this.start=Date.now()
+        console.log("start timer "+this.start)
         this.remainingTime=15
         this.progressWidth=100
         this.activeIndex += 1;
@@ -182,6 +194,8 @@ export default {
     saveAnswer: function (event) {
       this.selectedAnswer=event
       console.log("Svaret " + event + " kom fram till pollview")
+      this.end=Date.now()
+      console.log("end timer "+this.end)
       // this.answeredQuestions.a.push(event)
       // console.log(this.answeredQuestions.a)
 
@@ -199,6 +213,7 @@ export default {
     closePopUp: function () {
       this.isPopUpVisible = false;
       this.timer()
+      this.start=Date.now()
     }
   },
 }
@@ -208,7 +223,11 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+/**{*/
+/*  outline: solid 1px greenyellow;*/
+/*}*/
 
 .progressBarWrapper{
   display: flex;
@@ -217,7 +236,7 @@ export default {
 
 .progressBar{
   justify-content: center;
-  width: 40%;
+  width: 40em;
   height: 40px;
   border-style: solid;
   border-color: #2B211B;
@@ -229,6 +248,12 @@ export default {
   width: v-bind(progressWidth+"%");
   transition: width 150ms, background-color 5s;
   transition-timing-function: linear;
+}
+
+.leaderboard{
+  height: 10em;
+  width: 10em;
+  background-color: #2B211B;
 }
 
 body {

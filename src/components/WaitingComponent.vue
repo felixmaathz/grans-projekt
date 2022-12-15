@@ -9,7 +9,7 @@
   </div>
 
   <p id="timer" class="timer ">
-    10
+    5
   </p>
 
 
@@ -57,7 +57,7 @@ export default {
     thePopUp: function () {
       const self = this;
       // Set the date we're counting down to
-      var countDownDate = new Date().getTime() + 11000; // 10 seconds
+      var countDownDate = new Date().getTime() + 5500; // 10 seconds
 
       // Update the count down every 1 second
       var x = setInterval(function () {
@@ -75,7 +75,7 @@ export default {
         document.getElementById("timer").innerHTML = seconds;
 
         // Change the color of the timer based on the remaining time
-        if (seconds > 5) {
+        if (seconds > 4) {
           document.getElementById("timer").style.color = "green";
         } else if (seconds > 3) {
           document.getElementById("timer").style.color = "yellow";

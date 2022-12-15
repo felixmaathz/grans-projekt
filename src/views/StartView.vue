@@ -131,7 +131,7 @@ export default {
   }
 
 /* OPTIMIZATION FOR IPHONE 13 SCREEN AND NEWER (390 x 844) */
-@media (max-width: 391px) {
+@media (max-width: 450px) {
   header {
     background-color: gray;
     width: 100%;
