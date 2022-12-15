@@ -36,12 +36,13 @@ export default {
       data: {},
       uiLabels: {},
       lang: "",
-      userList: []
+      userList: [],
+      gameId:""
 
     }
   },
   created: function () {
-    this.pollId = this.$route.params.id
+    this.gameId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
@@ -58,12 +59,19 @@ export default {
     })
     socket.on('returnScore', (user)=>{
       this.userList = user
+      this.sortList(this.userList)
     })
-    socket.emit('getScore')
+    socket.emit('getScore', this.gameId)
     socket.on('returnAllScores',(user)=>{
       this.userList = user
+      this.sortList(this.userList)
     })
   },
+  methods:{
+    sortList: function(list){
+      list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
+    },
+  }
 
 }
 </script>

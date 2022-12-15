@@ -123,11 +123,11 @@ function sockets(io, socket, data) {
     console.log(d.theUser + d.theScore)
     socket.join(d.theGameId)
     io.to(d.theGameId).emit('returnScore', data.getTotalScore(d))
-
   })
 
-  socket.on('getScore', function(){
-    socket.emit('returnAllScores', data.getUsers())
+  socket.on('getScore', function(gameId){
+    socket.join(gameId)
+    io.to(gameId).emit('returnAllScores', data.getUsers())
   })
 
 /*  socket.on('chooseGameId', function(chosenGameId) {
