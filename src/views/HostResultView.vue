@@ -10,26 +10,19 @@
 
   </div>
 
-  <BarsComponent v-bind:data="data"/>
-  <footer>
-    <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-    </div>
-  </footer>
+  <button v-on:click="terminateGame()">
+    END GAME
+  </button>
   </body>
 </template>
 
 <script>
 // @ is an alias to /src
-import BarsComponent from '@/components/BarsComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'ResultView',
-  components: {
-    BarsComponent
-  },
+  name: 'HostResultView',
   data: function () {
     return {
       question: "",
@@ -66,14 +59,17 @@ export default {
       this.userList = user
       this.sortList(this.userList)
     })
-
     socket.on('gameTerminated', ()=>{
+      console.log("...redirecting")
       this.redirectUserHome()
     })
   },
   methods:{
     sortList: function(list){
       list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
+    },
+    terminateGame: function(){
+      socket.emit('terminateGame', this.gameId)
     },
     redirectUserHome: function(){
       this.$router.push({path: '/'})

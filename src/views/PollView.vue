@@ -136,12 +136,20 @@ export default {
       this.sortList(this.userList)
       })
 
+    socket.on('gameTerminated', ()=>{
+      this.redirectUserHome()
+    })
+
 
   },
   methods: {
 
     sortList: function(list){
       list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
+    },
+
+    redirectUserHome: function(){
+      this.$router.push({path: '/'})
     },
 
     stopGame: function() {
@@ -194,7 +202,11 @@ export default {
 
     },
     nextQuestion: function () {
-      this.selectedAnswer=undefined;
+      //Resetting parameters
+      this.selectedAnswer = undefined;
+      this.progressColor = "green";
+
+
       if (this.activeIndex === this.selectedQuiz.questions.length - 1) {
         console.log("slut på frågor")
         socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
