@@ -74,6 +74,11 @@
 	"POLLVIEW": "",
 	"goBack": "Back",
 	"theScore": "Your score is:",
+	"leaderboard": "LEADERBOARD",
+	"gameRunning": "You are playing:",
+	"loadingGame": "Loading game:",
+	"timeLeft": "Game will start in:",
+
 
 	"RESULTVIEW": "",
 	"goBack": "Back",

@@ -6,7 +6,7 @@
 
   {{uiLabels.theScore}} {{yourScore}}
     <div>
-      HÄR SKA VI SPELA SPELET: {{selectedQuiz.gameId}}
+      {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
       <br>
 
       <div class="progressBarWrapper">
@@ -29,31 +29,20 @@
 
       </QuestionComponent>
     </div>
+      <div class="leaderboardWrapper">
       <div v-if="remainingTime<5" class="leaderboard">
+        {{uiLabels.leaderboard}}
+        <hr>
         <div v-for="user in userList"
              v-bind:key="user">
-          {{user.username}}
+          {{user.username}}:
           {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+          </div>
         </div>
       </div>
   </div>
 
-  <!--  <div>
-      <ReorderQuestion />
-      {{pollId}}
-      <QuestionComponent v-bind:question="question"
-                v-on:answer="submitAnswer"/>
-    </div>-->
-
-  <!-- <div>
-
-
-     <QuestionComponent v-bind:question="question"
-               v-on:answer="submitAnswer"/>
-   </div>
-   <div style="margin: 2em">
-       <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-     </div>-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <button v-on:click="stopGame()">STOP</button>
   </body>
@@ -271,14 +260,23 @@ export default {
 }
 
 .leaderboard{
-  height: 10em;
-  width: 10em;
-  background-color: white;
+  height: 20em;
+  width: 15em;
+  align-items: center;
+  background-color: #FEF9CC;
+  border-style: solid;
+  border-color: #1F6E77;
+  margin: 1em;
+
+}
+.leaderboardWrapper {
+  display:flex;
+  justify-content: center;
 }
 
 body {
   background: #268b96;
-  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 60%);
+  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 80%);
   width: 100vw;
   height: 100vh;
   overflow: hidden;

@@ -1,11 +1,11 @@
 <template>
   <body>
   <div id="GameID">
-    {{pollId}}
+    {{uiLabels.loadingGame}} {{pollId}}
   </div>
 
   <div id="theGameWillStartIn">
-    The game will start in:
+    {{uiLabels.timeLeft}}
   </div>
 
   <p id="timer" class="timer ">
@@ -16,15 +16,7 @@
 
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <div class="backButtonDiv">
-    <button
-        class = "close"
-        @click="$emit('close')">
-        <span class="material-symbols-outlined">
-          Close
-        </span>
-    </button>
-  </div>
+
 
   </body>
 </template>
@@ -86,7 +78,7 @@ export default {
         // If the countdown is finished, write some text
         if (distance < 0) {
           clearInterval(x);
-          document.getElementById("timer").innerHTML = "Let's go!";
+          document.getElementById("timer").innerHTML = "Let's go"
           self.closePopUp()
         }
       }, 1000);

@@ -440,7 +440,6 @@ h3{
   padding-top: 0.05em;
   background-color: #31a6b2;
   box-shadow: inset -0.1em -0.1em #027a75;
-  /*border-width: 0.3vw;*/
   color: #FEF9CC;
 }
 .questionListWrapper {

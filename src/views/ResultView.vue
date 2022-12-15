@@ -1,35 +1,34 @@
 <template>
   <body>
-  PRESENTERA RESULTATET FÖR SPELET
-  <br>
-  <div v-for="user in userList"
-       v-bind:key="user">
-    {{user.username}}
-    {{user.endScore}}
 
 
+  <div class="leaderboardWrapper">
+    <div class="leaderboard">
+      {{uiLabels.leaderboard}}
+      <hr>
+      <div v-for="user in userList"
+           v-bind:key="user">
+        {{user.username}}:
+        {{user.endScore}}
+        <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+      </div>
+    </div>
   </div>
 
-  <BarsComponent v-bind:data="data"/>
-  <footer>
-    <div style="margin: 2em">
-      <button style="position:absolute; bottom:100px;" v-on:click="this.$router.go(-1)">{{uiLabels.goBack}}</button>
-    </div>
-  </footer>
+
+
   </body>
 </template>
 
 <script>
-// @ is an alias to /src
-import BarsComponent from '@/components/BarsComponent.vue';
+
+
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'ResultView',
-  components: {
-    BarsComponent
-  },
+
   data: function () {
     return {
       question: "",
@@ -75,3 +74,22 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.leaderboard{
+  font-family: "Press Start 2P",cursive;
+  height: 30em;
+  width: 80em;
+  align-items: center;
+  background-color: #FEF9CC;
+  border-style: solid;
+  border-color: #1F6E77;
+  margin: 1em;
+
+}
+.leaderboardWrapper {
+  display:flex;
+  justify-content: center;
+}
+
+</style>
