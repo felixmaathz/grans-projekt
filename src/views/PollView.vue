@@ -29,9 +29,12 @@
 
       </QuestionComponent>
     </div>
-      <div class="leaderboard"
-           v-if="remainingTime<5">
-
+      <div v-if="remainingTime<5" class="leaderboard">
+        <div v-for="user in userList"
+             v-bind:key="user">
+          {{user.username}}
+          {{user.endScore}}
+        </div>
       </div>
   </div>
 
@@ -102,6 +105,8 @@ export default {
       start: 0,
       end: 0,
 
+      userList:[]
+
     }
   },
 
@@ -114,8 +119,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     }),
-        this.pollId = this.$route.params.id
-    socket.emit('joinPoll', this.pollId)
+    socket.emit('joinPoll', this.gameId)
     socket.on("newQuestion", q =>
         this.question = q
     )
@@ -125,9 +129,20 @@ export default {
       this.selectedQuiz = quizList
     })
 
+    socket.on('returnAllScores', (user)=>{
+      console.log("Updated leaderboard")
+      this.userList=user
+      console.log("HEj"+JSON.stringify(this.userList))
+      this.sortList(this.userList)
+      })
+
 
   },
   methods: {
+
+    sortList: function(list){
+      list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
+    },
 
     stopGame: function() {
       clearInterval(this.progressTimer)
@@ -158,6 +173,9 @@ export default {
       if(this.remainingTime>-1){
         this.remainingTime--
         console.log(this.remainingTime)
+      }
+      if(this.remainingTime<6){
+        socket.emit('getScore')
       }
       if(this.remainingTime===5){
         this.answeredQuestions.a.push(this.selectedAnswer)
@@ -253,7 +271,7 @@ export default {
 .leaderboard{
   height: 10em;
   width: 10em;
-  background-color: #2B211B;
+  background-color: white;
 }
 
 body {
