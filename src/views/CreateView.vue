@@ -457,7 +457,7 @@ h3{
   }
   h1{
     color: #00C3BA;
-    font-size: 8vw;
+    font-size: 7vw;
     margin-bottom: 2vw;
     text-shadow: 4px 2px black;
   }
