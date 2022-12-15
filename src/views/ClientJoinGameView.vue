@@ -45,7 +45,7 @@
       <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===true">
         <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
       </router-link>
-      <input class="collabCheck" type="checkbox" v-model="collabQuiz"><label class="checkText">Collab quiz?</label>
+      <input class="collabCheck" type="checkbox" v-model="collabQuiz"><label class="checkText">{{uiLabels.coQuiz}}</label>
     </div>
   </div>
 

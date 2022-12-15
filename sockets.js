@@ -124,7 +124,10 @@ function sockets(io, socket, data) {
     socket.join(d.theGameId)
     io.to(d.theGameId).emit('returnScore', data.getTotalScore(d))
 
+  })
 
+  socket.on('getScore', function(){
+    socket.emit('returnAllScores', data.getUsers())
   })
 
 /*  socket.on('chooseGameId', function(chosenGameId) {

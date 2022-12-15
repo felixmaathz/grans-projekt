@@ -186,6 +186,8 @@ Data.prototype.getTotalScore=function(d) {
 }
 
 
+
+
 // Data.prototype.createPoll = function(gameId, lang="en")
 //   if (typeof this.finishedQuizzes[gameId] === "undefined") {
 //     let poll = {};

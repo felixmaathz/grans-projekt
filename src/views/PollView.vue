@@ -165,8 +165,8 @@ export default {
         if(this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
           this.yourScore=this.yourScore+(10000-this.end+this.start)
           console.log("rätt svar")
-          // this.yourScore +=1000
           console.log("Du har " + this.yourScore)
+          socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
         }
         else{
           console.log("fel svar")
