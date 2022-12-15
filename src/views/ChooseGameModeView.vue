@@ -1,4 +1,4 @@
-<!-- CSS OK for laptop -->
+<!-- CSS OK for laptop + phone-->
 <template>
   <body>
 
@@ -135,4 +135,82 @@ body {
       'opsz' 48
 }
 
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  body {
+    background: #EF233C;
+    background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+  }
+  .gameButtons{
+    font-family: "Press Start 2P",cursive;
+    color: #FEF9CC;
+    background-color: #00C3BA;
+    cursor: pointer;
+    width: 18em;
+    height: 5em;
+    font-size: 5vw;
+    text-shadow: 2px 2px #1F6E77;
+    /*border-radius: 4vw;*/
+    box-shadow: inset -0.15em -0.15em #268b96;
+    border-color: #2B211B;
+    border-width: 0.2em;
+    margin: 1em;
+  }
+  .gameButtons:hover{
+    padding-right: 0.05em;
+    padding-top: 0.05em;
+    background-color: #31a6b2;
+    box-shadow: inset -0.1em -0.1em #027a75;
+    color: #FEF9CC;
+  }
+  .gameButtons.language{
+    width: 10vw;
+    height: 10vh;
+    font-size: 0.9vw;
+    box-shadow: inset -0.35em -0.35em #268b96;
+  }
+  .gameButtons.language:hover{
+    box-shadow: inset -0.2em -0.2em #027a75;
+    padding-right: 0.15em;
+    padding-top: 0.2em;
+  }
+  .backButtonDiv{
+    width: 10vw;
+    height: 10vh;
+    margin-right: 10vw;
+  }
+  .backButton{
+    font-family: "Press Start 2P",cursive;
+    color: #FEF9CC;
+    background-color: #00C3BA;
+    cursor: pointer;
+    width: 20vw;
+    height: 10vh;
+    margin: 5vw;
+    font-size: 2vw;
+    text-shadow: 2px 2px #1F6E77;
+    box-shadow: inset -0.35em -0.35em #268b96;
+    border-color: #2B211B;
+    border-width: 0.4em;
+    border-style: solid ;
+  }
+  .backButton:hover{
+    background-color: #31a6b2;
+    box-shadow: inset -0.25em -0.25em #027a75;
+    color: #FEF9CC;
+  }
+  .material-symbols-outlined {
+    font-size: 16vw;
+    color: #fef9cc;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+  }
+}
 </style>

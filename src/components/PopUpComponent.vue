@@ -1,4 +1,4 @@
-<!-- CSS OK for laptop + iPhone-->
+<!-- CSS OK for laptop + phone-->
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
@@ -127,7 +127,9 @@ export default {
   border-bottom-color: #4AAE9B;
   text-align: center;
 }
-@media (max-width: 391px) {
+
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
   .modal-backdrop {
     position: fixed;
     top: 0;

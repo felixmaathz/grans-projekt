@@ -1,4 +1,3 @@
-<!-- CSS OK for laptop -->
 <template>
   <body>
   <div>

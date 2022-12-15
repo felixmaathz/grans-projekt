@@ -1,4 +1,4 @@
-<!-- CSS OK for laptop + iPhone -->
+<!-- CSS OK for laptop + phone -->
 <template>
   <body>
     <div>
@@ -130,8 +130,8 @@ export default {
     padding-top: 0.2em;
   }
 
-/* OPTIMIZATION FOR IPHONE 13 SCREEN AND NEWER (390 x 844) */
-@media (max-width: 450px) {
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
   header {
     background-color: gray;
     width: 100%;
@@ -166,19 +166,16 @@ export default {
     margin: 20px;
     font-size: 10vw;
     text-shadow: 2px 2px #1F6E77;
-    /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.4vw;
+    border-width: 0.15em;
     border-style: solid ;
-    /*transition-duration: 0.15s;*/
   }
   .gameButtons:hover{
     padding-right: 0.05em;
     padding-top: 0.05em;
     background-color: #31a6b2;
     box-shadow: inset -0.1em -0.1em #027a75;
-    /*border-width: 0.3vw;*/
     color: #FEF9CC;
   }
   .languageButtonDiv{
