@@ -574,7 +574,7 @@ h3{
     color: #2B211B;
     background-color: #FEF9CC;
     order: 0;
-    width:83.5vw;
+    width:88.4vw;
     overflow: auto;
     border-style: solid;
     border-width: 0.2em;
