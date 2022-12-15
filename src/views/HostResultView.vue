@@ -1,34 +1,28 @@
 <template>
   <body>
+  PRESENTERA RESULTATET FÖR SPELET
+  <br>
+  <div v-for="user in userList"
+       v-bind:key="user">
+    {{user.username}}
+    {{user.endScore}}
 
 
-  <div class="leaderboardWrapper">
-    <div class="leaderboard">
-      {{uiLabels.leaderboard}}
-      <hr>
-      <div v-for="user in userList"
-           v-bind:key="user">
-        {{user.username}}:
-        {{user.endScore}}
-        <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
-      </div>
-    </div>
   </div>
 
-
-
+  <button v-on:click="terminateGame()">
+    END GAME
+  </button>
   </body>
 </template>
 
 <script>
-
-
+// @ is an alias to /src
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'ResultView',
-
+  name: 'HostResultView',
   data: function () {
     return {
       question: "",
@@ -65,14 +59,17 @@ export default {
       this.userList = user
       this.sortList(this.userList)
     })
-
     socket.on('gameTerminated', ()=>{
+      console.log("...redirecting")
       this.redirectUserHome()
     })
   },
   methods:{
     sortList: function(list){
       list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
+    },
+    terminateGame: function(){
+      socket.emit('terminateGame', this.gameId)
     },
     redirectUserHome: function(){
       this.$router.push({path: '/'})
@@ -81,22 +78,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-.leaderboard{
-  font-family: "Press Start 2P",cursive;
-  height: 30em;
-  width: 80em;
-  align-items: center;
-  background-color: #FEF9CC;
-  border-style: solid;
-  border-color: #1F6E77;
-  margin: 1em;
-
-}
-.leaderboardWrapper {
-  display:flex;
-  justify-content: center;
-}
-
-</style>

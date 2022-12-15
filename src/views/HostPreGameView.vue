@@ -22,7 +22,7 @@
  </UserComponent>
  </div>
 
- <router-link v-on:click="hostStartGame();" v-bind:to="'/result/'+gameId+'/'+lang">
+ <router-link v-on:click="hostStartGame();" v-bind:to="'/hostresult/'+gameId+'/'+lang">
    <button class="startGameButton">
      {{uiLabels.startTheGame}}
    </button>
