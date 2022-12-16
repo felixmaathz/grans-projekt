@@ -15,7 +15,7 @@
             id="modalDescription">
           <slot name="body">
             <input type="text" v-model="chosenGameId" v-bind:placeholder="uiLabels.typeHere"
-                   class="questionInput" minlength="3" maxlength="10" autofocus>
+                   class="questionInput" minlength="3" maxlength="15" autofocus>
           </slot>
           <section>
             <slot>
@@ -65,7 +65,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+*{outline: solid greenyellow 1px}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -81,16 +83,24 @@ export default {
   background: #EF233C;
   background: radial-gradient(circle, #EF233C 50%, #D80032 100%);
   width: 50%;
-  height: 40%;
+  height: 50%;
+  min-height:45%;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;
   flex-direction: column;
 }
+
+
 .modal-header{
   padding: 1vw;
   display: flex;
   font-family: "Silkscreen", cursive;
+  color: #00C3BA;
+  font-size: 4vw;
+  margin-bottom: 1vw;
+  /*-webkit-text-stroke: 0.01vw black;*/
+  text-shadow: 4px 2px black;
 }
 .modal-header {
   border-bottom: 0.07em solid #4AAE9B;
@@ -105,17 +115,31 @@ export default {
   padding: 20px 10px;
   margin-top: 1em;
 }
+
 .close {
-  border: none;
-  font-size: 2.5vw;
-  margin-top:4vw;
+  font-family: "Press Start 2P", cursive;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
-  color: #4AAE9B;
-  background: transparent;
-  font-family: Silkscreen;
+  min-width: 20vw;
+  width: fit-content;
+  height: 10vh;
+  margin: 40px;
+  font-size: 3vw;
+  text-shadow: 2px 2px #1F6E77;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  border-style: solid;
+  /*transition-duration: 0.15s;*/
+
+
 }
+
 .questionInput {
-  margin-top: 2vh;
+  margin-top: 1vh;
   font-family: Silkscreen;
   color: black;
   border: none;
@@ -148,6 +172,7 @@ export default {
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+
   }
   .modal-header{
     padding: 1vw;
@@ -164,7 +189,6 @@ export default {
     position: relative;
     font-size: 10em;
     align-self: center;
-    margin-top: 0vw;
   }
   .close {
     border: none;

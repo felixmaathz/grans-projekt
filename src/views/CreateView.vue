@@ -32,15 +32,6 @@
 
 
 
-<!--          <input type="radio" id="Yes"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="true">-->
-<!--          <label for="html">{{uiLabels.yes}}</label>-->
-
-<!--          <input type="radio" id="Nej"-->
-<!--                 v-model="questionObject.questionAnswer" v-bind:value="false"-->
-<!--                  class="radioButtons">-->
-<!--          <label for="html">{{uiLabels.no}}</label><br>-->
-
 
         </div>
 
@@ -50,21 +41,11 @@
 
 
           <router-link v-bind:to="'//'">
-            <button class="questionButtons" >
+            <button class="questionButtons"  v-on:click="goBack()">
               {{uiLabels.playGame}}
             </button>
           </router-link>
 
-
-<!--        <div class = "saveButton">-->
-
-<!--          <router-link v-bind:to="'//'">-->
-<!--            <button class="questionButtons" >-->
-<!--              {{uiLabels.saveGame}}-->
-<!--            </button>-->
-<!--          </router-link>-->
-
-<!--        </div>-->
       </div>
 
       <div class = "questionListWrapper">
@@ -90,22 +71,6 @@
         </div>
       </div>
     </div>
-    <!--    <input type="number" v-model="questionNumber">-->
-
-    <!--    <button v-on:click="runQuestion">-->
-    <!--      Run question-->
-    <!--    </button>-->
-    <!--    {{data}}-->
-    <!--    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>-->
-
-    <!--    <div class = "link">-->
-    <!--    Poll link:-->
-    <!--    <input type="text" v-model="pollId">-->
-    <!--    <button v-on:click="createPoll">-->
-    <!--      Create poll-->
-    <!--    </button>-->
-    <!--    </div>-->
-
   </div>
 
   <div id="app">
@@ -122,6 +87,7 @@
 <script>
 import io from 'socket.io-client';
 import PopUpComponent from "@/components/PopUpComponent";
+
 const socket = io();
 
 
@@ -129,6 +95,7 @@ export default {
   name: 'CreateView',
   components:{
     PopUpComponent
+
   },
   data: function () {
     return {
@@ -137,6 +104,7 @@ export default {
       formValidation: false,
       trueSelected: false,
       falseSelected: false,
+      listOfQuizzes: [],
 
       lang: "",
       gameId: "",
@@ -164,30 +132,30 @@ export default {
         this.data = data)
     console.log(this.data)
 
-
+    socket.emit('getQuizzes');
+    socket.on('returnQuizzes', (quizList) =>{
+      this.listOfQuizzes=quizList
+      console.log(this.listOfQuizzes)
+    })
   },
 
+
   methods: {
-    // createPoll: function () {
-    //   socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-    // },
+    getChosenGameId: function(event) {
+      this.gameId=event;
+      this.finishedQuiz.name = this.gameId
 
-    getChosenGameId: function(event){
-      this.gameId = event;
+      for (let i = 0; i < this.listOfQuizzes.length; i++) {
+        if (this.listOfQuizzes.some(quiz => quiz.gameId===event)|| this.gameId ==null || this.gameId ==="") {
+          alert(this.uiLabels.gameExists)
+          this.$router.go(-1)
 
+        } else {
+          console.log(this.gameId)
+          socket.emit('createPoll', this.gameId)
 
-
-    if(this.gameId==null||this.gameId==="" ){
-      history.back()
-
-    }
-    else{
-      this.finishedQuiz.name=this.gameId
-      console.log(this.gameId)
-      socket.emit('createPoll', this.gameId)
-  }
-
-
+        }
+      }
     },
 
     chooseAnswer: function(answer) {

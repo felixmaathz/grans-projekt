@@ -27,6 +27,7 @@
 	"goBack": "Back",
 	"q": "Q: ",
 	"a": "A: ",
+	"gameExists": "Game ID already exists or input is empty",
 
 
 	"HOSTORJOINVIEW": "",

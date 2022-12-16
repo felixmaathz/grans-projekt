@@ -27,6 +27,7 @@
 	"goBack": "Tillbaka",
 	"q": "F: ",
 	"a": "S: ",
+	"gameExists": "Spel ID finns redan eller inmatningen är tom",
 
 
 	"HOSTORJOINVIEW": "",
