@@ -11,7 +11,7 @@
 
       <div class="progressBarWrapper">
         <div class="progressBar"
-             v-if="remainingTime>1">
+             v-if="remainingTime>=progressBarVisible">
           <div class="progressBarFill">
 
           </div>
@@ -22,7 +22,7 @@
         v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
       <QuestionComponent
-          v-if="remainingTime>5"
+          v-if="remainingTime>=questionVisible"
           v-show= "index==activeIndex"
           v-bind:question="question"
           v-on:answer = "saveAnswer($event)">
@@ -30,7 +30,7 @@
       </QuestionComponent>
     </div>
       <div class="leaderboardWrapper">
-      <div v-if="remainingTime<5" class="leaderboard">
+      <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
         {{uiLabels.leaderboard}}
         <hr>
         <div v-for="user in userList"
@@ -85,11 +85,15 @@ export default {
       isPopUpVisible: true,
       progressWidth: 100,
       progressColor: "green",
-      remainingTime:15,
+      remainingTime:17,
 
       progressTimer: undefined,
       decreaseTimer: undefined,
       questionTimer: undefined,
+
+      progressBarVisible: 5,
+      questionVisible: 6,
+      leaderBoardVisible: 5,
 
       start: 0,
       end: 0,
@@ -150,7 +154,7 @@ export default {
     timer: function(){
       this.progressTimer = setInterval(this.increaseProgressBar, 100)
       this.decreaseTimer = setInterval(this.decreaseTime,1000)
-      this.questionTimer = setInterval(this.nextQuestion,15000)
+      this.questionTimer = setInterval(this.nextQuestion,17000)
     },
     increaseProgressBar: function (){
       if(this.remainingTime>-1){
@@ -207,7 +211,7 @@ export default {
       } else {
         this.start=Date.now()
         console.log("start timer "+this.start)
-        this.remainingTime=15
+        this.remainingTime=17
         this.progressWidth=100
         this.activeIndex += 1;
       }
