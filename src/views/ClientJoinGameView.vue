@@ -61,16 +61,17 @@ export default {
 
   data: function () {
     return {
-      user: {username:"", joinGameId: ""},
+      user: {username: "", joinGameId: ""},
       uiLabels: {},
       lang: "",
       collabQuiz: false,
-      currentGame: {}
+      currentGame: {},
+      connectedUsers: []
     }
   },
   created: function () {
-    this.user.username=this.$route.params.nick;
-    this.user.joinGameId=this.$route.params.id;
+    this.user.username = this.$route.params.nick;
+    this.user.joinGameId = this.$route.params.id;
     this.lang = this.$route.params.lang;
 
 
@@ -81,22 +82,28 @@ export default {
     })
 
     socket.emit('getGameInfo')
-    socket.on('returnGameInfo', (game)=>{
-      this.currentGame=game
+    socket.on('returnGameInfo', (game) => {
+      this.currentGame = game
+    })
+
+    socket.emit('getUsers')
+    socket.on('returnUsers', (users) => {
+      this.connectedUsers = users
     })
   },
-  methods:{
-    joinGame: function(){
-      if(this.currentGame.gameId===this.user.joinGameId){
-        let user = Object.assign({},this.user)
-        socket.emit('joinGame', user)
-      }else{
-        this.$router.go(-1)
-      }
-    }
+  methods: {
+        joinGame: function () {
+          console.log(this.connectedUsers)
+          if (this.connectedUsers.some(theUser => theUser.username === this.user.username) || this.currentGame.gameId !== this.user.joinGameId) {
+            alert("User already exist or lobby does not exist exists")
+            this.$router.go(-1)
+          } else {
+            let user = Object.assign({},this.user)
+            socket.emit('joinGame', user)
+          }
+        }
+     }
   }
-}
-
 
 
 </script>

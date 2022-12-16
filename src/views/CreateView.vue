@@ -90,6 +90,7 @@ export default {
       formValidation: false,
       trueSelected: false,
       falseSelected: false,
+      listOfQuizzes: [],
 
       lang: "",
       gameId: "",
@@ -115,20 +116,30 @@ export default {
     socket.on("pollCreated", (data) =>
         this.data = data)
     console.log(this.data)
+
+    socket.emit('getQuizzes');
+    socket.on('returnQuizzes', (quizList) =>{
+      this.listOfQuizzes=quizList
+      console.log(this.listOfQuizzes)
+    })
   },
   methods: {
+    getChosenGameId: function(event) {
+      this.gameId=event;
+      this.finishedQuiz.name = this.gameId
 
-    getChosenGameId: function(event){
-      this.gameId = event;
-      if(this.gameId==null||this.gameId==="" ){
-        history.back()
-      }
-      else{
-        this.finishedQuiz.name=this.gameId
-        console.log(this.gameId)
-        socket.emit('createPoll', this.gameId)
-      }
-    },
+
+        if (this.listOfQuizzes.some(quiz => quiz.gameId===event)|| this.gameId ==null || this.gameId ==="") {
+          alert(this.uiLabels.gameExists)
+          this.$router.go(-1)
+
+        } else {
+          console.log(this.gameId)
+          socket.emit('createPoll', this.gameId)
+
+        }
+      },
+
     chooseAnswer: function(answer) {
       if(answer){
         this.questionObject.questionAnswer=true
