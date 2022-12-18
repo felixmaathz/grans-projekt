@@ -148,7 +148,6 @@ export default {
   }
   h1{
     color: #00C3BA;
-    /*-webkit-text-stroke: 0.01vw black;*/
     text-shadow: 5px 5px black;
   }
   .gameName{
@@ -159,7 +158,6 @@ export default {
     font-family: "Press Start 2P",cursive;
     color: #FEF9CC;
     background-color: #00C3BA;
-    /*-webkit-text-stroke: 1px black;*/
     cursor: pointer;
     width: 70vw;
     height: 15vh;
