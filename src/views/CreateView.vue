@@ -32,6 +32,7 @@
                     :class="{selected: falseSelected}">
               {{uiLabels.false}}
             </button>
+
         </div>
         <button class="questionButtons" v-on:click="validateForm();addQuestion()">
           {{uiLabels.addYourQuestion}}
@@ -42,19 +43,24 @@
           </button>
         </router-link>
       </div>
+
       <div class = "questionListWrapper">
         <h3>
           {{uiLabels.questionList}}
         </h3>
+
         <div class="questionList"
              v-for="(question,index) in finishedQuiz.listOfQuestions"
              v-bind:key="question">
+
           <div class="questionWrapper">
-            <button v-on:click="deleteQuestion(index)" class="deleteButton">
+            <button v-on:click="deleteQuestion(index)"
+                    class="deleteButton">
               <span class="material-symbols-outlined X">
                 DELETE
               </span>
             </button>
+
             <div class="question">
               {{uiLabels.q +question.questionText}}<br>
               {{uiLabels.a +question.questionAnswer}}

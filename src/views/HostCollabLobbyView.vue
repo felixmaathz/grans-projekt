@@ -724,7 +724,7 @@ h3{
     }
     .smallScreenPlayers {
       flex-wrap: wrap;
-      height: 30vw;
+      height: 33vw;
       width: 100%;
       overflow: auto;
       overflow-x: hidden;
