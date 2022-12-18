@@ -66,7 +66,6 @@ export default {
 </script>
 
 <style scoped>
-*{outline: solid greenyellow 1px}
 
 .modal-backdrop {
   position: fixed;
