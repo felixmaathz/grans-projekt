@@ -4,12 +4,13 @@
         v-on:close="closePopUp"/>
   <body>
 
-  {{uiLabels.theScore}} {{yourScore}}
     <div>
-      {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
       <br>
 
       <div class="progressBarWrapper">
+        <button v-on:click="stopGame()">STOP</button>
+        {{uiLabels.theScore}} {{yourScore}}<br>
+        {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
         <div class="progressBar"
              v-if="remainingTime>=progressBarVisible">
           <div class="progressBarFill">
@@ -44,7 +45,7 @@
   </div>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <button v-on:click="stopGame()">STOP</button>
+
   </body>
 </template>
 
@@ -92,7 +93,7 @@ export default {
       questionTimer: undefined,
 
       progressBarVisible: 5,
-      questionVisible: 6,
+      questionVisible: 7,
       leaderBoardVisible: 5,
 
       start: 0,
@@ -257,6 +258,13 @@ export default {
 .progressBarWrapper{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 50vw;
+  margin: auto;
+  background-color: #fef9cc;
+  border-color: #2B211B;
+  border-width: 0.3vw;
+  border-style: solid;
 }
 
 .progressBar{
@@ -291,8 +299,8 @@ export default {
 }
 
 body {
-  background: #268b96;
-  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 80%);
+  background: url("https://i.imgur.com/eTXACsr.gif");
+  /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
   overflow: hidden;
