@@ -6,9 +6,9 @@
         </div>
       <div class = "answerButtonsWrapper">
       <button v-on:click="chooseAnswer(true)" class="answerButton true"
-              :class="{selected: trueSelected}" v-bind:disabled="isAnswered"> {{uiLabels.true}}</button>
+              :class="{selected: trueSelected, hide: falseSelected}" v-bind:disabled="isAnswered"> {{uiLabels.true}}</button>
       <button v-on:click="chooseAnswer(false)"  class="answerButton false"
-              :class="{selected: falseSelected}" v-bind:disabled="isAnswered"> {{uiLabels.false}}</button>
+              :class="{selected: falseSelected, hide: trueSelected}" v-bind:disabled="isAnswered"> {{uiLabels.false}}</button>
 <!--      <div v-show="isAnswered===true" class="answerButton true fakeDivTrue"  :class="{selected: trueSelected}">-->
 <!--        {{uiLabels.true}}-->
 <!--      </div>-->
@@ -44,6 +44,8 @@ const socket = io();
        trueSelected: false,
        falseSelected: false,
        isAnswered: false,
+
+       questionColor: "#fef9cc",
        // falseFakeDivOpacity: 100,
        // trueFakeDivOpacity: 100,
      }
@@ -57,11 +59,13 @@ const socket = io();
       if(answer){
         this.trueSelected=true;
         this.falseSelected=false;
+        // this.questionColor="#2a9108"
         // this.falseFakeDivOpacity=0
 
       }else {
         this.falseSelected=true;
         this.trueSelected=false;
+        // this.questionColor="#bb0000"
         // this.trueFakeDivOpacity=0
       }
 
@@ -100,6 +104,13 @@ const socket = io();
   width: 80%;
   margin-top: 1em;
 }
+
+.answerButton.hide{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s ease-out;
+}
+
 .answerButton{
   min-width: 40%;
   width: fit-content;
@@ -177,7 +188,8 @@ const socket = io();
 }
 
 .questionText {
-  background-color: #fef9cc;
+  background-color: v-bind(questionColor);
+  transition: background-color 1s;
   font-size: 3em;
   width: 80%;
   min-height: 4em;
@@ -187,7 +199,9 @@ const socket = io();
   border-style: solid;
   border-color: #2B211B;
   border-width: 0.3vw;
-  margin-top:1em
+  margin-top:1em;
+  text-shadow: 4px 4px #c2bd8e;
+  color: #2B211B;
 }
 
 </style>
