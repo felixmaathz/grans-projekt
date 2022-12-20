@@ -5,10 +5,6 @@
     />
   <body>
 
-  <div>
-    <AudioPlayer :src="'public/img/8bitSleighRide.mp3'" />
-  </div>
-
     <div>
       <br>
 
@@ -55,7 +51,6 @@
 </template>
 
 <script>
-import { AudioPlayer } from 'vue-audio-player';
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
@@ -66,7 +61,7 @@ const socket = io();
 
 export default {
   name: 'PollView',
-  components: {WaitingComponent, QuestionComponent, AudioPlayer},
+  components: {WaitingComponent, QuestionComponent},
 
 
   //components: {
