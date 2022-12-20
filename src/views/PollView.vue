@@ -1,8 +1,13 @@
 <template>
     <WaitingComponent
         v-show="isPopUpVisible"
-        v-on:close="closePopUp"/>
+        v-on:close="closePopUp"
+    />
   <body>
+
+  <div>
+    <AudioPlayer :src="'public/img/8bitSleighRide.mp3'" />
+  </div>
 
     <div>
       <br>
@@ -50,6 +55,7 @@
 </template>
 
 <script>
+import { AudioPlayer } from 'vue-audio-player';
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
 // import ReorderQuestion from '@/components/ReorderQuestion.vue';
@@ -60,7 +66,9 @@ const socket = io();
 
 export default {
   name: 'PollView',
-  components: {WaitingComponent, QuestionComponent},
+  components: {WaitingComponent, QuestionComponent, AudioPlayer},
+
+
   //components: {
   //QuestionComponent,
   // ReorderQuestion
@@ -305,7 +313,5 @@ body {
   height: 100vh;
   overflow: hidden;
   font-family: "Silkscreen", cursive;
-
 }
-
 </style>

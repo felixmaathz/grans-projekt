@@ -106,11 +106,13 @@ body {
   font-family: Silkscreen;
   font-size: 3em;
   margin-top: 4vh;
+  color: white;
 }
 #theGameWillStartIn {
   font-size: 2em;
   font-family: Silkscreen;
   margin-top: 2vh;
+  color: white;
 }
 #timer {
   font-size: 7em;
