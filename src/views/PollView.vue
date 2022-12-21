@@ -1,4 +1,6 @@
+<!-- CSS OK for laptop + phone, IMPROVE PLEASE -->
 <template>
+
     <WaitingComponent
         v-show="isPopUpVisible"
         v-on:close="closePopUp"
@@ -102,8 +104,7 @@ export default {
       start: 0,
       end: 0,
 
-      userList:[]
-
+      userList:[],
     }
   },
 
@@ -243,7 +244,7 @@ export default {
       this.isPopUpVisible = false;
       this.timer()
       this.start=Date.now()
-    }
+    },
   },
 }
 
@@ -253,11 +254,6 @@ export default {
 </script>
 
 <style scoped>
-
-/**{*/
-/*  outline: solid 1px greenyellow;*/
-/*}*/
-
 .progressBarWrapper{
   display: flex;
   justify-content: center;
@@ -269,7 +265,6 @@ export default {
   border-width: 0.3vw;
   border-style: solid;
 }
-
 .progressBar{
   justify-content: center;
   width: 40em;
@@ -277,7 +272,6 @@ export default {
   border-style: solid;
   border-color: #2B211B;
 }
-
 .progressBarFill{
   background-color: v-bind(progressColor);
   height: 100%;
@@ -285,7 +279,6 @@ export default {
   transition: width 150ms, background-color 5s;
   transition-timing-function: linear;
 }
-
 .leaderboard{
   height: 20em;
   width: 15em;
@@ -294,19 +287,68 @@ export default {
   border-style: solid;
   border-color: #1F6E77;
   margin: 1em;
-
 }
 .leaderboardWrapper {
   display:flex;
   justify-content: center;
 }
-
 body {
   background: url("https://i.imgur.com/eTXACsr.gif");
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
   font-family: "Silkscreen", cursive;
+}
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  .progressBarWrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 30vw;
+    margin: auto;
+    background-color: #fef9cc;
+    border-color: #2B211B;
+    border-width: 0.3vw;
+    border-style: solid;
+  }
+  .progressBar{
+    margin-top: 5vw;
+    justify-content: center;
+    width: 40em;
+    height: 40px;
+    border-style: solid;
+    border-color: #2B211B;
+  }
+  .progressBarFill{
+    background-color: v-bind(progressColor);
+    height: 100%;
+    width: v-bind(progressWidth+"%");
+    transition: width 150ms, background-color 5s;
+    transition-timing-function: linear;
+  }
+  .leaderboard{
+    height: 20em;
+    width: 15em;
+    align-items: center;
+    background-color: #FEF9CC;
+    border-style: solid;
+    border-color: #1F6E77;
+    margin: 1em;
+  }
+  .leaderboardWrapper {
+    display:flex;
+    justify-content: center;
+  }
+  body {
+    background: url("https://i.imgur.com/eTXACsr.gif");
+    /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+  }
 }
 </style>

@@ -80,11 +80,6 @@ export default {
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
     },
-    play() {
-      // Load and play the audio
-      this.$refs.audio.load();
-      this.$refs.audio.play();
-    },
     togglePlayback() {
       this.isPressed = !this.isPressed
       if (this.$refs.audio.paused) {
