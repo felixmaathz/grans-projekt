@@ -17,6 +17,14 @@
   </div>
 
 
+  <div class="endGameDiv">
+    <router-link v-bind:to="'//'">
+    <button class="endGameButton" >
+      {{uiLabels.leaveGame}}
+    </button>
+      </router-link>
+  </div>
+
 
   </body>
 </template>
@@ -110,6 +118,30 @@ body {
   justify-content: center;
 }
 
+.endGameDiv{
+  width: 10vw;
+  height: 10vh;
+  margin-left: 85vw;
+  margin-top: -2vw;
+}
+
+.endGameButton{
+  width: 10vw;
+  height: 10vh;
+  background-color: #ff0000;
+  font-family: "Press Start 2P",cursive;
+  text-shadow: 2px 2px #bb0000;
+  box-shadow: inset -0.25em -0.25em #bb0000;
+  font-size: 1.4vw;
+}
+
+.endGameButton:hover{
+  box-shadow: inset -0.15em -0.15em #410000;
+  padding-right: 0.05em;
+  padding-top: 0.15em;
+  background-color: #ad0101;
+}
+
 /* OPTIMIZATION FOR PHONE */
 @media (max-width: 700px){
   body {
@@ -137,6 +169,5 @@ body {
     display:flex;
     justify-content: center;
   }
-
 }
 </style>

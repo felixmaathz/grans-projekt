@@ -11,7 +11,9 @@
         <br>
 
         <div class="progressBarWrapper">
-<!--      lägg till vilken fråga du är på     -->
+            <div class = "questionCount">
+              {{uiLabels.question}}: {{this.activeIndex+1}}/{{this.quizLength}}
+            </div>
           <button v-on:click="stopGame()">STOP</button>
           {{uiLabels.theScore}} {{yourScore}}<br>
           {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
@@ -106,6 +108,9 @@ export default {
       end: 0,
 
       userList:[],
+      quizLength:undefined,
+
+
     }
   },
 
@@ -126,6 +131,7 @@ export default {
     socket.emit('getSelectedQuiz');
     socket.on('returnSelectedQuiz', (quizList) => {
       this.selectedQuiz = quizList
+      this.quizLength = this.selectedQuiz.questions.length;
     })
 
     socket.on('returnAllScores', (user)=>{
@@ -305,6 +311,10 @@ body {
   height: 100vh;
   overflow-y: hidden;
   font-family: "Silkscreen", cursive;
+}
+
+.questionCount {
+  margin-right: 6em;
 }
 
 /* OPTIMIZATION FOR PHONE */

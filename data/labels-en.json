@@ -80,6 +80,8 @@
 
 	"RESULTVIEW": "",
 	"goBack": "Back",
+	"leaveGame": "Leave",
+	"endGame": "End",
 
 	"PopUpComponent": "",
 	"confirm": "Confirm",
