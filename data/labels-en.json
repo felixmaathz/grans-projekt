@@ -29,7 +29,6 @@
 	"a": "A: ",
 	"gameExists": "Game ID already exists or input is empty",
 
-
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Host game",
 	"joinAGame": "Join game",
@@ -68,7 +67,6 @@
 	"goBack": "Back",
 	"startTheGame": "Start game",
 
-
 	"JOINVIEW": "",
 	"goBack": "Back",
 
@@ -79,7 +77,6 @@
 	"gameRunning": "You are playing:",
 	"loadingGame": "Loading game:",
 	"timeLeft": "Game will start in:",
-
 
 	"RESULTVIEW": "",
 	"goBack": "Back",

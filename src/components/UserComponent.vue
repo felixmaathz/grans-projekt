@@ -1,10 +1,21 @@
 <template>
-  <div :style="{ backgroundColor: randomColor, color: textColor}" class="userWrapper">
-    <div class="username">
-      <span v-if="user.host===true">{{uiLabels.theHost}}</span>
-      {{user.username}}
+  <div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <div :style="{ backgroundColor: randomColor, color: textColor}"
+         class="userWrapper">
+      <div class="username">
+          <span v-if="user.host===true">
+            <span class="material-symbols-outlined">
+              star
+            </span>
+<!--            {{uiLabels.theHost}}-->
+          </span>
+        {{user.username}}
+      </div>
     </div>
   </div>
+
+
 </template>
 
 <script>
@@ -96,9 +107,6 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
-/**{*/
-/*  outline: solid 1px greenyellow;*/
-/*}*/
 .userWrapper{
   display: flex;
   justify-content: center;
@@ -106,16 +114,14 @@ export default {
   flex-wrap: wrap;
   overflow: hidden;
   width: 15vw;
-  height: 5vw;
+  min-height: 5vw;
+  height: fit-content;
   margin: 1vw;
   font-family: 'VT323', monospace;
   border-style: solid;
   border-color: #2B211B;
   border-width: 0.3vw;
-
-
 }
-
 .username{
   width: 100%;
   font-size: 2.5em;
@@ -124,4 +130,30 @@ export default {
 }
 
 
+ .material-symbols-outlined {
+   font-variation-settings:
+       'FILL' 0,
+       'wght' 400,
+       'GRAD' 0,
+       'opsz' 48
+ }
+
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  .userWrapper{
+    width: 105%;
+    font-family: 'VT323', monospace;
+    border-style: solid;
+    border-color: #2B211B;
+    border-width: 0vw;
+    margin-bottom: -5px;
+    margin-left: 0px;
+    height: 7vw;
+  }
+  .username{
+    width: 100%;
+    font-size: 6vw;
+    word-wrap: break-word;
+  }
+}
 </style>

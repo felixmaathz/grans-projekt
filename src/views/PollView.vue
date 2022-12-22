@@ -1,63 +1,61 @@
+<!-- CSS OK for laptop + phone, IMPROVE PLEASE -->
 <template>
-    <WaitingComponent
-        v-show="isPopUpVisible"
-        v-on:close="closePopUp"/>
+
   <body>
-
-  {{uiLabels.theScore}} {{yourScore}}
     <div>
-      {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
-      <br>
+      <WaitingComponent
+          v-show="isPopUpVisible"
+          v-on:close="closePopUp"
+      />
+      <div>
+        <br>
 
-      <div class="progressBarWrapper">
-        <div class="progressBar"
-             v-if="remainingTime>=progressBarVisible">
-          <div class="progressBarFill">
+        <div class="progressBarWrapper">
+          <button v-on:click="stopGame()">STOP</button>
+          {{uiLabels.theScore}} {{yourScore}}<br>
+          {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
+          <div class="progressBar"
+               v-if="remainingTime>=progressBarVisible">
+            <div class="progressBarFill">
 
+            </div>
+          </div>
+        </div>
+
+        <div
+            v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+
+          <QuestionComponent
+              v-if="remainingTime>=questionVisible"
+              v-show= "index==activeIndex"
+              v-bind:question="question"
+              v-on:answer = "saveAnswer($event)">
+
+          </QuestionComponent>
+        </div>
+        <div class="leaderboardWrapper">
+          <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
+            {{uiLabels.leaderboard}}
+            <hr>
+            <div v-for="user in userList"
+                 v-bind:key="user">
+              {{user.username}}:
+              {{user.endScore}}
+              <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+            </div>
           </div>
         </div>
       </div>
 
-      <div
-        v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
-
-      <QuestionComponent
-          v-if="remainingTime>=questionVisible"
-          v-show= "index==activeIndex"
-          v-bind:question="question"
-          v-on:answer = "saveAnswer($event)">
-
-      </QuestionComponent>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </div>
-      <div class="leaderboardWrapper">
-      <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
-        {{uiLabels.leaderboard}}
-        <hr>
-        <div v-for="user in userList"
-             v-bind:key="user">
-          {{user.username}}:
-<!--          {{user.endScore}}-->
-          {{yourScore}}
-          <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <div>
-    <button v-on:click="easterEgg">halvera eller dubblera ditt score</button>
-  </div>
-
-
-
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <button v-on:click="stopGame()">STOP</button>
   </body>
 </template>
 
 <script>
+// @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
+// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
@@ -66,6 +64,8 @@ const socket = io();
 export default {
   name: 'PollView',
   components: {WaitingComponent, QuestionComponent},
+
+
   //components: {
   //QuestionComponent,
   // ReorderQuestion
@@ -98,14 +98,13 @@ export default {
       questionTimer: undefined,
 
       progressBarVisible: 5,
-      questionVisible: 6,
+      questionVisible: 7,
       leaderBoardVisible: 5,
 
       start: 0,
       end: 0,
 
-      userList:[]
-
+      userList:[],
     }
   },
 
@@ -118,7 +117,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     }),
-    socket.emit('joinPoll', this.gameId)
+        socket.emit('joinPoll', this.gameId)
     socket.on("newQuestion", q =>
         this.question = q
     )
@@ -133,7 +132,7 @@ export default {
       this.userList=user
       console.log("HEj"+JSON.stringify(this.userList))
       this.sortList(this.userList)
-      })
+    })
 
     socket.on('gameTerminated', ()=>{
       this.redirectUserHome()
@@ -142,7 +141,6 @@ export default {
 
   },
   methods: {
-
     sortList: function(list){
       list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
     },
@@ -227,14 +225,25 @@ export default {
       console.log("Svaret " + event + " kom fram till pollview")
       this.end=Date.now()
       console.log("end timer "+this.end)
+      // this.answeredQuestions.a.push(event)
+      // console.log(this.answeredQuestions.a)
 
+
+      // if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
+      //   console.log("rätt svar")
+      //   this.yourScore +=1000
+      //   console.log("Du har " + this.yourScore)
+      // }
+      // else{
+      //   console.log("fel svar")
+      // }
     },
 
     closePopUp: function () {
       this.isPopUpVisible = false;
       this.timer()
       this.start=Date.now()
-    }
+    },
   },
 }
 
@@ -245,15 +254,22 @@ export default {
 
 <style scoped>
 
-/**{*/
-/*  outline: solid 1px greenyellow;*/
-/*}*/
+*{
+  box-sizing: border-box;
+}
+
 
 .progressBarWrapper{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 50vw;
+  margin: auto;
+  background-color: #fef9cc;
+  border-color: #2B211B;
+  border-width: 0.3vw;
+  border-style: solid;
 }
-
 .progressBar{
   justify-content: center;
   width: 40em;
@@ -261,7 +277,6 @@ export default {
   border-style: solid;
   border-color: #2B211B;
 }
-
 .progressBarFill{
   background-color: v-bind(progressColor);
   height: 100%;
@@ -269,7 +284,6 @@ export default {
   transition: width 150ms, background-color 5s;
   transition-timing-function: linear;
 }
-
 .leaderboard{
   height: 20em;
   width: 15em;
@@ -278,21 +292,71 @@ export default {
   border-style: solid;
   border-color: #1F6E77;
   margin: 1em;
-
 }
 .leaderboardWrapper {
   display:flex;
   justify-content: center;
 }
-
 body {
-  background: #268b96;
-  background: radial-gradient(circle, #8af0ff 25%, #00a9bb 80%);
+  background: url("https://i.imgur.com/eTXACsr.gif");
+  /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
   font-family: "Silkscreen", cursive;
-
 }
 
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  .progressBarWrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 30vw;
+    margin: auto;
+    background-color: #fef9cc;
+    border-color: #2B211B;
+    border-width: 0.3vw;
+    border-style: solid;
+  }
+  .progressBar{
+    margin-top: 5vw;
+    justify-content: center;
+    width: 40em;
+    height: 40px;
+    border-style: solid;
+    border-color: #2B211B;
+  }
+  .progressBarFill{
+    background-color: v-bind(progressColor);
+    height: 100%;
+    width: v-bind(progressWidth+"%");
+    transition: width 150ms, background-color 5s;
+    transition-timing-function: linear;
+  }
+  .leaderboard{
+    height: 20em;
+    width: 15em;
+    align-items: center;
+    background-color: #FEF9CC;
+    border-style: solid;
+    border-color: #1F6E77;
+    margin: 1em;
+  }
+  .leaderboardWrapper {
+    display:flex;
+    justify-content: center;
+  }
+  body {
+    background: url("https://i.imgur.com/eTXACsr.gif");
+    /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+  }
+
+
+}
 </style>

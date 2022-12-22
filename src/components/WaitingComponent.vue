@@ -1,3 +1,4 @@
+<!-- CSS OK for laptop + phone -->
 <template>
   <body>
   <div id="GameID">
@@ -8,7 +9,7 @@
     {{uiLabels.timeLeft}}
   </div>
 
-  <p id="timer" class="timer ">
+  <p id="timer" class="timer">
     5
   </p>
 
@@ -101,19 +102,22 @@ body {
   height: 100vh;
   overflow: hidden;
   font-family: "Silkscreen", cursive;
+  overflow-y: hidden;
 }
 #GameID {
   font-family: Silkscreen;
   font-size: 3em;
   margin-top: 4vh;
+  color: white;
 }
 #theGameWillStartIn {
   font-size: 2em;
   font-family: Silkscreen;
   margin-top: 2vh;
+  color: white;
 }
 #timer {
-  font-size: 7em;
+  font-size: 8em;
   font-weight: bold;
   font-family: Silkscreen;
 }
@@ -171,5 +175,87 @@ body {
   color: #4AAE9B;
   background: transparent;
 }
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  body {
+    background: #268b96;
+    background: radial-gradient(circle, #8af0ff 25%, #00a9bb 60%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+    overflow-y: hidden;
+  }
+  #GameID {
+    font-family: Silkscreen;
+    font-size: 3em;
+    margin-top: 4vh;
+    color: white;
+  }
+  #theGameWillStartIn {
+    font-size: 2em;
+    font-family: Silkscreen;
+    margin-top: 2vh;
+    color: white;
+  }
+  #timer {
+    font-size: 6em;
+    font-weight: bold;
+    font-family: Silkscreen;
+  }
+  .timer {
+    font-size: 7em;
+    font-weight: bold;
+    font-family: Silkscreen;
+    color: green;
+  }
+  .backButtonDiv{
+    width: 10vw;
+    height: 10vh;
+    margin-right: 10vw;
+  }
+  .backButton{
+    font-family: "Press Start 2P",cursive;
+    color: #FEF9CC;
+    background-color: red;
+    /*-webkit-text-stroke: 1px black;*/
+    cursor: pointer;
+    width: 10vw;
+    height: 10vh;
+    margin-left: 50em;
+    font-size: 0.9vw;
+    text-shadow: 2px 2px #850000;
+    /*border-radius: 4vw;*/
+    box-shadow: inset -0.35em -0.35em #850000;
+    border-color: #2B211B;
+    border-width: 0.4vw;
+    border-style: solid ;
+    /*transition-duration: 0.15s;*/
+  }
+  .backButton:hover{
+    background-color: #cc0000;
+    box-shadow: inset -0.25em -0.25em #850000;
+    /*border-width: 0.3vw;*/
+    color: #FEF9CC;
+  }
+  .material-symbols-outlined {
+    font-size: 5em;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+  }
 
+  .close {
+    font-family: "Press Start 2P", cursive;
+    border: none;
+    font-size: 2vw;
+    margin-top:4vw;
+    cursor: pointer;
+    font-weight: bold;
+    color: #4AAE9B;
+    background: transparent;
+  }
+}
 </style>

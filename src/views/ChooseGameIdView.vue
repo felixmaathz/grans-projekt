@@ -1,15 +1,17 @@
+<!-- CSS OK for laptop + phone -->
 <template>
   <body>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <div class="backButtonDiv">
-    <button class="backButton" v-on:click="this.$router.go(-1)"><span class="material-symbols-outlined">
+    <button class="backButton"
+            v-on:click="this.$router.go(-1)"><span
+            class="material-symbols-outlined">
       arrow_back
     </span></button>
   </div>
 
-
-  <div style="margin-top: 6vw;">
-    <!-- view text-->
+  <div>
     <div class="enterGameID">
       {{uiLabels.enterID}}
     </div>
@@ -18,31 +20,29 @@
     <form>
       <p>
         <label for="gameid"></label> <br>
-        <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameId"
+        <input type="text" v-model="user.joinGameId"
+               v-bind:placeholder="uiLabels.gameId"
                class="questionInput">
       </p>
-
       <div class="enterNick">
         {{uiLabels.userName}}
       </div>
-
       <p>
         <label for="nickname"></label> <br>
-        <input type="text" v-model="user.username" v-bind:placeholder="uiLabels.enterNick"
+        <input type="text" v-model="user.username"
+               v-bind:placeholder="uiLabels.enterNick"
                class="questionInput" minlength="3" maxlength="10">
-
       </p>
-
       <div>
         <router-link v-bind:to="'/hostcollablobby/'+lang+'/'+user.joinGameId+'/'+user.username">
-          <button class="questionButtons" v-on:click="createCollabGame()">
+          <button class="questionButtons"
+                  v-on:click="createCollabGame()">
             Create Game
           </button>
         </router-link>
-
-
       </div>
     </form>
+
   </div>
 
 
@@ -138,6 +138,7 @@ body{
   opacity: 70%;
 }
 .enterGameID{
+  margin-top: 6vw;
   font-size: 2vw;
 }
 

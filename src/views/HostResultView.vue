@@ -2,13 +2,13 @@
   <body>
   PRESENTERA RESULTATET FÖR SPELET
   <br>
-  <div v-for="user in userList"
-       v-bind:key="user">
-    {{user.username}}
-    {{user.endScore}}
+    <div v-for="user in userList"
+         v-bind:key="user">
+      {{user.username}}
+      {{user.endScore}}
 
 
-  </div>
+    </div>
 
   <button v-on:click="terminateGame()">
     END GAME
@@ -78,3 +78,62 @@ export default {
 
 }
 </script>
+
+<style scoped>
+body{
+background: url("https://i.imgur.com/eTXACsr.gif");
+/*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+font-family: "Silkscreen", cursive;
+}
+.leaderboard{
+  font-family: "Press Start 2P",cursive;
+  height: 35em;
+  width: 25em;
+  align-items: center;
+  background-color: #FEF9CC;
+  border-style: solid;
+  border-color: #1F6E77;
+  margin: 2em;
+  padding-top: 1em;
+  margin-top: 5em;
+
+}
+.leaderboardWrapper {
+  display:flex;
+  justify-content: center;
+}
+
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px){
+  body {
+    background: url("https://i.imgur.com/eTXACsr.gif");
+    /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+  }
+  .leaderboard{
+    font-family: "Press Start 2P",cursive;
+    height: 40em;
+    width: 80em;
+    align-items: center;
+    background-color: #FEF9CC;
+    border-style: solid;
+    border-color: #1F6E77;
+    margin: 2em;
+    padding-top: 1em;
+    margin-top: 5em;
+
+  }
+  .leaderboardWrapper {
+    display:flex;
+    justify-content: center;
+  }
+
+}
+</style>
+

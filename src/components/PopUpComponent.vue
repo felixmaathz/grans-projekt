@@ -17,7 +17,7 @@
             <input type="text" v-model="chosenGameId" v-bind:placeholder="uiLabels.typeHere"
                    class="questionInput" minlength="3" maxlength="15" autofocus>
           </slot>
-          <section>
+          <section class="confirmButton">
             <slot>
               <button v-on:click="chosenId()"
                       type="button"
@@ -66,7 +66,6 @@ export default {
 </script>
 
 <style scoped>
-*{outline: solid greenyellow 1px}
 
 .modal-backdrop {
   position: fixed;
@@ -174,31 +173,28 @@ export default {
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-
   }
   .modal-header{
     padding: 1vw;
     display: flex;
     font-family: "Silkscreen", cursive;
-  }
-  .modal-header {
-    border-bottom: 0.07em solid #4AAE9B;
     font-size: 8vw;
-    color: #4AAE9B;
+    color: #00C3BA;
     justify-content: center;
   }
   .modal-body {
     position: relative;
     font-size: 10em;
     align-self: center;
+    margin-top: -10vw;
   }
   .close {
-    border: none;
     font-size: 10vw;
     cursor: pointer;
-    color: #4AAE9B;
-    background: transparent;
+    background: #00C3BA;;
     font-family: Silkscreen;
+    border-color: #2B211B;
+    border-width: 1vw;
   }
   .questionInput {
     font-family: Silkscreen;

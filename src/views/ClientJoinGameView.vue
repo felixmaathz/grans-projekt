@@ -39,13 +39,13 @@
     </form>
     <div>
         <!-- Button for joining game -->
-        <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===false">
+        <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===false">
           <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
         </router-link>
-      <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="collabQuiz===true">
+      <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===true">
         <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
       </router-link>
-      <input class="collabCheck" type="checkbox" v-model="collabQuiz"><label class="checkText">{{uiLabels.coQuiz}}</label>
+      <input class="collabCheck" type="checkbox" v-model="user.collabGame"><label class="checkText">{{uiLabels.coQuiz}}</label>
     </div>
   </div>
 
@@ -61,10 +61,9 @@ export default {
 
   data: function () {
     return {
-      user: {username: "", joinGameId: ""},
+      user: {username: "", joinGameId: "", collabGame: false},
       uiLabels: {},
       lang: "",
-      collabQuiz: false,
       currentGame: {},
       connectedUsers: []
     }
@@ -84,6 +83,7 @@ export default {
     socket.emit('getGameInfo')
     socket.on('returnGameInfo', (game) => {
       this.currentGame = game
+      console.log(JSON.stringify(game))
     })
 
     socket.emit('getUsers')
@@ -94,8 +94,10 @@ export default {
   methods: {
         joinGame: function () {
           console.log(this.connectedUsers)
-          if (this.connectedUsers.some(theUser => theUser.username === this.user.username) || this.currentGame.gameId !== this.user.joinGameId) {
-            alert("User already exist or lobby does not exist exists")
+          if (this.connectedUsers.some(theUser => theUser.username === this.user.username) ||
+              this.currentGame.gameId !== this.user.joinGameId ||
+              this.user.collabGame !== this.currentGame.collabGame) {
+            alert("User already exist or lobby does not exist")
             this.$router.go(-1)
           } else {
             let user = Object.assign({},this.user)
