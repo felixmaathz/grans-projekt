@@ -185,6 +185,11 @@ export default {
       this.connectedUsers = users
     })
 
+    socket.on('userLeft', (users) => {
+      console.log('user left')
+      this.connectedUsers = users
+    })
+
     socket.on('collabQuestionAdded', (questions)=>{
       console.log("question added"+questions)
       this.questionList=questions})

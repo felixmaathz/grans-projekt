@@ -8,7 +8,7 @@ function Data() {
       {questionText:"Är Hugo 210cm", questionAnswer:false}, {questionText:"Är Gabriel törstig?", questionAnswer:true}]}];
 
   this.editThisQuiz = {};
-  this.createdGame={gameId:"",connectedUsers: [], questions: []};
+  this.createdGame={gameId:"",connectedUsers: [], questions: [], collabGame: false};
   this.gameId ="";
 }
 
@@ -112,6 +112,7 @@ Data.prototype.createCollabGame = function(user){
   this.createdGame.gameId=user.joinGameId
   this.createdGame.connectedUsers.push(user)
   this.createdGame.questions=[]
+  this.createdGame.collabGame=true
   console.log("Created collaborative game: "+user.joinGameId)
 }
 
@@ -131,6 +132,7 @@ Data.prototype.terminateGame = function (){
   this.createdGame.gameId=""
   this.createdGame.connectedUsers=[]
   this.createdGame.questions=[]
+  this.createdGame.collabGame=false
   console.log("Game terminated")
 }
 
@@ -146,7 +148,6 @@ Data.prototype.getGameInfo=function(){
 }
 
 Data.prototype.joinGame=function(user){
-
   if(user.joinGameId===this.createdGame.gameId){
     this.createdGame.connectedUsers.push(user)
     console.log("User '"+user.username+"' connected")
