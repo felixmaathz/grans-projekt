@@ -47,6 +47,7 @@
 import io from 'socket.io-client';
 const socket = io();
 
+
 export default {
   name: 'StartView',
   components: {
@@ -68,6 +69,9 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
+
+
+
   },
   methods: {
     switchLanguage: function() {

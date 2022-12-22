@@ -1,0 +1,64 @@
+[
+  {
+    "gameId": "testQuiz",
+    "questionList": [
+      {
+        "questionText": "The Mona Lisa is a portrait of Lisa del Giocondo, a member of the Gherardini family of Florence, Italy.",
+        "questionAnswer": true
+      },
+      {
+        "questionText": "The Earth is the only planet in the solar system that has liquid water on its surface.",
+        "questionAnswer": true
+      },
+      {
+        "questionText": "The process of photosynthesis occurs in the liver of plant cells.",
+        "questionAnswer": false
+      },
+      {
+        "questionText": "The element with the atomic number 1 is helium.",
+        "questionAnswer": false
+      },
+      {
+        "questionText": "The periodic table is organized based on the increasing atomic mass of the elements.",
+        "questionAnswer": false
+      },
+      {
+        "questionText": "The circumference of a circle is equal to 2 times the radius plus pi.",
+        "questionAnswer": false
+      },
+      {
+        "questionText": "The law of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.",
+        "questionAnswer": true
+      },
+      {
+        "questionText": "The derivative of a function is the slope of the normal line to the function at a given point.",
+        "questionAnswer": false
+      },
+      {
+        "questionText": "The process of digestion begins in the stomach with the action of hydrochloric acid.",
+        "questionAnswer": true
+      },
+      {
+        "questionText": "The respiratory system is responsible for exchanging gases between the body and the environment.",
+        "questionAnswer": true
+      }
+    ]
+  },
+  {
+    "gameId":"123",
+    "questionList": [
+      {
+        "questionText":"är detta kul?",
+        "questionAnswer":true
+      },
+      {
+        "questionText":"Är Hugo 210cm",
+        "questionAnswer":false
+      },
+      {
+        "questionText":"Är Gabriel törstig?",
+        "questionAnswer":true
+      }
+    ]
+  }
+]

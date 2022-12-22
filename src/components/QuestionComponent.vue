@@ -186,7 +186,7 @@ const socket = io();
 .questionText {
   background-color: v-bind(questionColor);
   transition: background-color 1s;
-  font-size: 3em;
+  font-size: 2em;
   width: 80%;
   min-height: 4em;
   display: flex;
@@ -196,7 +196,7 @@ const socket = io();
   border-color: #2B211B;
   border-width: 0.3vw;
   margin-top:1em;
-  text-shadow: 4px 4px #c2bd8e;
+  text-shadow: 2px 2px #c2bd8e;
   color: #2B211B;
 }
 /* OPTIMIZATION FOR PHONE */

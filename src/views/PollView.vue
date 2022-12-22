@@ -1,54 +1,54 @@
 <!-- CSS OK for laptop + phone, IMPROVE PLEASE -->
 <template>
 
-    <WaitingComponent
-        v-show="isPopUpVisible"
-        v-on:close="closePopUp"
-    />
   <body>
-
     <div>
-      <br>
+      <WaitingComponent
+          v-show="isPopUpVisible"
+          v-on:close="closePopUp"
+      />
+      <div>
+        <br>
 
-      <div class="progressBarWrapper">
-        <button v-on:click="stopGame()">STOP</button>
-        {{uiLabels.theScore}} {{yourScore}}<br>
-        {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
-        <div class="progressBar"
-             v-if="remainingTime>=progressBarVisible">
-          <div class="progressBarFill">
+        <div class="progressBarWrapper">
+          <button v-on:click="stopGame()">STOP</button>
+          {{uiLabels.theScore}} {{yourScore}}<br>
+          {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
+          <div class="progressBar"
+               v-if="remainingTime>=progressBarVisible">
+            <div class="progressBarFill">
 
+            </div>
+          </div>
+        </div>
+
+        <div
+            v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+
+          <QuestionComponent
+              v-if="remainingTime>=questionVisible"
+              v-show= "index==activeIndex"
+              v-bind:question="question"
+              v-on:answer = "saveAnswer($event)">
+
+          </QuestionComponent>
+        </div>
+        <div class="leaderboardWrapper">
+          <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
+            {{uiLabels.leaderboard}}
+            <hr>
+            <div v-for="user in userList"
+                 v-bind:key="user">
+              {{user.username}}:
+              {{user.endScore}}
+              <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+            </div>
           </div>
         </div>
       </div>
 
-      <div
-        v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
-
-      <QuestionComponent
-          v-if="remainingTime>=questionVisible"
-          v-show= "index==activeIndex"
-          v-bind:question="question"
-          v-on:answer = "saveAnswer($event)">
-
-      </QuestionComponent>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </div>
-      <div class="leaderboardWrapper">
-      <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
-        {{uiLabels.leaderboard}}
-        <hr>
-        <div v-for="user in userList"
-             v-bind:key="user">
-          {{user.username}}:
-          {{user.endScore}}
-          <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
   </body>
 </template>
 
@@ -117,7 +117,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     }),
-    socket.emit('joinPoll', this.gameId)
+        socket.emit('joinPoll', this.gameId)
     socket.on("newQuestion", q =>
         this.question = q
     )
@@ -132,7 +132,7 @@ export default {
       this.userList=user
       console.log("HEj"+JSON.stringify(this.userList))
       this.sortList(this.userList)
-      })
+    })
 
     socket.on('gameTerminated', ()=>{
       this.redirectUserHome()
@@ -141,7 +141,6 @@ export default {
 
   },
   methods: {
-
     sortList: function(list){
       list.sort((a, b) => parseFloat(b.endScore) - parseFloat(a.endScore));
     },
@@ -254,6 +253,12 @@ export default {
 </script>
 
 <style scoped>
+
+*{
+  box-sizing: border-box;
+}
+
+
 .progressBarWrapper{
   display: flex;
   justify-content: center;
@@ -300,6 +305,7 @@ body {
   overflow-y: hidden;
   font-family: "Silkscreen", cursive;
 }
+
 /* OPTIMIZATION FOR PHONE */
 @media (max-width: 700px) {
   .progressBarWrapper{
@@ -350,5 +356,7 @@ body {
     overflow: hidden;
     font-family: "Silkscreen", cursive;
   }
+
+
 }
 </style>
