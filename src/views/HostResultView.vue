@@ -1,13 +1,18 @@
 <template>
   <body>
-  PRESENTERA RESULTATET FÖR SPELET
   <br>
-    <div v-for="user in userList"
-         v-bind:key="user">
-      {{user.username}}
-      {{user.endScore}}
 
-
+      <div class="leaderboardWrapper">
+        <div class = "leaderboard">
+          {{uiLabels.leaderboard}}
+          <hr>
+          <div v-for="user in userList"
+               v-bind:key="user">
+          {{user.username}}
+          {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+          </div>
+        </div>
     </div>
 
   <button v-on:click="terminateGame()">

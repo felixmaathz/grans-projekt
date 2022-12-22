@@ -11,6 +11,7 @@
         <br>
 
         <div class="progressBarWrapper">
+<!--      lägg till vilken fråga du är på     -->
           <button v-on:click="stopGame()">STOP</button>
           {{uiLabels.theScore}} {{yourScore}}<br>
           {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}

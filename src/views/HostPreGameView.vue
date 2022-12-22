@@ -8,7 +8,7 @@
       arrow_back
     </span></button>
     </div>
-    <h1>{{uiLabels.gameId}}: {{ this.gameId }} </h1>
+    <h1>{{uiLabels.gameId}}:{{ this.gameId }}</h1>
 
   </div>
 <!--<div v-for="user in this.connectedUsers"-->
@@ -109,6 +109,8 @@ body{
 .header{
   display: flex;
   justify-content: center;
+  font-family: "Press Start 2P",cursive;
+
 }
 
 .backButtonDiv{
@@ -156,7 +158,7 @@ body{
 
 h1{
   color: #00C3BA;
-  font-size: 5vw;
+  font-size: 3vw;
   /*-webkit-text-stroke: 0.01vw black;*/
   text-shadow: 4px 2px black;
   margin-top: 8vw;
@@ -245,6 +247,7 @@ h1{
       font-size: 7vw;
       text-shadow: 4px 2px black;
       margin-top: 40vw;
+
     }
     .userListWrapper{
       height: 40vw;
