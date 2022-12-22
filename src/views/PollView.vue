@@ -36,12 +36,20 @@
         <div v-for="user in userList"
              v-bind:key="user">
           {{user.username}}:
-          {{user.endScore}}
+<!--          {{user.endScore}}-->
+          {{yourScore}}
           <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
           </div>
         </div>
       </div>
   </div>
+
+  <div>
+    <button v-on:click="easterEgg">halvera eller dubblera ditt score</button>
+  </div>
+
+
+
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <button v-on:click="stopGame()">STOP</button>
@@ -49,9 +57,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
-// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
@@ -221,18 +227,7 @@ export default {
       console.log("Svaret " + event + " kom fram till pollview")
       this.end=Date.now()
       console.log("end timer "+this.end)
-      // this.answeredQuestions.a.push(event)
-      // console.log(this.answeredQuestions.a)
 
-
-      // if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
-      //   console.log("rätt svar")
-      //   this.yourScore +=1000
-      //   console.log("Du har " + this.yourScore)
-      // }
-      // else{
-      //   console.log("fel svar")
-      // }
     },
 
     closePopUp: function () {

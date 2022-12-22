@@ -39,8 +39,7 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      lang: "en",
-      hideNav: true
+      lang: "en"
     }
   },
   created: function () {
@@ -57,9 +56,6 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
-    toggleNav: function () {
-      this.hideNav = ! this.hideNav;
-    }
   }
 }
 </script>
