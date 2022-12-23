@@ -94,12 +94,11 @@ export default {
       isPopUpVisible: true,
       progressWidth: 100,
       progressColor: "green",
-      remainingTime:17,
 
+      remainingTime:17,
       progressTimer: undefined,
       decreaseTimer: undefined,
       questionTimer: undefined,
-
       progressBarVisible: 5,
       questionVisible: 7,
       leaderBoardVisible: 5,
@@ -109,7 +108,7 @@ export default {
 
       userList:[],
       quizLength:undefined,
-
+      answerStreak: 0,
 
     }
   },
@@ -196,9 +195,12 @@ export default {
           this.yourScore=this.yourScore+(10000-this.end+this.start)
           console.log("rätt svar")
           console.log("Du har " + this.yourScore)
+
+          this.increaseAnswerStreak()
           socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
         }
         else{
+          this.resetAnswerStreak()
           console.log("fel svar")
           socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
         }
@@ -251,6 +253,20 @@ export default {
       this.timer()
       this.start=Date.now()
     },
+    increaseAnswerStreak: function() {
+      if(this.answerStreak<3){
+        this.answerStreak +=1
+      }
+      if(this.answerStreak===3){
+        this.yourScore+=2000
+        console.log("Answer Streak!")
+        this.answerStreak=0;
+      }
+    },
+    resetAnswerStreak: function() {
+      this.answerStreak=0
+      console.log("Answer streak reset")
+    }
   },
 }
 
