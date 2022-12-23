@@ -1,21 +1,6 @@
 <!-- CSS OK for laptop + phone -->
 <template>
   <body>
-      <div>
-        <!-- Audio element to play the audio file -->
-        <audio v-bind:style="{display: audioVisible ? 'block' : 'none'}"  ref="audio" controls>
-          <!-- Set the src attribute to the URL of the audio file -->
-          <source :src="audioUrl" type="audio/mp3">
-        </audio>
-
-        <!-- Button to trigger the play method -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <button @click="togglePlayback()" class="playButton">
-          <span class="material-symbols-outlined">
-            volume_up
-          </span>
-        </button>
-      </div>
 
       <div>
         <div class="languageButtonDiv">
@@ -59,9 +44,6 @@ export default {
       id: "",
       lang: "en",
       hideNav: true,
-      audioUrl: 'sleighRide8Bit.mp3',
-      audioVisible: false,
-      isPressed: false,
     }
   },
   created: function () {
@@ -83,14 +65,6 @@ export default {
     },
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
-    },
-    togglePlayback() {
-      this.isPressed = !this.isPressed
-      if (this.$refs.audio.paused) {
-        this.$refs.audio.play();
-      } else {
-        this.$refs.audio.pause();
-      }
     },
   }
 }
@@ -161,36 +135,6 @@ export default {
     padding-right: 0.15em;
     padding-top: 0.2em;
   }
-  .playButton{
-  font-family: "Press Start 2P",cursive;
-  background-color: #EF233C;
-  cursor: pointer;
-  width: 6vw;
-  height: 10vh;
-  margin-left: -65vw;
-  margin-top: 5vw;
-  font-size: 0.9vw;
-  text-shadow: 2px 2px black;
-  box-shadow: inset -0.35em -0.35em #ab1226;
-  border-color: #2B211B;
-  border-width: 0.4vw;
-  border-style: solid ;
-  }
-  .playButton:hover{
-    background-color: #dc152f;
-    box-shadow: inset -0.25em -0.25em #ab1226;
-    padding-right: 0.05vw;
-    padding-top: 0.05vw;
-  }
-  .material-symbols-outlined {
-    font-size: 4vw;
-    color: #00d9ce;
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
-  }
 
 /* OPTIMIZATION FOR PHONE */
 @media (max-width: 700px) {
@@ -256,38 +200,6 @@ export default {
     box-shadow: inset -0.2em -0.2em #027a75;
     padding-right: 0.15em;
     padding-top: 0.2em;
-  }
-  .playButton{
-    font-family: "Press Start 2P",cursive;
-    cursor: pointer;
-    width: 20vw;
-    height: 10vh;
-    margin-left: -70vw;
-    margin-top: 5vw;
-    font-size: 0.9vw;
-    text-shadow: 2px 2px black;
-    box-shadow: inset -1em -1em #ab1226;
-    border-width: 0.6vw;
-    border-style: solid ;
-    background-color: #ec1733;
-    border-color: #2B211B;
-  }
-  .playButton:hover{
-    background-color: #ec1733;
-    box-shadow: inset -0.5em -0.5em #ab1226;
-    padding-right: 0.05vw;
-    padding-top: 0.05vw;
-  }
-  .material-symbols-outlined {
-    font-size: 16vw;
-    color: #00d9ce;
-    border-color: #dc152f;
-    background-color: #ec1733;
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
   }
 }
 </style>

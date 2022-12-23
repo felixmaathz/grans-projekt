@@ -2,6 +2,7 @@
 <template>
 
   <body>
+
     <div>
       <WaitingComponent
           v-show="isPopUpVisible"
@@ -11,9 +12,26 @@
         <br>
 
         <div class="progressBarWrapper">
+          <div>
+            <!-- Audio element -->
+            <audio v-bind:style="{display: audioVisible ? 'block' : 'none'}"  ref="audio" controls>
+              <!-- Set the src attribute to the URL of the audio file -->
+              <source :src="audioUrl" type="audio/mp3">
+            </audio>
+
+            <!-- Button to toggle music on and off -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+            <button class="playButton" @click="togglePlayback()">
+            <span class="material-symbols-outlined">
+              volume_up
+            </span>
+            </button>
+          </div>
+
             <div class = "questionCount">
               {{uiLabels.question}}: {{this.activeIndex+1}}/{{this.quizLength}}
             </div>
+
           <button v-on:click="stopGame()">STOP</button>
           {{uiLabels.theScore}} {{yourScore}}<br>
           {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
@@ -124,7 +142,12 @@ export default {
       quizLength:undefined,
       answerStreak: 0,
       answerMargin: 0,
-      answerMarginTimer: undefined
+      answerMarginTimer: undefined,
+
+      /* Data for playing music in background */
+      audioUrl: 'pollViewScatman.mp3',
+      audioVisible: false,
+      isPressed: false,
 
     }
   },
@@ -305,7 +328,16 @@ export default {
         self.answerMargin +=0.1
       }, 20)
 
-    }
+    },
+    /* Play and pause music */
+    togglePlayback() {
+      this.isPressed = !this.isPressed
+      if (this.$refs.audio.paused) {
+        this.$refs.audio.play();
+      } else {
+        this.$refs.audio.pause();
+      }
+    },
   },
 }
 
@@ -394,6 +426,27 @@ body {
 .answerText.false{
   color: red;
   top: v-bind(answerMargin+"vh");
+}
+
+.playButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  speak: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background: transparent;
+}
+.material-symbols-outlined {
+  font-size: 4vw;
+  color: black;
+  font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
 }
 
 /* OPTIMIZATION FOR PHONE */
