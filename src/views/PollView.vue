@@ -36,6 +36,20 @@
 
           </QuestionComponent>
         </div>
+
+        <div class="answerReveal" v-if="remainingTime<7&&remainingTime>=  5">
+
+          <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
+                class="answerText true">
+             Correct answer <br>
+            +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak + 2000</p>
+          </div>
+          <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
+                class="answerText false">
+            Wrong answer
+          </div>
+        </div>
+
         <div class="leaderboardWrapper">
           <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
             {{uiLabels.leaderboard}}
@@ -109,6 +123,8 @@ export default {
       userList:[],
       quizLength:undefined,
       answerStreak: 0,
+      answerMargin: 0,
+      answerMarginTimer: undefined
 
     }
   },
@@ -144,7 +160,10 @@ export default {
       this.redirectUserHome()
     })
 
-
+    clearInterval(this.progressTimer)
+    clearInterval(this.decreaseTimer)
+    clearInterval(this.questionTimer)
+    console.log("HEj")
   },
   methods: {
     sortList: function(list){
@@ -188,7 +207,7 @@ export default {
       if(this.remainingTime<=5){
         socket.emit('getScore')
       }
-      if(this.remainingTime===5){
+      if(this.remainingTime===7){
         this.answeredQuestions.a.push(this.selectedAnswer)
         console.log(this.answeredQuestions.a)
         if(this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
@@ -197,9 +216,11 @@ export default {
           console.log("Du har " + this.yourScore)
 
           this.increaseAnswerStreak()
+          this.answerTextAnimation(true)
           socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
         }
         else{
+          this.answerTextAnimation(false)
           this.resetAnswerStreak()
           console.log("fel svar")
           socket.emit('totalScore', {theGameId: this.gameId, theUser: this.theUser, theScore: this.yourScore})
@@ -260,12 +281,30 @@ export default {
       if(this.answerStreak===3){
         this.yourScore+=2000
         console.log("Answer Streak!")
-        this.answerStreak=0;
+        let self=this;
+        setTimeout(function(){
+          self.resetAnswerStreak()},
+            3000)
       }
     },
     resetAnswerStreak: function() {
       this.answerStreak=0
       console.log("Answer streak reset")
+    },
+    answerTextAnimation: function(answer) {
+      if(answer){
+        this.answerMargin=30
+      }else{
+        this.answerMargin=20
+      }
+      let self=this
+      setTimeout(function(){
+        clearInterval(self.answerMarginTimer)
+      },3000)
+      this.answerMarginTimer = setInterval(function(){
+        self.answerMargin +=0.1
+      }, 20)
+
     }
   },
 }
@@ -331,6 +370,30 @@ body {
 
 .questionCount {
   margin-right: 6em;
+}
+
+.answerReveal{
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.answerText{
+  font-size: 3em;
+  text-shadow: 4px 4px #2B211B;
+  position: absolute;
+}
+
+.answerText.true{
+  color: #3dda09;
+  bottom: v-bind(answerMargin+"vh");
+  transition: bottom 0.1s;
+}
+
+.answerText.false{
+  color: red;
+  top: v-bind(answerMargin+"vh");
 }
 
 /* OPTIMIZATION FOR PHONE */
