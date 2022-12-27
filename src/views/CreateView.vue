@@ -20,7 +20,7 @@
         <h3>
           {{uiLabels.gameId}}: {{this.gameId}}
         </h3>
-        <input class="questionInput" type="text"
+        <input class="questionInput" type="text" maxlength="100" minlength="10"
                v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->

@@ -27,10 +27,6 @@
         "questionAnswer": false
       },
       {
-        "questionText": "The law of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.",
-        "questionAnswer": true
-      },
-      {
         "questionText": "The derivative of a function is the slope of the normal line to the function at a given point.",
         "questionAnswer": false
       },

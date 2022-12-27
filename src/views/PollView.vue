@@ -2,39 +2,41 @@
 <template>
 
   <body>
-
+  <button style="position:absolute;" v-on:click="stopGame()">STOP</button>
+  <div>
+    <WaitingComponent
+        v-show="isPopUpVisible"
+        v-on:close="closePopUp"
+    />
     <div>
-      <WaitingComponent
-          v-show="isPopUpVisible"
-          v-on:close="closePopUp"
-      />
-      <div>
-        <br>
+      <br>
 
-        <div class="progressBarWrapper">
-          <div>
-            <!-- Audio element -->
-            <audio v-bind:style="{display: audioVisible ? 'block' : 'none'}"  ref="audio" controls>
-              <!-- Set the src attribute to the URL of the audio file -->
-              <source :src="audioUrl" type="audio/mp3">
-            </audio>
+      <div class="progressBarWrapper">
 
-            <!-- Button to toggle music on and off -->
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-            <button class="playButton" @click="togglePlayback()">
-            <span class="material-symbols-outlined">
+        <div class="volumeButtonDiv">
+          <!-- Audio element -->
+          <audio v-bind:style="{display: audioVisible ? 'block' : 'none'}"  ref="audio" controls>
+            <!-- Set the src attribute to the URL of the audio file -->
+            <source :src="audioUrl" type="audio/mp3">
+          </audio>
+
+          <!-- Button to toggle music on and off -->
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+          <button class="volumeButton" @click="togglePlayback()">
+
+                <span class="material-symbols-outlined">
               volume_up
             </span>
-            </button>
-          </div>
 
-            <div class = "questionCount">
-              {{uiLabels.question}}: {{this.activeIndex+1}}/{{this.quizLength}}
-            </div>
+          </button>
+        </div>
 
-          <button v-on:click="stopGame()">STOP</button>
+        <div class="gameDetails">
+          {{uiLabels.question}}: {{this.activeIndex+1}}/{{this.quizLength}}<br>
           {{uiLabels.theScore}} {{yourScore}}<br>
           {{uiLabels.gameRunning}} {{selectedQuiz.gameId}}
+        </div>
+
           <div class="progressBar"
                v-if="remainingTime>=progressBarVisible">
             <div class="progressBarFill">
@@ -43,47 +45,47 @@
           </div>
         </div>
 
-        <div
-            v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
+      <div
+          v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
-          <QuestionComponent
-              v-if="remainingTime>=questionVisible"
-              v-show= "index==activeIndex"
-              v-bind:question="question"
-              v-on:answer = "saveAnswer($event)">
+        <QuestionComponent
+            v-if="remainingTime>=questionVisible"
+            v-show= "index==activeIndex"
+            v-bind:question="question"
+            v-on:answer = "saveAnswer($event)">
 
-          </QuestionComponent>
+        </QuestionComponent>
+      </div>
+
+      <div class="answerReveal" v-if="remainingTime<7&&remainingTime>=  5">
+
+        <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
+             class="answerText true">
+          Correct answer <br>
+          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak + 2000</p>
         </div>
-
-        <div class="answerReveal" v-if="remainingTime<7&&remainingTime>=  5">
-
-          <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
-                class="answerText true">
-             Correct answer <br>
-            +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak + 2000</p>
-          </div>
-          <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
-                class="answerText false">
-            Wrong answer
-          </div>
-        </div>
-
-        <div class="leaderboardWrapper">
-          <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
-            {{uiLabels.leaderboard}}
-            <hr>
-            <div v-for="user in userList"
-                 v-bind:key="user">
-              {{user.username}}:
-              {{user.endScore}}
-              <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
-            </div>
-          </div>
+        <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
+             class="answerText false">
+          Wrong answer
         </div>
       </div>
 
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <div class="leaderboardWrapper">
+        <div v-if="remainingTime<leaderBoardVisible" class="leaderboard">
+          <h1>{{uiLabels.leaderboard}}</h1>
+          <hr>
+          <div v-for="user in userList"
+               v-bind:key="user">
+            {{user.username}}:
+            {{user.endScore}}
+            <img src="@/banana.png" alt="Banana" style = "width:35px; height:35px">
+          </div>
+        </div>
+      </div>
     </div>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  </div>
   </body>
 </template>
 
@@ -306,7 +308,7 @@ export default {
         console.log("Answer Streak!")
         let self=this;
         setTimeout(function(){
-          self.resetAnswerStreak()},
+              self.resetAnswerStreak()},
             3000)
       }
     },
@@ -354,10 +356,13 @@ export default {
 
 
 .progressBarWrapper{
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  width: 50vw;
+  width: 80%;
+  min-height: 8em;
   margin: auto;
   background-color: #fef9cc;
   border-color: #2B211B;
@@ -366,8 +371,8 @@ export default {
 }
 .progressBar{
   justify-content: center;
-  width: 40em;
-  height: 40px;
+  width: 40vw;
+  height: 50px;
   border-style: solid;
   border-color: #2B211B;
 }
@@ -378,14 +383,70 @@ export default {
   transition: width 150ms, background-color 5s;
   transition-timing-function: linear;
 }
+
+.gameDetails{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  width: 24%;
+  height: 8em;
+  flex-wrap: wrap;
+}
+
+.volumeButtonDiv{
+  width: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100px;
+
+}
+
+.volumeButton{
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top:10px;
+  left: 10px;
+  color: #FEF9CC;
+  background-color: #00C3BA;
+  text-shadow: 2px 2px #1F6E77;
+  box-shadow: inset -0.1em -0.1em #268b96;
+  border-color: #2B211B;
+  border-width: 0.4em;
+  border-style: solid ;
+}
+
+.volumeButton:hover{
+  padding-right: 0.25em;
+  padding-top: 0.25em;
+  background-color: #268b96;
+  box-shadow: inset -0.05em -0.05em #027a75;
+  color: #FEF9CC;
+}
+.material-symbols-outlined {
+  font-size: 5em;
+  margin: auto;
+  font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+}
+
 .leaderboard{
-  height: 20em;
-  width: 15em;
+  padding: 20px;
+  font-size: 1.7em;
+  margin-top: 2em;
+  min-height: 50vh;
+  height: fit-content;
+  width: fit-content;
   align-items: center;
   background-color: #FEF9CC;
   border-style: solid;
-  border-color: #1F6E77;
-  margin: 1em;
+  box-shadow: inset -0.5em -0.5em #c2bd8e;
 }
 .leaderboardWrapper {
   display:flex;
@@ -393,6 +454,7 @@ export default {
 }
 body {
   background: url("https://i.imgur.com/eTXACsr.gif");
+  background-size: cover;
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
@@ -400,9 +462,6 @@ body {
   font-family: "Silkscreen", cursive;
 }
 
-.questionCount {
-  margin-right: 6em;
-}
 
 .answerReveal{
   color: white;
@@ -428,35 +487,15 @@ body {
   top: v-bind(answerMargin+"vh");
 }
 
-.playButton {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  display: inline-block;
-  speak: none;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  background: transparent;
-}
-.material-symbols-outlined {
-  font-size: 4vw;
-  color: black;
-  font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 48
-}
-
 /* OPTIMIZATION FOR PHONE */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .progressBarWrapper{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 90%;
-    height: 30vw;
+    width: 95%;
+    height: 100px;
+    padding: 10px;
     margin: auto;
     background-color: #fef9cc;
     border-color: #2B211B;
@@ -466,11 +505,25 @@ body {
   .progressBar{
     margin-top: 5vw;
     justify-content: center;
-    width: 40em;
+    width: 40%;
     height: 40px;
     border-style: solid;
     border-color: #2B211B;
   }
+
+  .gameDetails{
+    font-size: 1em;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    width: 24%;
+    height: 100%;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+
   .progressBarFill{
     background-color: v-bind(progressColor);
     height: 100%;
@@ -479,27 +532,21 @@ body {
     transition-timing-function: linear;
   }
   .leaderboard{
-    height: 20em;
-    width: 15em;
+    padding: 20px;
+    font-size: 1.2em;
+    margin-top: 2em;
+    min-height: 50vh;
+    height: fit-content;
+    width: fit-content;
     align-items: center;
     background-color: #FEF9CC;
     border-style: solid;
-    border-color: #1F6E77;
-    margin: 1em;
+    box-shadow: inset -0.5em -0.5em #c2bd8e;
   }
   .leaderboardWrapper {
     display:flex;
     justify-content: center;
   }
-  body {
-    background: url("https://i.imgur.com/eTXACsr.gif");
-    /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    font-family: "Silkscreen", cursive;
-  }
-
 
 }
 </style>

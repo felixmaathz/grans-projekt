@@ -74,9 +74,9 @@
 
 	"POLLVIEW": "",
 	"goBack": "Tillbaka",
-	"theScore": "Dina poäng:",
+	"theScore": "Poäng:",
 	"leaderboard": "POÄNGSTÄLLNING",
-	"gameRunning": "Du spelar:",
+	"gameRunning": "Spel-ID:",
 	"loadingGame": "Laddar spel:",
 	"timeLeft": "Spelet startar om:",
 

@@ -9,12 +9,6 @@
               :class="{selected: trueSelected, hide: falseSelected}" v-bind:disabled="isAnswered"> {{uiLabels.true}}</button>
       <button v-on:click="chooseAnswer(false)"  class="answerButton false"
               :class="{selected: falseSelected, hide: trueSelected}" v-bind:disabled="isAnswered"> {{uiLabels.false}}</button>
-<!--      <div v-show="isAnswered===true" class="answerButton true fakeDivTrue"  :class="{selected: trueSelected}">-->
-<!--        {{uiLabels.true}}-->
-<!--      </div>-->
-<!--        <div v-show="isAnswered===true" class="answerButton false fakeDivFalse"  :class="{selected: falseSelected}">-->
-<!--          {{uiLabels.false}}-->
-<!--        </div>-->
       </div>
   </div>
 </template>
@@ -80,9 +74,14 @@ const socket = io();
 
 <style scoped>
 
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .questionComponentWrapper{
-  height: 85vh;
-  overflow: hidden;
+  height: 70vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -96,7 +95,7 @@ const socket = io();
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20em;
+  min-height: 50%;
   width: 80%;
   margin-top: 1em;
 }
@@ -108,15 +107,15 @@ const socket = io();
 }
 
 .answerButton{
-  min-width: 40%;
+  min-width: 45%;
   width: fit-content;
   height: 80%;
-  margin: 2vw ;
+  margin: 1vw ;
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
   /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
-  font-size: 5em;
+  font-size: 4em;
   /*border-radius: 4vw;*/
   border-color: #2B211B;
   border-width: 0.3vw;
@@ -129,22 +128,6 @@ const socket = io();
   box-shadow: inset -0.25em -0.25em #2a9108;
 
 }
-
-/*.answerButton.selected.fakeDivTrue{*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  opacity: v-bind(trueFakeDivOpacity+"%");*/
-/*}*/
-
-/*.answerButton.selected.fakeDivFalse{*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  opacity: v-bind(falseFakeDivOpacity+"%");*/
-
-/*}*/
-
 
 .answerButton.false{
   background-color: #ff0000;
@@ -186,7 +169,8 @@ const socket = io();
 .questionText {
   background-color: v-bind(questionColor);
   transition: background-color 1s;
-  font-size: 2em;
+  font-size: 3vw;
+  padding: 50px;
   width: 80%;
   min-height: 4em;
   display: flex;
@@ -195,31 +179,39 @@ const socket = io();
   border-style: solid;
   border-color: #2B211B;
   border-width: 0.3vw;
-  margin-top:1em;
+  margin-top:0.5em;
   text-shadow: 2px 2px #c2bd8e;
   color: #2B211B;
 }
 /* OPTIMIZATION FOR PHONE */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
   .questionComponentWrapper{
-    height: 85vh;
-    overflow: hidden;
+    position: relative;
+    outline: 1px solid greenyellow;
+    height: 82vh;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: row;
   }
 
   .answerButtonsWrapper{
+    position: absolute;
+    bottom: 10px;
+    height: 10px;
     background-color: #291F1E;
     border-style: solid;
     border-color: #c2bd8e;
-    border-width: 0.3vw;
+    border-width: 0.2em;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 20em;
-    width: 80%;
-    margin-top: 1em;
+    width: 95%;
   }
 
   .answerButton.hide{
@@ -229,10 +221,8 @@ const socket = io();
   }
 
   .answerButton{
-    min-width: 40%;
-    width: fit-content;
-    height: 80%;
-    margin: 2vw ;
+    width: 48%;
+    margin: 0.5vw ;
     font-family: "Press Start 2P",cursive;
     color: #FEF9CC;
     /*-webkit-text-stroke: 1px black;*/
@@ -305,20 +295,23 @@ const socket = io();
   }
 
   .questionText {
+    min-height: 40%;
+    height: fit-content;
     background-color: v-bind(questionColor);
     transition: background-color 1s;
-    font-size: 3em;
-    width: 80%;
-    min-height: 4em;
+    font-size: 4vw;
+    overflow: auto;
+    width: 95%;
+    padding: 20px;
     display: flex;
     justify-content:  center;
     align-items: center;
     border-style: solid;
     border-color: #2B211B;
     border-width: 0.3vw;
-    margin-top:1em;
-    text-shadow: 4px 4px #c2bd8e;
+    text-shadow: 1px 1px #c2bd8e;
     color: #2B211B;
+    margin-top: 2em;
   }
 }
 

@@ -2,17 +2,16 @@
 <template>
   <body>
 
-      <div>
-        <div class="languageButtonDiv">
-          <button class="gameButtons language" v-on:click="switchLanguage">
-            {{uiLabels.changeLanguage}}
-          </button>
-        </div>
 
+    <button class="gameButtons language" v-on:click="switchLanguage">
+      {{uiLabels.changeLanguage}}
+    </button>
+
+      <div class="content">
         <h1 class = "gameName">{{uiLabels.gameTitle}}</h1>
-      </div>
 
-    <div>
+
+    <div class="buttons">
       <router-link v-bind:to="'/hostorjoin/'+lang">
         <button class="gameButtons">
           {{uiLabels.playTheGame}}
@@ -24,6 +23,7 @@
         </button>
       </router-link>
     </div>
+      </div>
   </body>
 </template>
 
@@ -118,17 +118,21 @@ export default {
     box-shadow: inset -0.1em -0.1em #027a75;
     color: #FEF9CC;
   }
-  .languageButtonDiv{
-    width: 10vw;
-    height: 10vh;
-    margin-left: 1vw;
-    margin-top: -7.3vw;
-  }
+  /*.languageButtonDiv{*/
+  /*  position: absolute;*/
+  /*  width: 10vw;*/
+  /*  height: 10vh;*/
+  /*}*/
   .gameButtons.language{
     width: 10vw;
     height: 10vh;
     font-size: 0.9vw;
     box-shadow: inset -0.35em -0.35em #268b96;
+    position: absolute;
+    right: 0;
+    border-width: 0.4vw;
+    /*width: fit-content;*/
+    min-height: 8vh;
   }
   .gameButtons.language:hover{
     box-shadow: inset -0.2em -0.2em #027a75;
@@ -137,37 +141,38 @@ export default {
   }
 
 /* OPTIMIZATION FOR PHONE */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   header {
     background-color: gray;
-    width: 100%;
     display: grid;
-    grid-template-columns: 2em auto;
-  }
-  body{
-    background: #EF233C;
-    background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    font-family: "Silkscreen", cursive;
+
   }
   h1{
     color: #00C3BA;
     text-shadow: 5px 5px black;
   }
   .gameName{
-    margin-top: 10vh;
+    margin-top: 20vh;
+    position: relative;
     font-size: 15vw;
+  }
+
+  .buttons{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 20px;
   }
   .gameButtons{
     font-family: "Press Start 2P",cursive;
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 70vw;
-    height: 15vh;
-    margin: 20px;
+    width: 90vw;
+    height: 20vh;
+    margin: 10px;
     font-size: 10vw;
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.15em -0.15em #268b96;
@@ -182,19 +187,24 @@ export default {
     box-shadow: inset -0.1em -0.1em #027a75;
     color: #FEF9CC;
   }
-  .languageButtonDiv{
-    width: 10vw;
-    height: 10vh;
-    margin: 1vw;
-    margin-top: -26.55vw;
-  }
+  /*.languageButtonDiv{*/
+  /*  position: absolute;*/
+  /*  width: 10vw;*/
+  /*  height: 10vh;*/
+  /*  top:0;*/
+  /*  left:60%;*/
+  /*  outline: blue 1px solid;*/
+  /*}*/
   .gameButtons.language{
+    position: absolute;
+    right: 0;
     border-width: 0.6vw;
-    width: 40vw;
-    height: 10vh;
-    font-size: 4vw;
-    margin-left: 54vw;
-    box-shadow: inset -0.35em -0.35em #268b96;
+    width: 30vw;
+    /*width: fit-content;*/
+    min-height: 8vh;
+    height: fit-content;
+    font-size: 3vw;
+    box-shadow: inset -0.35vw -0.35vw #268b96;
   }
   .gameButtons.language:hover{
     box-shadow: inset -0.2em -0.2em #027a75;
