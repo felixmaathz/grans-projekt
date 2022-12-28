@@ -22,10 +22,18 @@
 
           <!-- Button to toggle music on and off -->
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-          <button class="volumeButton" @click="togglePlayback()">
+          <button v-if="isPressed===true" class="volumeButton" @click="togglePlayback()">
 
                 <span class="material-symbols-outlined">
               volume_up
+            </span>
+
+          </button>
+
+          <button v-if="isPressed===false" class="volumeButton" @click="togglePlayback()">
+
+                <span class="material-symbols-outlined">
+              volume_off
             </span>
 
           </button>
@@ -78,7 +86,7 @@
                v-bind:key="user">
             {{user.username}}:
             {{user.endScore}}
-            <img src="@/banana.png" alt="Banana" style = "width:35px; height:35px">
+            <img src="@/banana.png" alt="Banana" style = "width:25px; height:25px">
           </div>
         </div>
       </div>

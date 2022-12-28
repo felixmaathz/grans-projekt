@@ -8,7 +8,7 @@
       arrow_back</span></button>
   </div>
 
-   <div style="margin-top:10vw">
+   <div class="buttons">
       <router-link v-bind:to="'/selectsavedgame/'+lang">
         <button class="gameButtons">
           {{uiLabels.playSavedQuiz}}
@@ -63,16 +63,16 @@ body {
   background-color: #00C3BA;
   /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
-  width: 28vw;
-  height: 10vh;
+  width: 600px;
+  height: 15vh;
   margin: 1vw;
-  font-size: 1.4vw;
+  font-size: 2.2em;
   line-height: 1;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
   border-color: #2B211B;
-  border-width: 0.4vw;
+  border-width: 5px;
   border-style: solid ;
   /*transition-duration: 0.15s;*/
 }
@@ -84,16 +84,8 @@ body {
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
 }
-.gameButtons.language{
-  width: 10vw;
-  height: 10vh;
-  font-size: 0.9vw;
-  box-shadow: inset -0.35em -0.35em #268b96;
-}
-.gameButtons.language:hover{
-  box-shadow: inset -0.2em -0.2em #027a75;
-  padding-right: 0.15em;
-  padding-top: 0.2em;
+.buttons{
+  margin-top: 20vh;
 }
 .backButtonDiv{
   width: 10vw;
@@ -150,15 +142,26 @@ body {
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 18em;
-    height: 5em;
-    font-size: 5vw;
+    width: 90vw;
+
+    min-height: 20vh;
+    height: fit-content;
+    margin: 10px;
+    font-size: 6vw;
     text-shadow: 2px 2px #1F6E77;
-    /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.2em;
-    margin: 1em;
+    border-width: 10px;
+    border-style: solid ;
+  }
+
+  .buttons{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 25%;
   }
   .gameButtons:hover{
     padding-right: 0.05em;
@@ -204,7 +207,7 @@ body {
     color: #FEF9CC;
   }
   .material-symbols-outlined {
-    font-size: 16vw;
+    font-size: 11vw;
     color: #fef9cc;
     font-variation-settings:
         'FILL' 0,

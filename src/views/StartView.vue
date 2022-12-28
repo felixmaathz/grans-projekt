@@ -90,7 +90,7 @@ export default {
     text-shadow: 5px 5px black;
   }
   .gameName{
-    margin-top: 15vh;
+    margin-top: 10vh;
     font-size: 7em;
   }
   .gameButtons{
@@ -109,7 +109,7 @@ export default {
     /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.4vw;
+    border-width: 5px;
     border-style: solid ;
     /*transition-duration: 0.15s;*/
   }
@@ -183,7 +183,7 @@ export default {
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.15em;
+    border-width: 10px;
     border-style: solid ;
   }
   .gameButtons:hover{
