@@ -7,7 +7,7 @@
       arrow_back</span></button>
     </div>
 
-    <div style="margin-top:10vw">
+    <div class="buttons">
 
       <router-link v-bind:to="'/choosegamemode/'+lang"><button class="gameButtons">{{uiLabels.hostAGame}}</button></router-link>
       <br>
@@ -133,19 +133,30 @@ body {
     overflow: hidden;
     font-family: "Silkscreen", cursive;
   }
+  .buttons{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 25%;
+  }
   .gameButtons{
     font-family: "Press Start 2P",cursive;
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 18em;
-    height: 5em;
-    font-size: 5vw;
+    min-width: 90vw;
+    width: fit-content;
+    min-height: 20vh;
+    height: fit-content;
+    margin: 10px;
+    font-size: 10vw;
     text-shadow: 2px 2px #1F6E77;
-    /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.2em;
+    border-width: 0.15em;
+    border-style: solid ;
   }
   .gameButtons:hover{
     padding-right: 0.05em;
@@ -153,17 +164,6 @@ body {
     background-color: #31a6b2;
     box-shadow: inset -0.1em -0.1em #027a75;
     color: #FEF9CC;
-  }
-  .gameButtons.language{
-    width: 10vw;
-    height: 10vh;
-    font-size: 0.9vw;
-    box-shadow: inset -0.35em -0.35em #268b96;
-  }
-  .gameButtons.language:hover{
-    box-shadow: inset -0.2em -0.2em #027a75;
-    padding-right: 0.15em;
-    padding-top: 0.2em;
   }
   .backButtonDiv{
     width: 10vw;
@@ -191,7 +191,7 @@ body {
     color: #FEF9CC;
   }
   .material-symbols-outlined {
-    font-size: 16vw;
+    font-size: 11vw;
     color: #fef9cc;
     font-variation-settings:
         'FILL' 0,

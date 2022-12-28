@@ -91,7 +91,7 @@ export default {
   }
   .gameName{
     margin-top: 15vh;
-    font-size: 7vw;
+    font-size: 7em;
   }
   .gameButtons{
     font-family: "Press Start 2P",cursive;
@@ -99,10 +99,12 @@ export default {
     background-color: #00C3BA;
     /*-webkit-text-stroke: 1px black;*/
     cursor: pointer;
-    width: 30vw;
-    height: 10vh;
+    min-width: 600px;
+    width: fit-content;
+    min-height: 15vh;
+    height: fit-content;
     margin: 20px;
-    font-size: 3vw;
+    font-size: 4em;
     text-shadow: 2px 2px #1F6E77;
     /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
@@ -124,7 +126,9 @@ export default {
   /*  height: 10vh;*/
   /*}*/
   .gameButtons.language{
+    min-width: 10vw;
     width: 10vw;
+    min-height: 10vh;
     height: 10vh;
     font-size: 0.9vw;
     box-shadow: inset -0.35em -0.35em #268b96;
@@ -132,7 +136,7 @@ export default {
     right: 0;
     border-width: 0.4vw;
     /*width: fit-content;*/
-    min-height: 8vh;
+
   }
   .gameButtons.language:hover{
     box-shadow: inset -0.2em -0.2em #027a75;
@@ -141,7 +145,7 @@ export default {
   }
 
 /* OPTIMIZATION FOR PHONE */
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   header {
     background-color: gray;
     display: grid;
@@ -152,9 +156,9 @@ export default {
     text-shadow: 5px 5px black;
   }
   .gameName{
-    margin-top: 20vh;
+    margin-top: 18vh;
     position: relative;
-    font-size: 15vw;
+    font-size: 4em;
   }
 
   .buttons{
@@ -170,10 +174,12 @@ export default {
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 90vw;
-    height: 20vh;
+    min-width: 90vw;
+    width: fit-content;
+    min-height: 20vh;
+    height: fit-content;
     margin: 10px;
-    font-size: 10vw;
+    font-size: 2.5em;
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
@@ -199,6 +205,7 @@ export default {
     position: absolute;
     right: 0;
     border-width: 0.6vw;
+    min-width: 30vw;
     width: 30vw;
     /*width: fit-content;*/
     min-height: 8vh;
