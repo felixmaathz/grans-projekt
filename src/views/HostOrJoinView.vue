@@ -49,24 +49,30 @@ body {
   overflow: hidden;
   font-family: "Silkscreen", cursive;
 }
+.buttons{
+  margin-top: 20vh;
+}
+
 .gameButtons{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
   background-color: #00C3BA;
   /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
-  width: 28vw;
-  height: 10vh;
+  min-width: 600px;
+  width: fit-content;
+  min-height: 15vh;
+  height: fit-content;
   margin: 20px;
-  font-size: 2vw;
+  font-size: 3.5em;
   text-shadow: 2px 2px #1F6E77;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #268b96;
   border-color: #2B211B;
-  border-width: 0.4vw;
+  border-width: 0.1em;
   border-style: solid ;
   /*transition-duration: 0.15s;*/
-}
+  }
 .gameButtons:hover{
   padding-right: 0.05em;
   padding-top: 0.05em;
@@ -74,17 +80,6 @@ body {
   box-shadow: inset -0.1em -0.1em #027a75;
   /*border-width: 0.3vw;*/
   color: #FEF9CC;
-}
-.gameButtons.language{
-  width: 10vw;
-  height: 10vh;
-  font-size: 0.9vw;
-  box-shadow: inset -0.35em -0.35em #268b96;
-}
-.gameButtons.language:hover{
-  box-shadow: inset -0.2em -0.2em #027a75;
-  padding-right: 0.15em;
-  padding-top: 0.2em;
 }
 .backButtonDiv{
   width: 10vw;
@@ -151,11 +146,11 @@ body {
     min-height: 20vh;
     height: fit-content;
     margin: 10px;
-    font-size: 10vw;
+    font-size: 8vw;
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 0.15em;
+    border-width: 10px;
     border-style: solid ;
   }
   .gameButtons:hover{
