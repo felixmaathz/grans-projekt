@@ -109,7 +109,7 @@ export default {
     /*border-radius: 4vw;*/
     box-shadow: inset -0.15em -0.15em #268b96;
     border-color: #2B211B;
-    border-width: 5px;
+    border-width: 8px;
     border-style: solid ;
     /*transition-duration: 0.15s;*/
   }
