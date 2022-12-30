@@ -20,8 +20,8 @@
         <h3>
           {{uiLabels.gameId}}: {{this.gameId}}
         </h3>
-        <input class="questionInput" type="text" maxlength="100" minlength="10"
-               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
+        <input class="questionInput" type="text" maxlength="100"
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus><a>{{this.questionObject.questionText.length}}/100</a>
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
             <button v-on:click="chooseAnswer(true)" class="answerButton true"
@@ -82,6 +82,7 @@
 <script>
 import io from 'socket.io-client';
 import PopUpComponent from "@/components/PopUpComponent";
+
 const socket = io();
 
 export default {
