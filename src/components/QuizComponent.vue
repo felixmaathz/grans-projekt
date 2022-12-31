@@ -3,7 +3,7 @@
 <template>
   <div class="quizWrapper">
     <div class="gameIdBox">
-      <span class="gameId">{{ quiz.gameId}}: </span>
+      <span class="gameId">{{ quiz.gameId}} </span>
     </div>
     <div class="gameDescription">
       <p v-if="this.numberOfQuestions>1">{{this.numberOfQuestions+ " " + uiLabels.questionsMultiple}}</p>
@@ -152,15 +152,16 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top:0;
+  top:8px;
   height: 20%;
   justify-content: center;
   order: 0;
   font-size: 3vh;
+  font-family: "Press Start 2P",serif;
 }
 .gameDescription{
   height: 90%;
-  bottom: 30%;
+  bottom: 23%;
   display: flex;
   justify-content: center;
   align-items: center;

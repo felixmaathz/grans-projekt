@@ -70,7 +70,7 @@
         <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText true">
           Correct answer <br>
-          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak + 2000</p>
+          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak <br>+2000</p>
         </div>
         <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText false">
@@ -448,8 +448,8 @@ export default {
   padding: 20px;
   font-size: 1.7em;
   margin-top: 2em;
-  min-height: 50vh;
-  height: fit-content;
+  height:  70vh;
+  overflow: auto;
   width: fit-content;
   align-items: center;
   background-color: #FEF9CC;

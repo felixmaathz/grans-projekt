@@ -37,11 +37,11 @@
         <button class="questionButtons" v-on:click="validateForm();addQuestion()">
           {{uiLabels.addYourQuestion}}
         </button>
-        <router-link v-bind:to="'//'">
-          <button class="questionButtons" >
+
+          <button class="questionButtons" v-on:click="goBack()">
             {{uiLabels.playGame}}
           </button>
-        </router-link>
+
       </div>
 
       <div class = "questionListWrapper">

@@ -46,6 +46,7 @@
       <h3>{{uiLabels.addQuestions}}</h3>
       <input class="questionInput" type="text"
              v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
+      <a>{{this.questionObject.questionText.length}}/100</a>
 
       <div  class="answerButtonsWrapper">
         <button v-on:click="chooseAnswer(true)" class="answerButton true"
@@ -523,20 +524,19 @@ h3{
       margin-right: 10vw;
     }
     .backButton {
-      font-family: "Press Start 2P", cursive;
+      font-family: "Press Start 2P",cursive;
       color: #FEF9CC;
       background-color: #00C3BA;
       cursor: pointer;
       width: 20vw;
       height: 10vh;
-      margin-top: 8vw;
-      margin-left: 3vw;
+      margin: 5vw;
       font-size: 2vw;
       text-shadow: 2px 2px #1F6E77;
       box-shadow: inset -0.35em -0.35em #268b96;
       border-color: #2B211B;
-      border-width: 0.2em;
-      border-style: solid;
+      border-width: 0.4em;
+      border-style: solid ;
     }
     .backButton:hover {
       background-color: #31a6b2;
@@ -544,7 +544,7 @@ h3{
       color: #FEF9CC;
     }
     .material-symbols-outlined {
-      font-size: 16vw;
+      font-size: 11vw;
       font-variation-settings: 'FILL' 1,
       'wght' 700,
       'GRAD' 200,

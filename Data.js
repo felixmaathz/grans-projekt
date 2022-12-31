@@ -35,8 +35,7 @@ Data.prototype.createPoll = function(gameId) {
   let finishedQuiz = {gameId: gameId,questionList:[]}
   // this.finishedQuizzes[gameId]=finishedQuiz
   this.finishedQuizzes.push(finishedQuiz)
-  console.log(finishedQuiz)
-  console.log(this.finishedQuizzes)
+  console.log("Created quiz: "+finishedQuiz,gameId)
   return true
 }
 
@@ -45,8 +44,7 @@ Data.prototype.addQuestion = function(gameId, q) {
   for(let i=0;i<this.finishedQuizzes.length;i++){
     if (this.finishedQuizzes[i].gameId===gameId){
       this.finishedQuizzes[i].questionList.push(q);
-      console.log("question added to", gameId, q);
-      console.log(this.finishedQuizzes[i].questionList)
+      console.log("question added to: "+gameId);
     }else{
       console.log("Quiz not found")
     }
@@ -66,6 +64,13 @@ Data.prototype.removeQuestion=function(gameId,index){
 }
 
 Data.prototype.getQuizzes= function (){
+  for(let i=0;i<this.finishedQuizzes.length;i++){
+    if (this.finishedQuizzes[i].questionList.length===0){
+      console.log("Removed empty quiz: "+this.finishedQuizzes[i].gameId)
+      this.finishedQuizzes.splice(i,1)
+
+    }
+  }
   return this.finishedQuizzes;
 }
 
@@ -78,7 +83,6 @@ Data.prototype.removeQuiz=function(gameId){
     if (this.finishedQuizzes[i].gameId===gameId){
       this.finishedQuizzes.splice(i,1)
       console.log("removed "+gameId)
-      console.log(this.finishedQuizzes)
     }
   }
 }
@@ -164,8 +168,7 @@ Data.prototype.leftGame=function(user){
   for(let i=0;i<this.createdGame.connectedUsers.length;i++) {
     if (this.createdGame.connectedUsers[i].username === user) {
       this.createdGame.connectedUsers.splice(i,1)
-      console.log("player" + this.createdGame.connectedUsers, "left!")
-      console.log(this.createdGame.connectedUsers[i])
+      console.log("player" + this.createdGame.connectedUsers[i], "left!")
       return (this.createdGame.connectedUsers)
     }
   }
