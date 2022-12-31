@@ -46,6 +46,7 @@
       <h3>{{uiLabels.addQuestions}}</h3>
       <input class="questionInput" type="text"
              v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
+      <a>{{this.questionObject.questionText.length}}/100</a>
 
       <div  class="answerButtonsWrapper">
         <button v-on:click="chooseAnswer(true)" class="answerButton true"

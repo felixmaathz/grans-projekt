@@ -85,14 +85,14 @@ export default {
   height: 50%;
   min-height:45%;
   box-shadow: 2px 2px 20px 1px;
-  overflow-x: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
 
 
 .modal-header{
-  padding: 1vw;
+  padding: 0.8vw;
   display: flex;
   font-family: "Silkscreen", cursive;
   color: #00C3BA;

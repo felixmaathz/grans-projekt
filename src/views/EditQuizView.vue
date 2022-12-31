@@ -20,6 +20,12 @@
     <div class="pageGrid">
       <div class="questionToolWrapper">
         <h3>{{uiLabels.gameId}}: {{this.finishedQuiz.gameId}}</h3>
+        <button class="removeButton" v-on:click="removeQuiz()">
+                          <span
+                              class="material-symbols-outlined Remove">
+                  DELETE
+                </span>
+        </button>
         <input class="questionInput" type="text"
                v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus>
         <div  class="answerButtonsWrapper">
@@ -198,6 +204,13 @@ export default {
         socket.emit('replaceQuiz', this.finishedQuiz)
       }
       this.$router.go(-1)
+    },
+    removeQuiz: function (){
+      let confirmation = confirm("Are you sure you want to remove this game?")
+      if(confirmation){
+        socket.emit('removeQuiz',this.finishedQuiz.gameId)
+        this.$router.go(-1)
+      }
     }
   }
 }
@@ -254,6 +267,29 @@ body{
   color: #FEF9CC;
 }
 
+.removeButton{
+
+  position: absolute;
+  right:50px;
+  top:50px;
+  width: 70px;
+  height: 70px;
+  color: #FEF9CC;
+  background-color: #ff0000;
+  text-shadow: 2px 2px #2B211B;
+  box-shadow: inset -5px -5px #bb0000;
+  border-color: #2B211B;
+  border-width: 5px;
+  border-style: solid ;
+}
+
+.removeButton:hover{
+  padding-right: 0.25em;
+  padding-top: 0.25em;
+  background-color: #bb0000;
+  box-shadow: inset -0.05em -0.05em #860000;
+}
+
 .material-symbols-outlined {
   font-size: 4vw ;
   font-variation-settings:
@@ -263,6 +299,10 @@ body{
       'opsz' 48
 }
 
+.material-symbols-outlined.Remove{
+  color: #fef9cc;
+  font-size: 40px;
+}
 
 
 
