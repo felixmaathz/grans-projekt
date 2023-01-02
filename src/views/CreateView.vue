@@ -10,18 +10,18 @@
           </span>
         </button>
       </div>
-      <h1 >
+      <h1>
         {{ uiLabels.createYourQuestions }}
       </h1>
     </div>
-  <div>
+  <div class="layout">
     <div class="pageGrid">
       <div class="questionToolWrapper">
         <h3>
           {{uiLabels.gameId}}: {{this.gameId}}
         </h3>
         <input class="questionInput" type="text" maxlength="100"
-               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus><a>{{this.questionObject.questionText.length}}/100</a>
+               v-model="questionObject.questionText" v-bind:placeholder="uiLabels.typeHere" autofocus><a style="margin-top: 20px">{{this.questionObject.questionText.length}}/100</a>
         <div  class="answerButtonsWrapper">
 <!--          {{uiLabels.answer}}:-->
             <button v-on:click="chooseAnswer(true)" class="answerButton true"
@@ -186,10 +186,8 @@ export default {
     },
     goBack:function(){
       if(this.finishedQuiz.listOfQuestions.length === 0){
-        alert("Quiz empty, game not saved!")
         socket.emit('removeQuiz',this.gameId)
         console.log("removed"+this.gameId)
-
       }
       this.$router.go(-1)
     },
@@ -439,8 +437,9 @@ h3{
     font-family: "Silkscreen", cursive;
   }
   .header{
-    display: flex;
-    font-size: 10vw;
+    outline: 1px solid greenyellow;
+    height: 15%;
+
   }
   .backButtonDiv{
     width: 10vw;
@@ -477,7 +476,7 @@ h3{
   }
   h1{
     color: #00C3BA;
-    font-size: 7vw;
+    font-size: 2em;
     margin-bottom: 2vw;
     text-shadow: 4px 2px black;
   }
@@ -490,21 +489,20 @@ h3{
     border: none;
     color: #FEF9CC;
     background: transparent;
-    width: 70%;
+    width: 90%;
     height: 7vh;
     font-size: 4vw;
     border-bottom-style: solid;
     border-bottom-color: #2B211B;
     text-align:center;
-    margin-bottom: -0.9em;
-    margin-top: -1em;
+
   }
   ::placeholder{
     color: #FEF9CC;
     opacity: 70%;
   }
   .answerButtonsWrapper{
-    width: 22em;
+    width: 90%;
     height: 5em;
     margin-top: 2em;
     margin-bottom: 0.5em;
@@ -565,7 +563,11 @@ h3{
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    height: 44em;
+  }
+
+  .layout{
+    outline: 1px solid blue;
+    height: 85%;
   }
   .questionButtons{
     font-family: "Press Start 2P",cursive;
@@ -574,7 +576,6 @@ h3{
     cursor: pointer;
     width: 18em;
     height: 5em;
-    margin-top: 0em;
     margin-left: 0;
     font-size: 5vw;
     text-shadow: 2px 2px #1F6E77;
@@ -642,7 +643,7 @@ h3{
     box-shadow: inset 0 0;
   }
   .material-symbols-outlined{
-    font-size: 16vw;
+    font-size: 11vw;
     color: #fef9cc;
     font-variation-settings:
         'FILL' 0,
