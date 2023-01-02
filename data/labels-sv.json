@@ -28,12 +28,17 @@
 	"q": "F: ",
 	"a": "S: ",
 	"gameExists": "Spel ID finns redan eller inmatningen är tom",
+	"tA": "Sant",
+	"fA": "Falskt",
 
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Skapa spel",
 	"joinAGame": "Gå med i spel",
 	"goBack": "Tillbaka",
+
+	"CHOOSEGAMEID": "",
+	"createCoLabGame": "Skapa spel",
 
 	"CHOOSEGAMEMODEVIEW": "",
 	"playSavedQuiz": "Spela sparat quiz",
@@ -67,6 +72,7 @@
 	"hostPreGame": "Värdens lobby",
 	"goBack": "Tillbaka",
 	"startTheGame": "Starta spel",
+	"connectedPlayer": "Anslutna spelare",
 
 
 	"JOINVIEW": "",
@@ -79,6 +85,9 @@
 	"gameRunning": "Spel-ID:",
 	"loadingGame": "Laddar spel:",
 	"timeLeft": "Spelet startar om:",
+	"correctAnswer": "Rätt Svar",
+	"wrongAnswer": "Fel Svar",
+	"annswerStreaken": "Svars bonus",
 
 
 	"RESULTVIEW": "",

@@ -15,7 +15,7 @@
 <!--      v-bind:key="user">-->
 <!--  {{user.username}}-->
 <!--</div>-->
-  <h2 class="connPlayers">Connected players</h2>
+  <h2 class="connPlayers">{{uiLabels.connectedPlayer}}</h2>
  <div class="userListWrapper">
 
  <UserComponent v-for="user in this.connectedUsers"

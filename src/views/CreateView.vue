@@ -60,10 +60,13 @@
                 DELETE
               </span>
             </button>
-
-            <div class="question">
+            <div class="question" v-if="question.questionAnswer === true">
               {{uiLabels.q +question.questionText}}<br>
-              {{uiLabels.a +question.questionAnswer}}
+              {{uiLabels.a + uiLabels.tA}}
+            </div>
+            <div class="question" v-if="question.questionAnswer === false">
+              {{uiLabels.q +question.questionText}}<br>
+              {{uiLabels.a + uiLabels.fA}}
             </div>
           </div>
         </div>

@@ -69,12 +69,12 @@
 
         <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText true">
-          Correct answer <br>
-          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak <br>+2000</p>
+          {{uiLabels.correctAnswer}} <br>
+          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">{{uiLabels.answerSteaken}} <br>+2000</p>
         </div>
         <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText false">
-          Wrong answer
+          {{uiLabels.wrongAnswer}}
         </div>
       </div>
 

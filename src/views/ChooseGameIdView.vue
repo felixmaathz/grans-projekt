@@ -37,7 +37,7 @@
         <router-link v-bind:to="'/hostcollablobby/'+lang+'/'+user.joinGameId+'/'+user.username">
           <button class="questionButtons"
                   v-on:click="createCollabGame()">
-            Create Game
+            {{uiLabels.createCoLabGame}}
           </button>
         </router-link>
       </div>
