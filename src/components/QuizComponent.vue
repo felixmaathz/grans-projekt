@@ -70,12 +70,6 @@ export default {
 </script>
 
 <style scoped>
-.quizListWrapper{
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  border-style: solid;
-}
 .playButton{
   font-family: "Press Start 2P",cursive;
   color: #FEF9CC;
@@ -259,11 +253,11 @@ export default {
     margin-right: auto;
     left: 0;
     right: 0;
-    top:0;
+    top:10px;
     height: 20%;
     justify-content: center;
     order: 0;
-    font-size: 4vh;
+    font-size: 5vw;
   }
   .gameDescription{
     height: 90%;

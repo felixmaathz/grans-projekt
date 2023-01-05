@@ -113,7 +113,8 @@ export default {
   align-items: baseline;
   flex-wrap: wrap;
   overflow: hidden;
-  width: 15vw;
+  min-width: 100px;
+  width: fit-content;
   min-height: 5vw;
   height: fit-content;
   margin: 1vw;
@@ -121,6 +122,7 @@ export default {
   border-style: solid;
   border-color: #2B211B;
   border-width: 0.3vw;
+  padding: 5px;
 }
 .username{
   width: 100%;
@@ -141,18 +143,17 @@ export default {
 /* OPTIMIZATION FOR PHONE */
 @media (max-width: 700px) {
   .userWrapper{
-    width: 105%;
+    width: 100%;
     font-family: 'VT323', monospace;
     border-style: solid;
     border-color: #2B211B;
-    border-width: 0vw;
-    margin-bottom: -5px;
-    margin-left: 0px;
-    height: 7vw;
+    border-width: 0;
+    margin: 0;
+    height: 40px;
   }
   .username{
     width: 100%;
-    font-size: 6vw;
+    font-size: 2em;
     word-wrap: break-word;
   }
 }

@@ -57,7 +57,7 @@
             <button v-on:click="deleteQuestion(index)"
                     class="deleteButton">
               <span class="material-symbols-outlined X">
-                DELETE
+                close
               </span>
             </button>
 
@@ -250,7 +250,8 @@ h1{
   text-shadow: 4px 2px black;
 }
 h3{
-  font-size: 2vw;
+  font-size: 1.5vw;
+  font-family: "Press Start 2P",serif;
 }
 .questionInput{
   font-family: "Press Start 2P",cursive;
@@ -395,9 +396,8 @@ h3{
   width: 2.5em;
   height: 2.5em;
   margin: 1em;
-  padding-left: 0.2em;
-  padding-bottom: 0.2em;
   order: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: #FEF9CC;
@@ -412,7 +412,7 @@ h3{
 }
 .material-symbols-outlined.X{
   font-size: 2vw;
-  margin-left: -0.1em;
+
   color: #ff0000;
   font-variation-settings:
       'FILL' 0,
@@ -451,14 +451,16 @@ h3{
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 20vw;
-    height: 10vh;
+    min-width: 70px;
+    width: fit-content;
+    min-height: 70px;
+    height: fit-content;
     margin: 5vw;
     font-size: 2vw;
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.35em -0.35em #268b96;
     border-color: #2B211B;
-    border-width: 0.2em;
+    border-width: 5px;
     border-style: solid ;
   }
   .backButton:hover{
@@ -467,11 +469,12 @@ h3{
     color: #FEF9CC;
   }
   .material-symbols-outlined {
-    font-size: 4vw ;
+    font-size: 50px;
+    color: #fef9cc;
     font-variation-settings:
-        'FILL' 1,
-        'wght' 700,
-        'GRAD' 200,
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
         'opsz' 48
   }
   h1{
@@ -641,15 +644,6 @@ h3{
     padding-right: 0.2em;
     padding-top: 0.2em;
     box-shadow: inset 0 0;
-  }
-  .material-symbols-outlined{
-    font-size: 11vw;
-    color: #fef9cc;
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
   }
   .material-symbols-outlined.X{
     font-size: 2em;
