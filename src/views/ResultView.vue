@@ -154,7 +154,7 @@ body {
   }
   .leaderboard{
     font-family: "Press Start 2P",cursive;
-    height: 40em;
+    height: 35em;
     width: 80em;
     align-items: center;
     background-color: #FEF9CC;
@@ -168,6 +168,28 @@ body {
   .leaderboardWrapper {
     display:flex;
     justify-content: center;
+  }
+  .endGameDiv{
+    display:flex;
+    text-align: center;
+    margin-left: 23%;
+  }
+
+  .endGameButton{
+    width: 55vw;
+    height: 10vh;
+    background-color: #ff0000;
+    font-family: "Press Start 2P",cursive;
+    text-shadow: 2px 2px #bb0000;
+    box-shadow: inset -0.25em -0.25em #bb0000;
+    font-size: 6vw;
+  }
+
+  .endGameButton:hover{
+    box-shadow: inset -0.15em -0.15em #410000;
+    padding-right: 0.05em;
+    padding-top: 0.15em;
+    background-color: #ad0101;
   }
 }
 </style>
