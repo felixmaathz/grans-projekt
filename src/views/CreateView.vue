@@ -569,7 +569,6 @@ h3{
   }
 
   .layout{
-    outline: 1px solid blue;
     height: 85%;
   }
   .questionButtons{

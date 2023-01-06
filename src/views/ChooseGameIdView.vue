@@ -22,7 +22,7 @@
         <label for="gameid"></label> <br>
         <input type="text" v-model="user.joinGameId"
                v-bind:placeholder="uiLabels.gameId"
-               class="questionInput">
+               class="questionInput" maxlength="10">
       </p>
       <div class="enterNick">
         {{uiLabels.userName}}
@@ -31,15 +31,13 @@
         <label for="nickname"></label> <br>
         <input type="text" v-model="user.username"
                v-bind:placeholder="uiLabels.enterNick"
-               class="questionInput" minlength="3" maxlength="10">
+               class="questionInput" maxlength="10">
       </p>
       <div>
-        <router-link v-bind:to="'/hostcollablobby/'+lang+'/'+user.joinGameId+'/'+user.username">
           <button class="questionButtons"
-                  v-on:click="createCollabGame()">
+                  v-on:click="validateForm()">
             Create Game
           </button>
-        </router-link>
       </div>
     </form>
 
@@ -76,9 +74,18 @@ export default {
     })
   },
   methods:{
+    validateForm: function (){
+      if( this.user.username!==undefined && this.user.joinGameId!==undefined &&
+          this.user.username!=="" && this.user.joinGameId!==""){
+        this.createCollabGame()
+      }else{
+        alert("Empty game-ID or username")
+      }
+    },
     createCollabGame: function(){
       console.log("Created collab game")
       socket.emit('createCollabGame', this.user)
+      this.$router.push({path:'/hostcollablobby/'+this.lang+'/'+this.user.joinGameId+'/'+this.user.username })
     }
   }
 }

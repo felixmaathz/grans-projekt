@@ -156,7 +156,7 @@ export default {
     text-shadow: 5px 5px black;
   }
   .gameName{
-    margin-top: 18vh;
+    margin-top: 14vh;
     position: relative;
     font-size: 4em;
   }
@@ -176,7 +176,7 @@ export default {
     cursor: pointer;
     min-width: 90vw;
     width: fit-content;
-    min-height: 20vh;
+    min-height: 15vh;
     height: fit-content;
     margin: 10px;
     font-size: 2.5em;
