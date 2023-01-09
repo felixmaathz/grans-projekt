@@ -399,7 +399,7 @@ export default {
   align-items: center;
   right: 0;
   width: 24%;
-  height: 8em;
+  height: 6em;
   flex-wrap: wrap;
 }
 

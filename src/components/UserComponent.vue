@@ -113,11 +113,9 @@ export default {
   align-items: baseline;
   flex-wrap: wrap;
   overflow: hidden;
-  min-width: 100px;
-  width: fit-content;
-  min-height: 5vw;
+  min-height: 3vw;
   height: fit-content;
-  margin: 1vw;
+  margin-top: 10px;
   font-family: 'VT323', monospace;
   border-style: solid;
   border-color: #2B211B;
