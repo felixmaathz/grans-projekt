@@ -1,6 +1,7 @@
 <!-- CSS OK for laptop + phone -->
 <template>
   <body>
+
   <div id="GameID">
     {{uiLabels.loadingGame}} {{pollId}}
   </div>
@@ -103,12 +104,14 @@ body {
   overflow: hidden;
   font-family: "Silkscreen", cursive;
   overflow-y: hidden;
+  text-shadow: #2B211B 4px 4px;
 }
 #GameID {
   font-family: Silkscreen;
   font-size: 3em;
   margin-top: 4vh;
   color: white;
+
 }
 #theGameWillStartIn {
   font-size: 2em;

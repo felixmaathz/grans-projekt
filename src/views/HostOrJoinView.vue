@@ -46,7 +46,7 @@ body {
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 .buttons{

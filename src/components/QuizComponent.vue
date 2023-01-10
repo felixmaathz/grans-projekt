@@ -134,6 +134,7 @@ export default {
   width: 26vw;
   height: 25vh;
   margin: 1vw;
+  padding: 5px;
   position: relative;
   border-style: solid;
   border-bottom-color: black;

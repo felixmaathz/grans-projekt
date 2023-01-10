@@ -91,7 +91,7 @@ export default {
   }
   .gameName{
     margin-top: 15vh;
-    font-size: 7em;
+    font-size: 6em;
   }
   .gameButtons{
     font-family: "Press Start 2P",cursive;
