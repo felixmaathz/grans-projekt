@@ -12,7 +12,6 @@
 
   <div style="margin-top: 6vw;">
 
-
     <!-- view text-->
     <div class="enterGameID">
       {{uiLabels.enterID}}
@@ -24,6 +23,7 @@
         <label for="gameid"></label> <br>
         <input type="text" v-model="user.joinGameId" v-bind:placeholder="uiLabels.gameId"
                class="questionInput">
+
       </p>
     </form>
   <div class="enterNick">
@@ -39,13 +39,13 @@
     </form>
     <div>
         <!-- Button for joining game -->
+      <input class="collabCheck" type="checkbox" v-model="user.collabGame"><label class="checkText">{{uiLabels.coQuiz}}</label><br>
         <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===false">
           <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
         </router-link>
       <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===true">
         <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
       </router-link>
-      <input class="collabCheck" type="checkbox" v-model="user.collabGame"><label class="checkText">{{uiLabels.coQuiz}}</label>
     </div>
   </div>
 
@@ -211,7 +211,7 @@ body{
 }
 
 .collabCheck{
-transform: scale(2)
+transform: scale(3)
 }
 
 .checkText{
