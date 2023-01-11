@@ -39,13 +39,21 @@
     </form>
     <div>
         <!-- Button for joining game -->
-      <input class="collabCheck" type="checkbox" v-model="user.collabGame"><label class="checkText">{{uiLabels.coQuiz}}</label><br>
+
+       <input class="collabCheck"  type="checkbox" v-model="user.collabGame" v-if="checked ===false">
+        <label for="coLab" class="checkText" v-if="checked ===false">{{uiLabels.coQuiz}}</label><br>
+        <br>
+      <input class="collabCheck"  type="checkbox" v-model="checked" v-if="user.collabGame===false" >
+      <label for="coLab" class="checkText" v-if="user.collabGame===false" >{{uiLabels.noCoQuiz}}</label><br>
+
+
         <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===false">
           <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
         </router-link>
       <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===true">
-        <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>
+        <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}}</button>
       </router-link>
+
     </div>
   </div>
 
@@ -65,7 +73,8 @@ export default {
       uiLabels: {},
       lang: "",
       currentGame: {},
-      connectedUsers: []
+      connectedUsers: [],
+      checked: false,
     }
   },
   created: function () {
