@@ -16,7 +16,6 @@
       {{uiLabels.enterID}}
     </div>
 
-    <!-- Text field where you enter nickname -->
     <form>
       <p>
         <label for="gameid"></label> <br>
@@ -35,7 +34,7 @@
       </p>
       <div>
           <button class="questionButtons"
-                  v-on:click="createCollabGame()">
+                  v-on:click="validateForm()">
             {{uiLabels.createCoLabGame}}
           </button>
       </div>

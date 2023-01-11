@@ -38,7 +38,6 @@
       </p>
     </form>
     <div>
-        <!-- Button for joining game -->
       <input class="collabCheck" type="checkbox" v-model="user.collabGame"><label class="checkText">{{uiLabels.coQuiz}}</label><br>
         <router-link v-bind:to="'/lobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===false">
           <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}} </button>

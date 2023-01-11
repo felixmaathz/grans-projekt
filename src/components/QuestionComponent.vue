@@ -40,8 +40,6 @@ const socket = io();
        isAnswered: false,
 
        questionColor: "#fef9cc",
-       // falseFakeDivOpacity: 100,
-       // trueFakeDivOpacity: 100,
      }
    },
 
@@ -53,14 +51,10 @@ const socket = io();
       if(answer){
         this.trueSelected=true;
         this.falseSelected=false;
-        // this.questionColor="#2a9108"
-        // this.falseFakeDivOpacity=0
 
       }else {
         this.falseSelected=true;
         this.trueSelected=false;
-        // this.questionColor="#bb0000"
-        // this.trueFakeDivOpacity=0
       }
 
 
@@ -240,22 +234,6 @@ const socket = io();
     box-shadow: inset -0.25em -0.25em #2a9108;
 
   }
-
-  /*.answerButton.selected.fakeDivTrue{*/
-  /*  display: flex;*/
-  /*  justify-content: center;*/
-  /*  align-items: center;*/
-  /*  opacity: v-bind(trueFakeDivOpacity+"%");*/
-  /*}*/
-
-  /*.answerButton.selected.fakeDivFalse{*/
-  /*  display: flex;*/
-  /*  justify-content: center;*/
-  /*  align-items: center;*/
-  /*  opacity: v-bind(falseFakeDivOpacity+"%");*/
-
-  /*}*/
-
 
   .answerButton.false{
     background-color: #ff0000;
