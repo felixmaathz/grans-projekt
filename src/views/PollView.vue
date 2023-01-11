@@ -2,7 +2,7 @@
 <template>
 
   <body>
-  <button style="position:absolute;" v-on:click="stopGame()">STOP</button>
+<!--  <button style="position:absolute;" v-on:click="stopGame()">STOP</button>-->
   <div>
     <WaitingComponent
         v-show="isPopUpVisible"
@@ -399,7 +399,7 @@ export default {
   align-items: center;
   right: 0;
   width: 24%;
-  height: 8em;
+  height: 6em;
   flex-wrap: wrap;
 }
 
@@ -461,12 +461,12 @@ export default {
   justify-content: center;
 }
 body {
-  background: url("https://i.imgur.com/eTXACsr.gif");
+  background-image: url("https://i.imgur.com/eTXACsr.gif");
   background-size: cover;
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: auto;
   font-family: "Silkscreen", cursive;
 }
 

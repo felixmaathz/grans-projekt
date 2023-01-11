@@ -3,14 +3,7 @@
   <body>
     <div>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <div class="backButtonDiv">
-          <button class="backButton" v-on:click="this.$router.go(-1);userLeft()">
-            <span class="material-symbols-outlined">
-              arrow_back
-            </span>
-          </button>
-        </div>
-    <h1>LOBBY</h1>
+    <h1>LOBBY: {{gameId}}</h1>
       <div class="userListWrapper">
         <UserComponent v-for="user in this.connectedUsers"
                    v-bind:user="user"
@@ -18,6 +11,9 @@
          </UserComponent>
       </div>
     </div>
+    <button class="leaveGameButton" v-on:click="this.$router.go(-1);userLeft()">
+      Leave
+    </button>
   </body>
 </template>
 
@@ -38,7 +34,8 @@ export default {
       lang: "",
       connectedUsers: [],
       finishedQuiz:{},
-      myUsername: ""
+      myUsername: "",
+      gameId:""
     }
   },
   created: function () {
@@ -112,56 +109,8 @@ body{
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   font-family: "Silkscreen", cursive;
-}
-
-.header{
-  display: flex;
-  justify-content: center;
-}
-
-.backButtonDiv{
-  width: 10vw;
-  height: 10vh;
-  margin-right: 10vw;
-  left: 0;
-  position: absolute;
-
-}
-
-.backButton{
-  font-family: "Press Start 2P",cursive;
-  color: #FEF9CC;
-  background-color: #00C3BA;
-  /*-webkit-text-stroke: 1px black;*/
-  cursor: pointer;
-  width: 10vw;
-  height: 10vh;
-  margin: 20px;
-  font-size: 0.9vw;
-  text-shadow: 2px 2px #1F6E77;
-  /*border-radius: 4vw;*/
-  box-shadow: inset -0.35em -0.35em #268b96;
-  border-color: #2B211B;
-  border-width: 0.4vw;
-  border-style: solid ;
-  /*transition-duration: 0.15s;*/
-}
-.backButton:hover{
-  background-color: #31a6b2;
-  box-shadow: inset -0.25em -0.25em #027a75;
-  /*border-width: 0.3vw;*/
-  color: #FEF9CC;
-}
-
-.material-symbols-outlined {
-  font-size: 4vw ;
-  font-variation-settings:
-      'FILL' 1,
-      'wght' 700,
-      'GRAD' 200,
-      'opsz' 48
+  overflow: auto;
 }
 
 h1{
@@ -171,50 +120,98 @@ h1{
   text-shadow: 4px 2px black;
 }
 
+.leaveGameButton{
+  font-family: "Press Start 2P",cursive;
+  color: #FEF9CC;
+  background-color: #ff0000;
+  /*-webkit-text-stroke: 1px black;*/
+  cursor: pointer;
+  width: 30vw;
+  height: 10vh;
+  font-size: 1.8vw;
+  text-shadow: 2px 2px #bb0000;
+  /*border-radius: 4vw;*/
+  box-shadow: inset -0.15em -0.15em #bb0000;
+  border-color: #2B211B;
+  border-width: 0.4vw;
+  margin-top: 6vw;
+}
 
+.leaveGameButton:hover{
+  box-shadow: inset -0.05em -0.05em #410000;
+  padding-right: 0.05em;
+  padding-top: 0.15em;
+  background-color: #ad0101;
+  text-shadow: 2px 2px #410000;
+}
 .userListWrapper{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100vw;
 }
 
-.backButtonDiv{
-  width: 10vw;
-  height: 10vh;
-  margin-right: 10vw;
-}
-.backButton{
-  font-family: "Press Start 2P",cursive;
-  color: #FEF9CC;
-  background-color: #00C3BA;
-  /*-webkit-text-stroke: 1px black;*/
-  cursor: pointer;
-  width: 10vw;
-  height: 10vh;
-  margin: 20px;
-  font-size: 0.9vw;
-  text-shadow: 2px 2px #1F6E77;
-  /*border-radius: 4vw;*/
-  box-shadow: inset -0.35em -0.35em #268b96;
-  border-color: #2B211B;
-  border-width: 0.4vw;
-  border-style: solid ;
-  /*transition-duration: 0.15s;*/
-}
-.backButton:hover{
-  background-color: #31a6b2;
-  box-shadow: inset -0.25em -0.25em #027a75;
-  /*border-width: 0.3vw;*/
-  color: #FEF9CC;
+
+/* OPTIMIZATION FOR PHONE */
+@media (max-width: 700px) {
+  body {
+    background: #EF233C;
+    background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Silkscreen", cursive;
+    position: relative;
+  }
+
+  h1{
+    color: #00C3BA;
+    overflow-wrap: break-word;
+    font-size: 2em;
+    text-shadow: 4px 2px black;
+    margin-top: 15vh;
+
+  }
+  .userListWrapper{
+    height: 40vw;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .leaveGameButton{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Press Start 2P",cursive;
+    color: #FEF9CC;
+    background-color: #ff0000;
+    cursor: pointer;
+    width: 85vw;
+    min-height: 12vh;
+    height: fit-content;
+    font-size: 2.2em;
+    padding: 10px;
+    text-shadow: 2px 2px #bb0000;
+    box-shadow: inset -0.15em -0.15em #bb0000;
+    border-color: #2B211B;
+    border-width: 5px;
+    margin-top: 10vw;
+  }
+  .leaveGameButton:hover{
+    box-shadow: inset -0.15em -0.15em #410000;
+    padding-right: 0.05em;
+    padding-top: 0.15em;
+    background-color: #ad0101;
+    text-shadow: 2px 2px #410000;
+  }
 }
 
-.material-symbols-outlined {
-  font-size: 4vw ;
-  font-variation-settings:
-      'FILL' 1,
-      'wght' 700,
-      'GRAD' 200,
-      'opsz' 48
-}
 
 </style>

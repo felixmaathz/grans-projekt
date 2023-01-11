@@ -8,7 +8,7 @@
       arrow_back
     </span></button>
     </div>
-    <h1>{{uiLabels.gameId}}:{{ this.gameId }}</h1>
+    <h1>{{uiLabels.gameId}}:<br>{{ this.gameId }}</h1>
 
   </div>
 <!--<div v-for="user in this.connectedUsers"-->
@@ -79,6 +79,11 @@ export default {
       console.log('user joined')
       this.connectedUsers = users
     })
+
+    socket.on('userLeft', (users) => {
+      console.log('user left')
+      this.connectedUsers = users
+    })
   },
 
   methods: {
@@ -102,7 +107,7 @@ body{
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 
@@ -128,7 +133,7 @@ body{
   background-color: #00C3BA;
   /*-webkit-text-stroke: 1px black;*/
   cursor: pointer;
-  width: 10vw;
+  width: 7vw;
   height: 10vh;
   margin: 2vw;
   font-size: 0.9vw;
@@ -136,7 +141,7 @@ body{
   /*border-radius: 4vw;*/
   box-shadow: inset -0.35em -0.35em #268b96;
   border-color: #2B211B;
-  border-width: 0.4vw;
+  border-width: 0.4em;
   border-style: solid ;
   /*transition-duration: 0.15s;*/
 }
@@ -158,10 +163,9 @@ body{
 
 h1{
   color: #00C3BA;
-  font-size: 3vw;
+  font-size: 3.2em;
   /*-webkit-text-stroke: 0.01vw black;*/
   text-shadow: 4px 2px black;
-  margin-top: 8vw;
 }
 
 
@@ -179,14 +183,13 @@ h1{
   cursor: pointer;
   width: 30vw;
   height: 10vh;
-  margin: 20px;
   font-size: 1.8vw;
   text-shadow: 2px 2px #206c00;
   /*border-radius: 4vw;*/
   box-shadow: inset -0.15em -0.15em #206c00;
   border-color: #2B211B;
   border-width: 0.4vw;
-  margin-top: 10vw;
+  margin-top: 6vw;
 }
 .startGameButton:hover{
   box-shadow: inset -0.15em -0.15em #174d05;
@@ -204,6 +207,7 @@ h1{
       height: 100vh;
       overflow: hidden;
       font-family: "Silkscreen", cursive;
+      position: relative;
     }
     .header{
       display: flex;
@@ -226,7 +230,7 @@ h1{
       text-shadow: 2px 2px #1F6E77;
       box-shadow: inset -0.35em -0.35em #268b96;
       border-color: #2B211B;
-      border-width: 0.2em;
+      border-width: 5px;
       border-style: solid ;
     }
     .backButton:hover{
@@ -235,7 +239,7 @@ h1{
       color: #FEF9CC;
     }
     .material-symbols-outlined {
-      font-size: 16vw ;
+      font-size: 8vw ;
       font-variation-settings:
           'FILL' 1,
           'wght' 700,
@@ -244,9 +248,10 @@ h1{
     }
     h1{
       color: #00C3BA;
-      font-size: 7vw;
+      overflow-wrap: break-word;
+      font-size: 2em;
       text-shadow: 4px 2px black;
-      margin-top: 40vw;
+      margin-top: 15vh;
 
     }
     .userListWrapper{
@@ -260,18 +265,25 @@ h1{
     }
 
     .startGameButton{
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
       font-family: "Press Start 2P",cursive;
       color: #FEF9CC;
       background-color: #45af00;
       cursor: pointer;
       width: 85vw;
-      height: 12vh;
-      margin: 20px;
-      font-size: 6.5vw;
+      min-height: 12vh;
+      height: fit-content;
+      font-size: 2.2em;
+      padding: 10px;
       text-shadow: 2px 2px #206c00;
       box-shadow: inset -0.15em -0.15em #206c00;
       border-color: #2B211B;
-      border-width: 0.4vw;
+      border-width: 5px;
       margin-top: 10vw;
     }
     .startGameButton:hover{

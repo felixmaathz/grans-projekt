@@ -145,10 +145,9 @@ body{
   .quizList{
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
     overflow: auto;
   }
-  . .backButtonDiv{
+  .backButtonDiv{
     width: 10vw;
     height: 10vh;
   }
@@ -157,14 +156,16 @@ body{
     color: #FEF9CC;
     background-color: #00C3BA;
     cursor: pointer;
-    width: 20vw;
-    height: 10vh;
+    min-width: 70px;
+    width: fit-content;
+    min-height: 70px;
+    height: fit-content;
     margin: 5vw;
     font-size: 2vw;
     text-shadow: 2px 2px #1F6E77;
     box-shadow: inset -0.35em -0.35em #268b96;
     border-color: #2B211B;
-    border-width: 0.4em;
+    border-width: 5px;
     border-style: solid ;
   }
   .backButton:hover{
@@ -173,7 +174,7 @@ body{
     color: #FEF9CC;
   }
   .material-symbols-outlined {
-    font-size: 16vw;
+    font-size: 50px;
     color: #fef9cc;
     font-variation-settings:
         'FILL' 0,
@@ -182,7 +183,7 @@ body{
         'opsz' 48
   }
   .chooseSavedGame{
-    font-size: 3vw;
+    font-size: 4vw;
   }
 }
 </style>
