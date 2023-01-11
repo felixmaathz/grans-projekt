@@ -450,7 +450,7 @@ body {
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   font-family: "Silkscreen", cursive;
 }
 
