@@ -16,7 +16,6 @@
       {{uiLabels.enterID}}
     </div>
 
-    <!-- Text field where you enter nickname -->
     <form>
       <p>
         <label for="gameid"></label> <br>

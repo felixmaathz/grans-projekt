@@ -100,7 +100,6 @@
 <script>
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
-// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
@@ -111,10 +110,6 @@ export default {
   components: {WaitingComponent, QuestionComponent},
 
 
-  //components: {
-  //QuestionComponent,
-  // ReorderQuestion
-  //},
   data: function () {
     return {
       selectedQuiz: {},
@@ -207,11 +202,12 @@ export default {
       this.$router.push({path: '/'})
     },
 
-    stopGame: function() {
-      clearInterval(this.progressTimer)
-      clearInterval(this.decreaseTimer)
-      clearInterval(this.questionTimer)
-    },
+    //For development
+    // stopGame: function() {
+    //   clearInterval(this.progressTimer)
+    //   clearInterval(this.decreaseTimer)
+    //   clearInterval(this.questionTimer)
+    // },
 
     timer: function(){
       this.progressTimer = setInterval(this.increaseProgressBar, 100)
@@ -288,18 +284,6 @@ export default {
       console.log("Svaret " + event + " kom fram till pollview")
       this.end=Date.now()
       console.log("end timer "+this.end)
-      // this.answeredQuestions.a.push(event)
-      // console.log(this.answeredQuestions.a)
-
-
-      // if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
-      //   console.log("rätt svar")
-      //   this.yourScore +=1000
-      //   console.log("Du har " + this.yourScore)
-      // }
-      // else{
-      //   console.log("fel svar")
-      // }
     },
 
     closePopUp: function () {

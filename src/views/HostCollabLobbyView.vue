@@ -484,26 +484,7 @@ h3{
   margin: 1em;
   margin-left: 0.4em;
 }
-/*.deleteButton{*/
-/*  width: 2.5em;*/
-/*  height: 2.5em;*/
-/*  margin: 0.2em;*/
-/*  padding-left: 0.2em;*/
-/*  padding-bottom: 0.2em;*/
-/*  order: 1;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  background-color: #FEF9CC;*/
-/*  border: solid;*/
-/*  box-shadow: inset -0.2em -0.2em #c2bd8e;*/
-/*}*/
-/*.deleteButton:hover{*/
-/*  background-color: #FEF9CC;*/
-/*  padding-right: 0.2em;*/
-/*  padding-top: 0.2em;*/
-/*  box-shadow: inset 0 0;*/
-/*}*/
+
 .material-symbols-outlined.X{
   font-size: 2vw;
   color: #ff0000;
