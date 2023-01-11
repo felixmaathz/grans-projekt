@@ -79,7 +79,7 @@ export default {
           this.user.username!=="" && this.user.joinGameId!==""){
         this.createCollabGame()
       }else{
-        alert("Empty game-ID or username")
+        alert(this.uiLabels.noIdOrUsername)
       }
     },
     createCollabGame: function(){

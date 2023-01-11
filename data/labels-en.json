@@ -57,6 +57,8 @@
 	"goBack": "Back",
 	"joinLobby": "Join lobby",
 	"coQuiz": "Collab Quiz?",
+	"noIdOrUsername": "Empty Game-ID or username",
+	"userExistsOrLobbyDoesnt": "User already exist or lobby does not exist",
 
 	"LOBBYVIEW": "",
 	"nickName": "#nickname",

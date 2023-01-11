@@ -58,6 +58,8 @@
 	"goBack": "Tillbaka",
 	"joinLobby": "Gå med i lobby",
 	"coQuiz": "Gemensamt spel?",
+	"noIdOrUsername": "Inget ID eller användarnamn",
+	"userExistsOrLobbyDoesnt": "Användaren finns redan eller så existerar inte lobbyn",
 
 	"LOBBYVIEW": "",
 	"nickName": "#användarnamn",
