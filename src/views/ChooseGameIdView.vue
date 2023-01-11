@@ -16,7 +16,6 @@
       {{uiLabels.enterID}}
     </div>
 
-    <!-- Text field where you enter nickname -->
     <form>
       <p>
         <label for="gameid"></label> <br>
@@ -36,7 +35,7 @@
       <div>
           <button class="questionButtons"
                   v-on:click="validateForm()">
-            Create Game
+            {{uiLabels.createCoLabGame}}
           </button>
       </div>
     </form>
@@ -99,7 +98,7 @@ body{
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 .questionButtons{

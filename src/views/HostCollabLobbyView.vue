@@ -19,7 +19,7 @@
       </div>
 
     <div v-if="showElementOnSmallScreen" class="smallScreenPlayers">
-      {{uiLabels.connectedPlayers}}
+      <div class="connectedPlayers">{{uiLabels.connectedPlayers}}</div>
       <div>
         <UserComponent v-for="user in this.connectedUsers "
                        v-bind:user="user"
@@ -35,11 +35,12 @@
       <h2>
         {{uiLabels.connectedPlayers}}
       </h2>
-
+      <div class="user">
       <UserComponent v-for="user in this.connectedUsers"
                        v-bind:user="user"
                        v-bind:key="user">
       </UserComponent>
+      </div>
     </div>
 
     <div class="questionToolWrapper">
@@ -70,19 +71,22 @@
     </div>
 
     <div class="questionListWrapper" v-if="showElementOnBigScreen">
-      <h2 >
-        {{uiLabels.theQuestions}}
+      <h2 v-if="questionList.length!==1">
+        {{questionList.length}} {{uiLabels.theQuestions}}
+      </h2>
+      <h2 v-if="questionList.length===1">
+        {{questionList.length}} Question
       </h2>
       <div class="questionList" v-for="(question,index) in questionList"
            v-bind:key="question">
 
         <div class="questionWrapper">
-          <button v-on:click="deleteQuestion(index)" class="deleteButton">
-                <span
-                    class="material-symbols-outlined X">
-                  DELETE
-                </span>
-          </button>
+<!--          <button v-on:click="deleteQuestion(index)" class="deleteButton">-->
+<!--                <span-->
+<!--                    class="material-symbols-outlined X">-->
+<!--                  DELETE-->
+<!--                </span>-->
+<!--          </button>-->
           <div class="question">
             {{uiLabels.theQuestion + (index+1)}}<br>
           </div>
@@ -99,7 +103,10 @@
         <div class="questionListWrapper">
 
           <button @click="toggleTab" class="questionTab">
-            <span id="closeTab">
+            <div class="questionAdded" v-if="questionAdded===true">
+              +1
+            </div>
+             <span id="closeTab">
                   <p v-if="showText1">
                     ↓ {{uiLabels.theQuestions}} ↓
                   </p>
@@ -113,12 +120,12 @@
                v-bind:key="question">
 
             <div class="questionWrapper">
-              <button v-on:click="deleteQuestion(index)" class="deleteButton">
-                <span
-                    class="material-symbols-outlined X">
-                  DELETE
-                </span>
-              </button>
+<!--              <button v-on:click="deleteQuestion(index)" class="deleteButton">-->
+<!--                <span-->
+<!--                    class="material-symbols-outlined X">-->
+<!--                  DELETE-->
+<!--                </span>-->
+<!--              </button>-->
               <div class="question">
                 {{uiLabels.theQuestion + (index+1)}}<br>
               </div>
@@ -150,6 +157,7 @@ export default {
       trueSelected: false,
       falseSelected: false,
       userIsHost: false,
+      questionAdded: false,
 
       uiLabels: {},
       lang: "",
@@ -240,6 +248,11 @@ export default {
       if(this.formValidation===true) {
         const question = Object.assign({}, this.questionObject)
         socket.emit('addCollabQuestion', {question: question,gameId: this.gameId} )
+        this.questionAdded=true;
+        let self = this;
+        setTimeout(function (){
+          self.questionAdded=false;
+        },1500)
       }
       this.questionObject.questionText= "";
       this.questionObject.questionAnswer =  undefined;
@@ -267,7 +280,7 @@ body{
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 h1{
@@ -313,7 +326,9 @@ h1{
       'opsz' 48
 }
 .userListWrapper{
+  display: flex;
   justify-content: center;
+  align-content: flex-start;
   flex-wrap: wrap;
   width: 20%;
   margin-top: 20px;
@@ -327,6 +342,11 @@ h1{
   border-style: solid;
   border-width: 0.5vw;
 }
+
+.user{
+  width: 80%;
+}
+
 .questionToolWrapper{
   display: grid;
   justify-items: center;
@@ -460,28 +480,11 @@ h3{
   background-color: #00C3BA;
   border-style: solid;
   border-color: #1F6E77;
+  height: 2em;
   margin: 1em;
+  margin-left: 0.4em;
 }
-.deleteButton{
-  width: 2.5em;
-  height: 2.5em;
-  margin: 0.2em;
-  padding-left: 0.2em;
-  padding-bottom: 0.2em;
-  order: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #FEF9CC;
-  border: solid;
-  box-shadow: inset -0.2em -0.2em #c2bd8e;
-}
-.deleteButton:hover{
-  background-color: #FEF9CC;
-  padding-right: 0.2em;
-  padding-top: 0.2em;
-  box-shadow: inset 0 0;
-}
+
 .material-symbols-outlined.X{
   font-size: 2vw;
   color: #ff0000;
@@ -502,41 +505,41 @@ h3{
       background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
+      /*overflow: hidden;*/
       font-family: "Silkscreen", cursive;
     }
     .pageGrid {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       width: 100%;
       height: 85%;
     }
     h1 {
       color: #00C3BA;
-      font-size: 5vw;
+      font-size: 2em;
       margin-bottom: 0;
       text-shadow: 4px 2px black;
     }
     .backButtonDiv {
       width: 10vw;
       height: 10vh;
-      margin-right: 10vw;
+      margin-right: 2vw;
     }
     .backButton {
-      font-family: "Press Start 2P",cursive;
+      font-family: "Press Start 2P", cursive;
       color: #FEF9CC;
       background-color: #00C3BA;
       cursor: pointer;
       width: 20vw;
       height: 10vh;
-      margin: 5vw;
+      margin-top: 8vw;
+      margin-left: 1vw;
       font-size: 2vw;
       text-shadow: 2px 2px #1F6E77;
       box-shadow: inset -0.35em -0.35em #268b96;
       border-color: #2B211B;
-      border-width: 0.4em;
-      border-style: solid ;
+      border-width: 0.2em;
+      border-style: solid;
     }
     .backButton:hover {
       background-color: #31a6b2;
@@ -554,13 +557,23 @@ h3{
       font-size: 6vw;
       height: 8vw;
     }
+    .connectedPlayers{
+      position: sticky;
+      top:0;
+      text-shadow: 1px 0px #fef9cc;
+      background-color: rgba(254, 249, 204, 0.6);
+      border-radius: 10px;
+      width: 55%;
+      margin: 0 auto
+
+    }
     .questionInput {
       font-family: "Press Start 2P", cursive;
       border: none;
       color: #FEF9CC;
       background: transparent;
       width: 80%;
-      height: 7vh;
+      height: 10vh;
       font-size: 5vw;
       border-bottom-style: solid;
       border-bottom-color: #2B211B;
@@ -638,6 +651,16 @@ h3{
       border-color: #2B211B;
       border-width: 0.2em;
     }
+    .questionAdded{
+      position: absolute;
+      bottom: 100px;
+      left: 20px;
+      font-size: 150%;
+      font-family: "Press Start 2P",cursive;
+      color: #fef9cc;
+      text-shadow: 2px 2px black;
+
+    }
     .questionButtons:hover {
       padding-right: 0.05em;
       padding-top: 0.05em;
@@ -651,7 +674,8 @@ h3{
       width: 60%;
       height: 100%;
       margin: 0vw;
-      margin-bottom: 30vw;
+      margin-bottom: 70vw;
+      margin-top: -5vw;
       order: 1;
       text-align: center;
     }
@@ -716,6 +740,7 @@ h3{
     }
     .tab {
       position: fixed;
+      width: 100%;
       bottom: 0;
       left: 0;
       right: 0;
@@ -744,13 +769,14 @@ h3{
       border-width: 0px;
     }
     .questionTab{
+      width: 101%;
       background-color: #FEF9CC ;
       border-width: 0px;
       margin-top: -17vw;
       padding-bottom: 4vw;
       padding-top: 0vw;
       position: absolute;
-      margin-left: -41vw;
+      margin-left: -51vw;
       border-color: black;
       border-top-left-radius: 1vw;
       border-top-right-radius: 1vw;

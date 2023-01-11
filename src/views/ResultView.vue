@@ -7,11 +7,37 @@
     <div class="leaderboard">
       {{uiLabels.leaderboard}}
       <hr>
-      <div v-for="user in userList"
+      <div v-for="(user, index) in userList"
            v-bind:key="user">
-        {{user.username}}:
-        {{user.endScore}}
-        <img src="@/banana.png" alt="Banana" style = "width:15px; height:15px">
+        <p v-if="index === 0" >
+          <img src="https://th.bing.com/th/id/OIP._o8RqUE8s3mu6UxN-D0zvQAAAA?pid=ImgDet&w=157&h=157&c=7&dpr=1,5"
+               alt="first"
+               style=" width: 15px; height: 15px">
+          {{user.username}}:
+          {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = " width:15px; height:15px">
+        </p>
+        <p v-if="index === 1">
+          <img src="https://th.bing.com/th/id/OIP.SwxOZo0lXM-jHd-GyP1RMgAAAA?pid=ImgDet&w=157&h=157&c=7&dpr=1,5"
+               alt="first"
+               style=" width: 15px; height: 15px">
+          {{user.username}}:
+          {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = " width:15px; height:15px">
+        </p>
+        <p v-if="index === 2">
+          <img src="https://th.bing.com/th/id/OIP.bm-qVXZUPlRDXyLyLCaIuwAAAA?pid=ImgDet&w=157&h=157&c=7&dpr=1,5"
+               alt="first"
+               style=" width: 15px; height: 15px">
+          {{user.username}}:
+          {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = " width:15px; height:15px">
+        </p>
+        <p v-if="index >2 ">
+          {{user.username}}:
+          {{user.endScore}}
+          <img src="@/banana.png" alt="Banana" style = " width:15px; height:15px">
+        </p>
       </div>
     </div>
   </div>
@@ -97,7 +123,7 @@ body {
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 .leaderboard{

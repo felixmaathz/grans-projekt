@@ -28,7 +28,6 @@
 </template>
 
 <script>
-// import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -91,7 +90,7 @@ export default {
   }
   .gameName{
     margin-top: 15vh;
-    font-size: 7em;
+    font-size: 6em;
   }
   .gameButtons{
     font-family: "Press Start 2P",cursive;
@@ -120,11 +119,7 @@ export default {
     box-shadow: inset -0.1em -0.1em #027a75;
     color: #FEF9CC;
   }
-  /*.languageButtonDiv{*/
-  /*  position: absolute;*/
-  /*  width: 10vw;*/
-  /*  height: 10vh;*/
-  /*}*/
+
   .gameButtons.language{
     min-width: 10vw;
     width: 10vw;
@@ -193,14 +188,7 @@ export default {
     box-shadow: inset -0.1em -0.1em #027a75;
     color: #FEF9CC;
   }
-  /*.languageButtonDiv{*/
-  /*  position: absolute;*/
-  /*  width: 10vw;*/
-  /*  height: 10vh;*/
-  /*  top:0;*/
-  /*  left:60%;*/
-  /*  outline: blue 1px solid;*/
-  /*}*/
+
   .gameButtons.language{
     position: absolute;
     right: 0;

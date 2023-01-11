@@ -11,11 +11,7 @@
     <h1>{{uiLabels.gameId}}:<br>{{ this.gameId }}</h1>
 
   </div>
-<!--<div v-for="user in this.connectedUsers"-->
-<!--      v-bind:key="user">-->
-<!--  {{user.username}}-->
-<!--</div>-->
-  <h2 class="connPlayers">Connected players</h2>
+  <h2 class="connPlayers">{{uiLabels.connectedPlayer}}</h2>
  <div class="userListWrapper">
 
  <UserComponent v-for="user in this.connectedUsers"
@@ -107,7 +103,7 @@ body{
   background: radial-gradient(circle, #EF233C 35%, #D80032 90%);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Silkscreen", cursive;
 }
 

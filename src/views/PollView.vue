@@ -2,7 +2,7 @@
 <template>
 
   <body>
-  <button style="position:absolute;" v-on:click="stopGame()">STOP</button>
+<!--  <button style="position:absolute;" v-on:click="stopGame()">STOP</button>-->
   <div>
     <WaitingComponent
         v-show="isPopUpVisible"
@@ -69,12 +69,12 @@
 
         <div v-if="this.selectedAnswer === this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText true">
-          Correct answer <br>
-          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">Answer Streak <br>+2000</p>
+          {{uiLabels.correctAnswer}} <br>
+          +{{(10000-this.end+this.start)}}<p v-if="answerStreak===3">{{uiLabels.answerSteaken}} <br>+2000</p>
         </div>
         <div v-if="this.selectedAnswer !== this.selectedQuiz.questions[this.activeIndex].questionAnswer"
              class="answerText false">
-          Wrong answer
+          {{uiLabels.wrongAnswer}}
         </div>
       </div>
 
@@ -100,7 +100,6 @@
 <script>
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
-// import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 import WaitingComponent from '@/components/WaitingComponent.vue';
 const socket = io();
@@ -111,10 +110,6 @@ export default {
   components: {WaitingComponent, QuestionComponent},
 
 
-  //components: {
-  //QuestionComponent,
-  // ReorderQuestion
-  //},
   data: function () {
     return {
       selectedQuiz: {},
@@ -207,11 +202,12 @@ export default {
       this.$router.push({path: '/'})
     },
 
-    stopGame: function() {
-      clearInterval(this.progressTimer)
-      clearInterval(this.decreaseTimer)
-      clearInterval(this.questionTimer)
-    },
+    //For development
+    // stopGame: function() {
+    //   clearInterval(this.progressTimer)
+    //   clearInterval(this.decreaseTimer)
+    //   clearInterval(this.questionTimer)
+    // },
 
     timer: function(){
       this.progressTimer = setInterval(this.increaseProgressBar, 100)
@@ -288,18 +284,6 @@ export default {
       console.log("Svaret " + event + " kom fram till pollview")
       this.end=Date.now()
       console.log("end timer "+this.end)
-      // this.answeredQuestions.a.push(event)
-      // console.log(this.answeredQuestions.a)
-
-
-      // if(event === this.selectedQuiz.questions[this.activeIndex].questionAnswer) {
-      //   console.log("rätt svar")
-      //   this.yourScore +=1000
-      //   console.log("Du har " + this.yourScore)
-      // }
-      // else{
-      //   console.log("fel svar")
-      // }
     },
 
     closePopUp: function () {
@@ -399,7 +383,7 @@ export default {
   align-items: center;
   right: 0;
   width: 24%;
-  height: 8em;
+  height: 6em;
   flex-wrap: wrap;
 }
 
@@ -461,12 +445,12 @@ export default {
   justify-content: center;
 }
 body {
-  background: url("https://i.imgur.com/eTXACsr.gif");
+  background-image: url("https://i.imgur.com/eTXACsr.gif");
   background-size: cover;
   /*background: radial-gradient(circle, #00a9bb 25%, #477998 80%);*/
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: auto;
   font-family: "Silkscreen", cursive;
 }
 

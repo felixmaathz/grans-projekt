@@ -28,11 +28,16 @@
 	"q": "Q: ",
 	"a": "A: ",
 	"gameExists": "Game ID already exists or input is empty",
+	"tA": "True",
+	"fA": "False",
 
 	"HOSTORJOINVIEW": "",
 	"hostAGame": "Host game",
 	"joinAGame": "Join game",
 	"goBack": "Back",
+
+	"CHOOSEGAMEID": ",",
+	"createCoLabGame": "Create Game",
 
 	"CHOOSEGAMEMODEVIEW": "",
 	"playSavedQuiz": "Play saved Quiz",
@@ -68,6 +73,7 @@
 	"hostPreGame": "Host pre game",
 	"goBack": "Back",
 	"startTheGame": "Start game",
+	"connectedPlayer": "Connected Players",
 
 	"JOINVIEW": "",
 	"goBack": "Back",
@@ -79,6 +85,9 @@
 	"gameRunning": "Game-ID:",
 	"loadingGame": "Loading game:",
 	"timeLeft": "Game will start in:",
+	"correctAnswer": "Correct answer",
+	"wrongAnswer": "Wrong answer",
+	"annswerStreaken": "Answer streak",
 
 	"RESULTVIEW": "",
 	"goBack": "Back",
