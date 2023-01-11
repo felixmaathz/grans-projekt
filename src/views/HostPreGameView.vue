@@ -11,10 +11,6 @@
     <h1>{{uiLabels.gameId}}:<br>{{ this.gameId }}</h1>
 
   </div>
-<!--<div v-for="user in this.connectedUsers"-->
-<!--      v-bind:key="user">-->
-<!--  {{user.username}}-->
-<!--</div>-->
   <h2 class="connPlayers">{{uiLabels.connectedPlayer}}</h2>
  <div class="userListWrapper">
 

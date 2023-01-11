@@ -63,6 +63,8 @@
 	"joinLobby": "Join lobby",
 	"coQuiz": "Collab Quiz?",
 	"noCoQuiz": "Regular Qiuz?",
+	"noIdOrUsername": "Empty Game-ID or username",
+	"userExistsOrLobbyDoesnt": "User already exist or lobby does not exist",
 
 	"LOBBYVIEW": "",
 	"nickName": "#nickname",

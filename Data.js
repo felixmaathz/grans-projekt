@@ -142,7 +142,6 @@ Data.prototype.terminateGame = function (){
   console.log("Game terminated")
 }
 
-//Dom här två gör typ samma sak, ta bort den ena kanske?
 Data.prototype.getQuestions = function(){
   console.log("Getting questions")
   return this.createdGame.questions

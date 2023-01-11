@@ -64,6 +64,8 @@
 	"joinLobby": "Gå med i lobby",
 	"coQuiz": "Gemensamt spel?",
 	"noCoQuiz": "Vanligt Qiuz?",
+	"noIdOrUsername": "Inget ID eller användarnamn",
+	"userExistsOrLobbyDoesnt": "Användaren finns redan eller så existerar inte lobbyn",
 
 	"LOBBYVIEW": "",
 	"nickName": "#användarnamn",

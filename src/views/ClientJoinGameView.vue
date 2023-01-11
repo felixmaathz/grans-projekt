@@ -53,7 +53,6 @@
       <router-link v-bind:to="'/collablobby/'+lang+'/'+user.joinGameId+'/'+user.username" v-if="user.collabGame===true">
         <button v-on:click="joinGame()" class="questionButtons">{{uiLabels.joinLobby}}</button>
       </router-link>
-
     </div>
   </div>
 
@@ -106,7 +105,7 @@ export default {
           if (this.connectedUsers.some(theUser => theUser.username === this.user.username) ||
               this.currentGame.gameId !== this.user.joinGameId ||
               this.user.collabGame !== this.currentGame.collabGame) {
-            alert("User already exist or lobby does not exist")
+            alert(this.uiLabels.userExistsOrLobbyDoesnt)
             this.$router.go(-1)
           } else {
             let user = Object.assign({},this.user)
