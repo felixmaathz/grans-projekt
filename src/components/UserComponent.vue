@@ -115,7 +115,7 @@ export default {
   overflow: hidden;
   min-height: 3vw;
   height: fit-content;
-  margin-top: 10px;
+  margin:20px;
   font-family: 'VT323', monospace;
   border-style: solid;
   border-color: #2B211B;

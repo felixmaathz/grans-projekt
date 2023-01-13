@@ -170,7 +170,7 @@ h1{
 
   }
   .userListWrapper{
-    height: 40vw;
+    height: 70vw;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;

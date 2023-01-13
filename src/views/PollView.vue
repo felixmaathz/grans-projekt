@@ -57,7 +57,7 @@
           v-for="(question, index) in this.selectedQuiz.questions" v-bind:question="question" :key="index">
 
         <QuestionComponent
-            v-if="remainingTime>=questionVisible"
+            v-if="progressWidth!==0"
             v-show= "index==activeIndex"
             v-bind:question="question"
             v-on:answer = "saveAnswer($event)">
