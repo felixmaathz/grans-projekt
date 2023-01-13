@@ -139,7 +139,7 @@ export default {
 
 .questionInput {
   margin-top: 1vh;
-  font-family: Silkscreen;
+  font-family: "Press Start 2P",Serif;
   color: black;
   border: none;
   background: transparent;

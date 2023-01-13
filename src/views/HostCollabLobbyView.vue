@@ -288,6 +288,7 @@ h1{
   font-size: 4vw;
   margin-bottom: 0;
   text-shadow: 4px 2px black;
+  font-family: "Press Start 2P",,serif;
 }
 .pageGrid{
   display: flex;
